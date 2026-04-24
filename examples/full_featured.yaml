@@ -1,0 +1,65 @@
+output: "full_featured.pptx"
+metadata:
+  title: "Quarterly Report Q1 2026"
+  author: "Sales Team"
+  subject: "Q1 Performance"
+defaults:
+  font_size: 18
+slides:
+  - layout: "Title Slide"
+    title: "Quarterly Report Q1 2026"
+    subtitle: "Sales Division"
+
+  - layout: "Title and Content"
+    title: "Executive Summary"
+    content:
+      - "Revenue up **23%** year-over-year"
+      - "New customers: *142* in Q1"
+      - "Retention rate: `98.5%`"
+      - "See [full report](https://example.com/report)"
+    speaker_notes: "Highlight the YoY growth and retention improvements"
+
+  - layout: "Two Content"
+    title: "Regional Comparison"
+    left:
+      - "**EMEA**"
+      - "Revenue: $4.2M"
+      - "Growth: 18%"
+    right:
+      - "**APAC**"
+      - "Revenue: $3.8M"
+      - "Growth: 31%"
+
+  - layout: "Title and Content"
+    title: "Revenue by Quarter"
+    chart:
+      type: column
+      categories: ["Q1 2025", "Q2 2025", "Q3 2025", "Q4 2025", "Q1 2026"]
+      series:
+        - name: "Revenue"
+          values: [3200, 3500, 3800, 4100, 4500]
+        - name: "Target"
+          values: [3000, 3300, 3600, 3900, 4200]
+
+  - layout: "Title and Content"
+    title: "Top Accounts"
+    table:
+      headers: ["Account", "Revenue", "Growth", "Status"]
+      rows:
+        - ["Acme Corp", "$1.2M", "+15%", "Active"]
+        - ["GlobalTech", "$980K", "+22%", "Active"]
+        - ["NordSoft", "$750K", "+8%", "At Risk"]
+        - ["DataFlow", "$620K", "+45%", "New"]
+
+  - layout: "Section Header"
+    title: "Next Steps"
+    subtitle: "Q2 priorities and action items"
+
+  - layout: "Title and Content"
+    title: "Q2 Priorities"
+    content:
+      - "**Expand APAC** sales team by 3 FTEs"
+      - "Launch *enterprise* tier pricing"
+      - text: "Target: $5M quarterly revenue"
+        bold: true
+      - "Reduce churn in ~~mid-market~~ SMB segment"

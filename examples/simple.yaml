@@ -1,0 +1,34 @@
+output: "simple.pptx"
+metadata:
+  title: "yaml2pptx Demo"
+  author: "yaml2pptx"
+slides:
+  - layout: "Title Slide"
+    title: "yaml2pptx Demo"
+    subtitle: "Presentations from YAML"
+
+  - layout: "Title and Content"
+    title: "Key Features"
+    content:
+      - "Define slides in **YAML**"
+      - "Use *Markdown* for formatting"
+      - "Connect to PowerPoint templates"
+      - "Tables, charts, and images"
+    speaker_notes: "This slide shows the main features of yaml2pptx"
+
+  - layout: "Title and Content"
+    title: "Bullet Levels"
+    content:
+      - "Top-level bullet"
+      - text: "Indented bullet"
+        level: 1
+      - text: "Second level"
+        level: 2
+      - "Back to top level"
+
+  - layout: "Section Header"
+    title: "Data Section"
+    subtitle: "Tables and charts"
+
+  - layout: "Title Only"
+    title: "Summary"

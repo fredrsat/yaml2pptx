@@ -1,0 +1,203 @@
+output: "quarterly_review.pptx"
+metadata:
+  title: "Q1 2026 Business Review"
+  author: "Operations Team"
+theme_config:
+  organization: "TechVentures Inc"
+  document_title: "Q1 2026 Review"
+  classification: "Confidential"
+
+slides:
+  # --- Title ---
+  - type: title_page
+    category: "QUARTERLY BUSINESS REVIEW"
+    title: "Q1 2026 Results"
+    subtitle: "Performance, insights, and outlook"
+    author: "Operations Team"
+    date: "April 2026"
+
+  # --- Key Metrics ---
+  - type: key_metrics
+    section: "HIGHLIGHTS"
+    title: "Q1 at a Glance"
+    subtitle: "Key performance indicators"
+    metrics:
+      - value: "$12.4M"
+        label: "Revenue"
+        trend: "up"
+        trend_label: "+18% vs Q4"
+        color: "success"
+      - value: "1,240"
+        label: "Active customers"
+        trend: "up"
+        trend_label: "+85 net new"
+        color: "accent"
+      - value: "94%"
+        label: "Customer retention"
+        trend: "up"
+        trend_label: "+2pp"
+        color: "success"
+      - value: "$142K"
+        label: "Avg. contract value"
+        trend: "up"
+        trend_label: "+8% vs Q4"
+        color: "primary"
+      - value: "4.6/5"
+        label: "NPS score"
+        color: "accent"
+      - value: "32 days"
+        label: "Avg. sales cycle"
+        trend: "down"
+        trend_label: "-5 days"
+        color: "success"
+
+  # --- Comparison: Q4 vs Q1 ---
+  - type: comparison
+    section: "PERFORMANCE"
+    title: "Quarter-over-Quarter"
+    subtitle: "Q4 2025 vs Q1 2026"
+    left_panel:
+      header: "Q4 2025"
+      title: "Previous Quarter"
+      rows:
+        - label: "REVENUE"
+          value: "$10.5M — seasonal softness in December"
+        - label: "NEW DEALS"
+          value: "42 closed — pipeline constrained by hiring"
+        - label: "CHURN"
+          value: "8% — two enterprise accounts lost"
+        - label: "SUPPORT"
+          value: "4.2h avg response time"
+    right_panel:
+      header: "Q1 2026"
+      title: "Current Quarter"
+      rows:
+        - label: "REVENUE"
+          value: "$12.4M — strong January rebound"
+        - label: "NEW DEALS"
+          value: "58 closed — new sales reps fully ramped"
+        - label: "CHURN"
+          value: "6% — improved onboarding reduced early churn"
+        - label: "SUPPORT"
+          value: "2.1h avg response time — new ticketing system"
+    footer_text: "Revenue growth driven by expansion deals and reduced churn"
+
+  # --- Icon Cards ---
+  - type: icon_cards
+    section: "WINS"
+    message: "Three strategic wins this quarter that position us for accelerated growth in H2."
+    cards:
+      - title: "Enterprise Expansion"
+        icon: "trend"
+        description: "Landed 3 Fortune 500 accounts, increasing enterprise revenue share to 35%"
+      - title: "Platform Reliability"
+        icon: "shield"
+        description: "Achieved 99.97% uptime, earning SOC 2 Type II certification"
+      - title: "Team Growth"
+        icon: "people"
+        description: "Hired 12 engineers and 8 sales reps, fully staffing all planned teams"
+
+  # --- Content Cards ---
+  - type: content_cards
+    section: "PRODUCT"
+    title: "Product Highlights"
+    subtitle: "Major releases in Q1"
+    cards:
+      - title: "API v3"
+        icon: "code"
+        subtitle: "Released February 2026"
+        points:
+          - "GraphQL support"
+          - "Webhook event system"
+          - "Rate limiting improvements"
+      - title: "Dashboard 2.0"
+        icon: "chart"
+        subtitle: "Released March 2026"
+        points:
+          - "Custom widget builder"
+          - "Real-time data streaming"
+          - "Export to PDF/Excel"
+      - title: "Mobile App"
+        icon: "globe"
+        subtitle: "Beta launched March 2026"
+        points:
+          - "iOS and Android"
+          - "Push notifications"
+          - "Offline mode"
+
+  # --- Process ---
+  - type: process
+    section: "OPERATIONS"
+    title: "Incident Response Improvement"
+    subtitle: "New process reduced MTTR by 60%"
+    steps:
+      - icon: "warning"
+        title: "Detect"
+        description: "Automated monitoring alerts within 30 seconds"
+        items:
+          - "APM integration"
+          - "Custom health checks"
+      - icon: "search"
+        title: "Diagnose"
+        description: "Structured runbooks for common scenarios"
+        items:
+          - "Decision trees"
+          - "Log correlation"
+      - icon: "gear"
+        title: "Resolve"
+        description: "Automated remediation for known issues"
+        items:
+          - "Auto-scaling triggers"
+          - "Rollback automation"
+      - icon: "document"
+        title: "Review"
+        description: "Blameless postmortems within 48 hours"
+        items:
+          - "Root cause analysis"
+          - "Action item tracking"
+
+  # --- Table ---
+  - type: table
+    section: "FINANCIALS"
+    title: "Revenue by Segment"
+    subtitle: "All figures in millions USD"
+    headers: ["Segment", "Q4 2025", "Q1 2026", "Change", "% of Total"]
+    rows:
+      - ["Enterprise", "$4.2M", "$5.1M", "+21%", "41%"]
+      - ["Mid-Market", "$3.8M", "$4.3M", "+13%", "35%"]
+      - ["SMB", "$2.0M", "$2.4M", "+20%", "19%"]
+      - ["Self-Serve", "$0.5M", "$0.6M", "+20%", "5%"]
+      - ["**Total**", "**$10.5M**", "**$12.4M**", "**+18%**", "**100%**"]
+
+  # --- Section Divider ---
+  - type: section_divider
+    number: "02"
+    title: "Q2 Outlook"
+    subtitle: "Plans and priorities for the next quarter"
+
+  # --- Checklist ---
+  - type: checklist
+    section: "Q2 PRIORITIES"
+    title: "Q2 2026 Goals"
+    subtitle: "Key objectives and current status"
+    columns: 2
+    items:
+      - text: "Reach $14M quarterly revenue"
+        status: "in_progress"
+        note: "Pipeline supports target"
+      - text: "Launch self-serve onboarding"
+        status: "in_progress"
+        note: "Development 70% complete"
+      - text: "Expand to European market"
+        status: "pending"
+        note: "Legal review of GDPR compliance"
+      - text: "Hire VP of Marketing"
+        status: "in_progress"
+        note: "Final round candidates"
+      - text: "Reduce support ticket volume by 20%"
+        status: "pending"
+        note: "Knowledge base revamp planned"
+      - text: "Ship API v3.1 with batch operations"
+        status: "pending"
+        note: "Scoped, starting May"
+    speaker_notes: "Emphasize that revenue target is achievable based on current pipeline. European expansion is the highest-risk item due to regulatory requirements."

@@ -1,0 +1,239 @@
+output: "tech_strategy.yaml.pptx"
+metadata:
+  title: "Cloud Migration Strategy"
+  author: "Engineering"
+theme_config:
+  organization: "NovaSoft"
+  document_title: "Cloud Migration Strategy"
+
+slides:
+  # --- Title ---
+  - type: title_page
+    category: "ENGINEERING STRATEGY"
+    title: "Cloud Migration"
+    subtitle: "Moving to a modern, scalable infrastructure"
+    author: "Engineering Team"
+    date: "2026"
+
+  # --- Agenda ---
+  - type: agenda
+    section: "OVERVIEW"
+    title: "Migration Plan"
+    items:
+      - title: "Current State"
+        description: "Assessment of existing infrastructure"
+      - title: "Target Architecture"
+        description: "Cloud-native design and principles"
+      - title: "Migration Approach"
+        description: "Phased rollout with risk mitigation"
+      - title: "Cost Analysis"
+        description: "TCO comparison and projected savings"
+      - title: "Timeline & Milestones"
+        description: "18-month execution roadmap"
+
+  # --- Stat Cards ---
+  - type: stat_cards
+    section: "CURRENT STATE"
+    title: "Infrastructure Assessment"
+    subtitle: "Key findings from the audit"
+    cards:
+      - stat: "47"
+        label: "servers"
+        title: "Physical Hardware"
+        description: "Running across 2 data centers with an average age of 5.3 years"
+      - stat: "34%"
+        label: "utilization"
+        title: "Resource Efficiency"
+        description: "Average CPU utilization during peak hours -- significant waste"
+      - stat: "$2.1M"
+        label: "annual cost"
+        title: "Infrastructure Spend"
+        description: "Including hardware, licensing, power, cooling, and staff overhead"
+
+  # --- Definition Cards ---
+  - type: definition_cards
+    section: "PRINCIPLES"
+    title: "Cloud-Native Design Principles"
+    cards:
+      - term: "Containerize"
+        icon: "server"
+        subtitle: "Portable Workloads"
+        description: "Package all services as containers for consistent deployment across environments"
+      - term: "Automate"
+        icon: "gear"
+        subtitle: "Infrastructure as Code"
+        description: "Define all infrastructure declaratively -- version controlled, reviewable, reproducible"
+      - term: "Observe"
+        icon: "search"
+        subtitle: "Full Observability"
+        description: "Centralized logging, distributed tracing, and real-time metrics for every service"
+    callout:
+      label: "GUIDING PRINCIPLE"
+      columns:
+        - title: "Build for Failure"
+          description: "Design every component assuming it will fail. Redundancy, circuit breakers, and graceful degradation are not optional."
+
+  # --- Two Panels ---
+  - type: two_panels
+    section: "ARCHITECTURE"
+    title: "Before and After"
+    subtitle: "From monolith to microservices"
+    left_panel:
+      letter: "A"
+      label: "CURRENT"
+      title: "Monolithic Architecture"
+      example: "Single deployment, shared database, tight coupling"
+      dark: true
+      points:
+        - "One codebase, one deployment unit"
+        - "Shared relational database for all modules"
+        - "Manual scaling -- add more hardware"
+        - "Full regression testing for any change"
+        - "Downtime during deployments"
+    right_panel:
+      letter: "B"
+      label: "TARGET"
+      title: "Microservices Architecture"
+      example: "Independent services, event-driven, auto-scaling"
+      dark: false
+      points:
+        - "Domain-bounded services, independent deploys"
+        - "Each service owns its data store"
+        - "**Auto-scaling** based on demand"
+        - "Isolated testing per service"
+        - "**Zero-downtime** rolling deployments"
+
+  # --- Process ---
+  - type: process
+    section: "APPROACH"
+    title: "Migration Strategy"
+    subtitle: "Strangler fig pattern -- incremental migration"
+    steps:
+      - icon: "search"
+        title: "Assess"
+        description: "Catalog all services and dependencies"
+        items:
+          - "Dependency mapping"
+          - "Data flow analysis"
+          - "Risk classification"
+      - icon: "code"
+        title: "Containerize"
+        description: "Package existing services without rewriting"
+        items:
+          - "Docker images"
+          - "CI/CD pipeline"
+          - "Local dev parity"
+      - icon: "cloud"
+        title: "Migrate"
+        description: "Move workloads with traffic shifting"
+        items:
+          - "Blue-green deployment"
+          - "Data replication"
+          - "Rollback procedures"
+      - icon: "gear"
+        title: "Optimize"
+        description: "Leverage cloud-native capabilities"
+        items:
+          - "Auto-scaling policies"
+          - "Managed services"
+          - "Cost optimization"
+
+  # --- Comparison ---
+  - type: comparison
+    section: "COST ANALYSIS"
+    title: "Total Cost of Ownership"
+    subtitle: "Annual costs: on-premise vs. cloud"
+    left_panel:
+      header: "ON-PREMISE"
+      title: "Current Infrastructure"
+      rows:
+        - label: "HARDWARE"
+          value: "$680K -- servers, storage, networking (amortized)"
+        - label: "LICENSING"
+          value: "$420K -- OS, database, middleware licenses"
+        - label: "FACILITIES"
+          value: "$310K -- power, cooling, rack space"
+        - label: "STAFF"
+          value: "$690K -- 4 FTE infrastructure engineers"
+    right_panel:
+      header: "CLOUD"
+      title: "Projected Cloud Costs"
+      rows:
+        - label: "COMPUTE"
+          value: "$380K -- reserved instances + spot for batch jobs"
+        - label: "STORAGE"
+          value: "$95K -- tiered storage with lifecycle policies"
+        - label: "MANAGED"
+          value: "$210K -- databases, caching, messaging"
+        - label: "STAFF"
+          value: "$520K -- 3 FTE (reduced ops burden)"
+    footer_text: "Projected annual savings: $895K (43% reduction in total infrastructure costs)"
+
+  # --- Timeline ---
+  - type: timeline
+    section: "ROADMAP"
+    title: "18-Month Migration Timeline"
+    phases:
+      - label: "Q2 2026"
+        title: "Foundation"
+        active: true
+        items:
+          - "Container platform setup"
+          - "CI/CD pipeline migration"
+          - "Monitoring stack deployment"
+      - label: "Q3-Q4 2026"
+        title: "Core Services"
+        active: false
+        items:
+          - "API gateway migration"
+          - "Authentication service"
+          - "Core business logic"
+      - label: "Q1 2027"
+        title: "Data Layer"
+        active: false
+        items:
+          - "Database migration"
+          - "Data pipeline modernization"
+          - "Search infrastructure"
+      - label: "Q2 2027"
+        title: "Complete"
+        active: false
+        items:
+          - "Remaining services"
+          - "Decommission on-premise"
+          - "Cost optimization"
+
+  # --- Checklist ---
+  - type: checklist
+    section: "READINESS"
+    title: "Pre-Migration Checklist"
+    columns: 2
+    items:
+      - text: "Infrastructure audit complete"
+        status: "done"
+      - text: "Cloud provider selected"
+        status: "done"
+      - text: "Security framework approved"
+        status: "done"
+        note: "Passed compliance review"
+      - text: "Container platform configured"
+        status: "in_progress"
+        note: "Kubernetes cluster provisioned"
+      - text: "CI/CD pipeline migrated"
+        status: "in_progress"
+        note: "3 of 8 pipelines moved"
+      - text: "Team training completed"
+        status: "pending"
+        note: "Workshops scheduled for May"
+      - text: "Disaster recovery plan tested"
+        status: "pending"
+      - text: "Data migration scripts validated"
+        status: "blocked"
+        note: "Waiting on schema freeze"
+
+  # --- Quote ---
+  - type: quote
+    section: "VISION"
+    quote: "The goal is not just to move to the cloud. It's to build an infrastructure that lets us ship faster, scale effortlessly, and spend our engineering time on product -- not operations."
+    attribution: "-- VP of Engineering"
+    dark: true

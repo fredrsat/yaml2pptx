@@ -1,0 +1,206 @@
+output: "product_launch.pptx"
+metadata:
+  title: "Product Launch Plan"
+  author: "Product Team"
+theme_config:
+  organization: "Acme Corp"
+  document_title: "Product Launch Plan"
+  classification: "Internal"
+
+slides:
+  # --- Title Page ---
+  - type: title_page
+    category: "PRODUCT STRATEGY"
+    title: "Project Aurora"
+    subtitle: "Next-generation platform launch plan"
+    author: "Product Team"
+    date: "Q2 2026"
+
+  # --- Agenda ---
+  - type: agenda
+    section: "OVERVIEW"
+    title: "Today's Agenda"
+    items:
+      - title: "Market Opportunity"
+        description: "Size, trends, and competitive landscape"
+      - title: "Product Vision"
+        description: "Core features and differentiation"
+      - title: "Go-to-Market Strategy"
+        description: "Launch timeline and channel plan"
+      - title: "Key Metrics"
+        description: "Success criteria and KPIs"
+
+  # --- Key Metrics Dashboard ---
+  - type: key_metrics
+    section: "MARKET DATA"
+    title: "Market Snapshot"
+    subtitle: "Key indicators from Q1 2026"
+    metrics:
+      - value: "$4.2B"
+        label: "Total addressable market"
+        trend: "up"
+        trend_label: "+12% YoY"
+        color: "success"
+      - value: "23%"
+        label: "Market growth rate"
+        trend: "up"
+        trend_label: "+3pp vs 2025"
+        color: "accent"
+      - value: "4"
+        label: "Major competitors"
+        color: "primary"
+      - value: "68%"
+        label: "Customer satisfaction avg."
+        trend: "down"
+        trend_label: "Industry declining"
+        color: "warning"
+
+  # --- Stat Cards ---
+  - type: stat_cards
+    section: "OPPORTUNITY"
+    title: "Why Now?"
+    subtitle: "Market signals point to strong timing"
+    cards:
+      - stat: "72%"
+        label: "of enterprises"
+        title: "Ready to Switch"
+        description: "Report dissatisfaction with current solutions according to industry survey"
+      - stat: "3.2x"
+        label: "growth factor"
+        title: "Segment Growth"
+        description: "Mid-market segment growing 3.2x faster than enterprise segment"
+      - stat: "18mo"
+        label: "average cycle"
+        title: "Decision Window"
+        description: "Most procurement decisions happen in 18-month budget cycles"
+    footnotes:
+      - "[1] Source: Industry Research Report, Q1 2026"
+
+  # --- Definition Cards with Icons ---
+  - type: definition_cards
+    section: "PRODUCT"
+    title: "Core Capabilities"
+    subtitle: "Three pillars of the Aurora platform"
+    cards:
+      - term: "Automate"
+        icon: "gear"
+        subtitle: "Workflow Engine"
+        description: "Eliminate manual processes with configurable automation pipelines and smart triggers"
+      - term: "Integrate"
+        icon: "network"
+        subtitle: "Universal Connectors"
+        description: "Connect to 200+ data sources with pre-built integrations and a flexible API"
+      - term: "Analyze"
+        icon: "chart"
+        subtitle: "Real-time Analytics"
+        description: "Interactive dashboards with drill-down capabilities and automated reporting"
+
+  # --- Two Panels ---
+  - type: two_panels
+    section: "DIFFERENTIATION"
+    title: "Aurora vs. Legacy Solutions"
+    subtitle: "A fundamentally different approach"
+    left_panel:
+      letter: "A"
+      label: "LEGACY APPROACH"
+      title: "Traditional Platforms"
+      example: "Monolithic architecture with rigid workflows"
+      dark: true
+      points:
+        - "6-12 month implementation cycles"
+        - "Custom development for each integration"
+        - "Batch processing with delayed insights"
+        - "Per-seat licensing with high minimums"
+    right_panel:
+      letter: "B"
+      label: "AURORA"
+      title: "Next-Generation"
+      example: "Modular architecture with flexible configuration"
+      dark: false
+      points:
+        - "**4-week** average time to production"
+        - "Pre-built connectors, no-code setup"
+        - "**Real-time** streaming analytics"
+        - "Usage-based pricing, start small"
+
+  # --- Timeline ---
+  - type: timeline
+    section: "LAUNCH PLAN"
+    title: "Go-to-Market Timeline"
+    subtitle: "From beta to general availability"
+    phases:
+      - label: "Q1 2026"
+        title: "Private Beta"
+        active: false
+        items:
+          - "10 design partners"
+          - "Core feature validation"
+          - "Pricing model testing"
+      - label: "Q2 2026"
+        title: "Public Beta"
+        active: true
+        items:
+          - "Open registration"
+          - "Launch marketing campaign"
+          - "Partner program kickoff"
+      - label: "Q3 2026"
+        title: "General Availability"
+        active: false
+        items:
+          - "Full feature release"
+          - "Enterprise tier launch"
+          - "Global expansion"
+      - label: "Q4 2026"
+        title: "Scale"
+        active: false
+        items:
+          - "Channel partnerships"
+          - "Platform marketplace"
+          - "Series B fundraise"
+
+  # --- Checklist ---
+  - type: checklist
+    section: "STATUS"
+    title: "Launch Readiness"
+    subtitle: "Current status of key workstreams"
+    columns: 2
+    items:
+      - text: "Core platform development"
+        status: "done"
+        note: "All features code-complete"
+      - text: "Security audit and pen testing"
+        status: "done"
+        note: "SOC 2 Type II certified"
+      - text: "Documentation and API reference"
+        status: "in_progress"
+        note: "80% complete, ETA: May 15"
+      - text: "Marketing website and collateral"
+        status: "in_progress"
+        note: "Design approved, in development"
+      - text: "Sales team onboarding"
+        status: "pending"
+        note: "Training scheduled for June"
+      - text: "Enterprise pricing finalized"
+        status: "blocked"
+        note: "Awaiting finance review"
+
+  # --- Quote ---
+  - type: quote
+    section: "CUSTOMER VOICE"
+    quote: "Aurora cut our data processing time from days to minutes. It's not just an improvement -- it's a completely different way of working."
+    attribution: "-- CTO, Beta Customer"
+    source: "Product Review, March 2026"
+    dark: true
+
+  # --- Content Slide ---
+  - type: content
+    section: "NEXT STEPS"
+    title: "Immediate Priorities"
+    subtitle: "Focus areas for the next 30 days"
+    content:
+      - "**Finalize pricing** -- Complete enterprise tier pricing with finance team"
+      - "**Launch marketing site** -- Go live with product website and signup flow"
+      - "**Onboard sales team** -- Complete product training for all customer-facing roles"
+      - "**Secure 3 case studies** -- Publish beta customer success stories"
+      - "**Board presentation** -- Prepare Q2 board update with launch metrics"
+    speaker_notes: "Emphasize that these are the top 5 priorities. Everything else is secondary until launch."
