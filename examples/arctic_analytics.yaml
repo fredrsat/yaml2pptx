@@ -1,0 +1,382 @@
+output: "arctic_analytics.pptx"
+metadata:
+  title: "Data Analytics Platform Architecture"
+  author: "Platform Engineering"
+  subject: "Technical Architecture Overview"
+theme: arctic
+theme_config:
+  organization: "Meridian Data Systems"
+  document_title: "Analytics Platform Architecture"
+  classification: "Internal - Technical"
+
+slides:
+
+  # ──────────────────────────────────────────────
+  # 1. TITLE PAGE
+  # ──────────────────────────────────────────────
+  - type: title_page
+    category: "PLATFORM ENGINEERING"
+    title: "Meridian Analytics Platform"
+    subtitle: "A modern, unified data stack for real-time and batch analytics at petabyte scale"
+    author: "Henrik Larsen, VP Platform Engineering"
+    date: "Q2 2026"
+    speaker_notes: "This deck is intended for the architecture review board and senior engineering leadership. It covers the full analytics stack from ingestion through visualization."
+
+  # ──────────────────────────────────────────────
+  # 2. AGENDA
+  # ──────────────────────────────────────────────
+  - type: agenda
+    section: "OVERVIEW"
+    title: "Architecture Overview"
+    subtitle: "End-to-end walkthrough of the Meridian analytics stack"
+    items:
+      - title: "Architecture Components"
+        description: "The six layers of our analytics platform and how they interact"
+      - title: "Data Flow & Processing"
+        description: "How data moves from source systems through to dashboards"
+      - title: "Batch vs Stream Processing"
+        description: "When to use each paradigm and how we unify them"
+      - title: "Platform Performance"
+        description: "Current throughput, latency, and reliability metrics"
+      - title: "Migration Roadmap"
+        description: "Phased plan to decommission legacy Hadoop cluster"
+
+  # ──────────────────────────────────────────────
+  # 3. ARCHITECTURE COMPONENTS — Definition Cards
+  # ──────────────────────────────────────────────
+  - type: definition_cards
+    section: "ARCHITECTURE"
+    title: "Platform Architecture Layers"
+    subtitle: "Six distinct layers, each with clear boundaries and well-defined contracts"
+    cards:
+      - term: "Ingestion"
+        icon: arrow_right
+        subtitle: "Data Entry Point"
+        description: "Collects events, CDC streams, and batch file drops from 140+ source systems. Supports Kafka, SFTP, REST webhooks, and database connectors."
+        border_color: "#2196F3"
+      - term: "Processing"
+        icon: gear
+        subtitle: "Compute Engine"
+        description: "Dual-mode engine running Apache Flink for stream processing and Apache Spark for batch ETL. Unified schema registry ensures consistency across both paths."
+        border_color: "#4CAF50"
+      - term: "Storage"
+        icon: database
+        subtitle: "Lakehouse"
+        description: "Delta Lake on S3 with Apache Iceberg table format. Supports ACID transactions, time travel, and schema evolution. Currently holds 4.2 PB across 1,800 tables."
+        border_color: "#FF9800"
+      - term: "Query"
+        icon: search
+        subtitle: "Access Layer"
+        description: "Trino cluster for federated SQL queries across the lakehouse, operational databases, and cached aggregates. Sub-second P95 latency on pre-materialized views."
+        border_color: "#9C27B0"
+    callout:
+      label: "Also serving the platform"
+      columns:
+        - title: "Orchestration"
+          description: "Apache Airflow managing 2,400 DAGs with SLA monitoring and automatic retry logic"
+        - title: "Observability"
+          description: "Grafana + Prometheus stack with custom data quality dashboards and PagerDuty alerting"
+    speaker_notes: "The key architectural decision was adopting a lakehouse pattern instead of maintaining separate data lake and data warehouse. This eliminated the costly ETL layer between them."
+
+  # ──────────────────────────────────────────────
+  # 4. DATA FLOW — Process
+  # ──────────────────────────────────────────────
+  - type: process
+    section: "DATA FLOW"
+    title: "How Data Flows Through the Platform"
+    subtitle: "From source system event to analyst dashboard in four stages"
+    steps:
+      - number: 1
+        icon: cloud
+        title: "Capture"
+        description: "Events and changes captured from source systems"
+        items:
+          - "Debezium CDC connectors capture row-level changes from 38 PostgreSQL and 12 MySQL databases"
+          - "Kafka producers emit application events at a sustained rate of 420K events/second"
+          - "Batch file ingestion handles 2.1TB of daily partner data drops via SFTP and S3 landing zones"
+      - number: 2
+        icon: gear
+        title: "Transform"
+        description: "Raw data cleaned, enriched, and conformed"
+        items:
+          - "Stream processing: Flink jobs perform real-time deduplication, sessionization, and enrichment"
+          - "Batch processing: Spark jobs run dbt models for dimensional modeling and aggregate computation"
+          - "Schema validation enforced at write time using the Confluent Schema Registry"
+      - number: 3
+        icon: database
+        title: "Store"
+        description: "Processed data lands in the lakehouse"
+        items:
+          - "Bronze layer: raw events with minimal transformation, retained for 90 days"
+          - "Silver layer: cleaned and conformed data, partitioned by date and source system"
+          - "Gold layer: business-ready aggregates and dimensional models for direct analyst consumption"
+      - number: 4
+        icon: chart
+        title: "Serve"
+        description: "Data made accessible for analysis and applications"
+        items:
+          - "Trino serves interactive SQL queries with sub-second latency on cached aggregates"
+          - "Materialized views refresh every 15 minutes for dashboard-specific datasets"
+          - "REST API layer exposes curated datasets to downstream microservices and ML pipelines"
+    speaker_notes: "The Bronze-Silver-Gold medallion architecture is critical. It lets us reprocess Silver and Gold layers from Bronze without re-ingesting from source systems, which saved us during the schema migration incident in February."
+
+  # ──────────────────────────────────────────────
+  # 5. BATCH vs STREAM — Comparison
+  # ──────────────────────────────────────────────
+  - type: comparison
+    section: "PROCESSING"
+    title: "Batch vs Stream Processing"
+    subtitle: "Two paradigms unified under a single platform with consistent semantics"
+    left_panel:
+      header: "STREAM PROCESSING"
+      title: "Apache Flink"
+      rows:
+        - label: "Latency"
+          value: "50ms - 2 seconds end-to-end"
+        - label: "Use Cases"
+          value: "Fraud detection, real-time dashboards, alerting"
+        - label: "Throughput"
+          value: "420K events/sec sustained"
+        - label: "Exactly-Once"
+          value: "Kafka transactions + Flink checkpoints"
+    right_panel:
+      header: "BATCH PROCESSING"
+      title: "Apache Spark + dbt"
+      rows:
+        - label: "Latency"
+          value: "15 min - 4 hours per pipeline"
+        - label: "Use Cases"
+          value: "Historical analysis, ML training, reporting"
+        - label: "Throughput"
+          value: "2.1 TB processed daily"
+        - label: "Exactly-Once"
+          value: "Idempotent writes + merge operations"
+    footer_text: "Both pipelines write to the same lakehouse tables using compatible Iceberg metadata, enabling seamless querying across real-time and historical data"
+    speaker_notes: "The unified Iceberg table format is what makes this work. A Flink job can append streaming records to the same table that Spark reads for batch aggregation, and Trino queries across both seamlessly."
+
+  # ──────────────────────────────────────────────
+  # 6. PLATFORM PERFORMANCE — Stat Cards
+  # ──────────────────────────────────────────────
+  - type: stat_cards
+    section: "PERFORMANCE"
+    title: "Platform Performance Snapshot"
+    subtitle: "Key metrics from the last 30-day rolling window"
+    cards:
+      - stat: "99.97%"
+        label: "uptime"
+        title: "Platform Availability"
+        description: "Measured across all production pipelines. Only 13 minutes of unplanned downtime in the last quarter, caused by a Kafka broker rebalance."
+      - stat: "420K"
+        label: "events/sec"
+        title: "Ingestion Throughput"
+        description: "Sustained event ingestion rate at P99. Burst capacity tested to 1.2M events/sec during load testing in March 2026."
+      - stat: "4.2 PB"
+        label: "total storage"
+        title: "Lakehouse Volume"
+        description: "Across 1,800 tables in 42 schemas. Storage costs optimized 34% YoY through Z-ordering, compaction, and lifecycle policies."
+    footnotes: "Metrics sourced from Grafana production dashboards. Uptime measured by synthetic monitoring probes running every 30 seconds."
+
+  # ──────────────────────────────────────────────
+  # 7. SLA DASHBOARD — Key Metrics
+  # ──────────────────────────────────────────────
+  - type: key_metrics
+    section: "SLAs"
+    title: "SLA Dashboard"
+    subtitle: "Service level indicators for Q1 2026 -- all targets met"
+    metrics:
+      - value: "99.97%"
+        label: "Availability SLO"
+        trend: "up"
+        trend_label: "Target: 99.9%"
+        color: "success"
+      - value: "1.2s"
+        label: "P95 Query Latency"
+        trend: "down"
+        trend_label: "-340ms QoQ"
+        color: "primary"
+      - value: "18 min"
+        label: "Data Freshness"
+        trend: "down"
+        trend_label: "Target: < 30 min"
+        color: "success"
+      - value: "99.4%"
+        label: "Pipeline Success Rate"
+        trend: "up"
+        trend_label: "+1.2pp QoQ"
+        color: "blue"
+      - value: "2.1 TB"
+        label: "Daily Ingestion"
+        trend: "up"
+        trend_label: "+18% QoQ"
+        color: "accent"
+      - value: "$0.42"
+        label: "Cost per GB Processed"
+        trend: "down"
+        trend_label: "-22% YoY"
+        color: "success"
+    speaker_notes: "The cost per GB metric is our north star for platform efficiency. The 22% YoY improvement is driven by Spark 3.5 adaptive query execution and better partition pruning in our dbt models."
+
+  # ──────────────────────────────────────────────
+  # 8. TECHNOLOGY STACK — Table
+  # ──────────────────────────────────────────────
+  - type: table
+    section: "TECHNOLOGY"
+    title: "Technology Stack Comparison"
+    subtitle: "Current platform choices with rationale and alternatives considered"
+    headers: ["Layer", "Current Choice", "Version", "Alternative Considered", "Decision Rationale"]
+    rows:
+      - ["Ingestion", "Apache Kafka", "3.7", "Amazon Kinesis", "Multi-cloud portability and ecosystem maturity"]
+      - ["CDC", "Debezium", "2.5", "AWS DMS", "Schema registry integration and transform support"]
+      - ["Stream Processing", "Apache Flink", "1.19", "Kafka Streams", "Complex event processing and state management"]
+      - ["Batch Processing", "Apache Spark", "3.5", "Snowflake", "Cost control at petabyte scale and ML integration"]
+      - ["Transformation", "dbt Core", "1.8", "Dataform", "Open source, version control, and testing framework"]
+      - ["Storage", "Delta Lake / Iceberg", "3.2 / 1.5", "Apache Hudi", "Broad engine compatibility and time travel support"]
+      - ["Query Engine", "Trino", "439", "Presto / Athena", "Federation capabilities and active community"]
+      - ["Orchestration", "Apache Airflow", "2.9", "Dagster / Prefect", "Mature ecosystem and team familiarity"]
+      - ["Observability", "Grafana + Prometheus", "10.3 / 2.51", "Datadog", "Cost at scale and custom metric flexibility"]
+    speaker_notes: "We re-evaluate technology choices annually. The biggest upcoming decision is whether to consolidate on Iceberg as the sole table format, deprecating Delta Lake, given Iceberg's growing momentum in the ecosystem."
+
+  # ──────────────────────────────────────────────
+  # 9. MIGRATION ROADMAP — Timeline
+  # ──────────────────────────────────────────────
+  - type: timeline
+    section: "MIGRATION"
+    title: "Legacy Hadoop Decommission Roadmap"
+    subtitle: "Phased migration from on-premise Hadoop to the cloud-native lakehouse"
+    phases:
+      - label: "Q3 2025"
+        title: "Assessment & Planning"
+        description: "Cataloged 340 Hadoop jobs, classified by complexity and business criticality. Identified 62 jobs for retirement and 278 for migration."
+      - label: "Q4 2025"
+        title: "Foundation"
+        description: "Deployed lakehouse infrastructure, established CI/CD pipelines for dbt models, and migrated the first 40 low-risk batch jobs."
+      - label: "Q1 2026"
+        title: "Core Migration"
+        active: true
+        items:
+          - "Migrated 120 Spark jobs from YARN to Kubernetes"
+          - "Converted 85 Hive queries to Trino-compatible SQL"
+          - "Established dual-write pattern for critical pipelines"
+      - label: "Q2 2026"
+        title: "Streaming & Advanced"
+        items:
+          - "Migrate remaining 118 batch jobs to Spark on Kubernetes"
+          - "Convert 14 MapReduce streaming jobs to Flink"
+          - "Begin decommissioning HDFS NameNodes in secondary DC"
+      - label: "Q3 2026"
+        title: "Decommission"
+        items:
+          - "Complete final data validation and reconciliation"
+          - "Shut down Hadoop cluster (projected savings: $1.8M/year)"
+          - "Redeploy on-premise hardware for GPU compute workloads"
+    speaker_notes: "We are currently in Q1 2026 and on track. The dual-write pattern has been essential -- it lets us run old and new pipelines in parallel and compare outputs before cutting over."
+
+  # ──────────────────────────────────────────────
+  # 10. GOVERNANCE FRAMEWORK — Content Cards
+  # ──────────────────────────────────────────────
+  - type: content_cards
+    section: "GOVERNANCE"
+    title: "Data Governance Framework"
+    subtitle: "Four pillars ensuring data quality, security, and compliance at scale"
+    cards:
+      - title: "Data Quality"
+        icon: check
+        subtitle: "Automated validation at every layer"
+        points:
+          - "Great Expectations suite runs 4,200 validation rules on every pipeline execution"
+          - "Anomaly detection on row counts, null rates, and distribution drift"
+          - "Data quality scores published to a central catalog with 30-day trend lines"
+      - title: "Access Control"
+        icon: lock
+        subtitle: "Fine-grained, policy-driven permissions"
+        points:
+          - "Column-level access control via Apache Ranger integrated with corporate LDAP"
+          - "Dynamic data masking for PII fields based on user role and jurisdiction"
+          - "Quarterly access reviews with automated deprovisioning for inactive accounts"
+      - title: "Lineage & Cataloging"
+        icon: link
+        subtitle: "Full traceability from source to dashboard"
+        points:
+          - "OpenLineage integration captures job-level and column-level lineage automatically"
+          - "DataHub catalog indexes all 1,800 tables with ownership, SLAs, and quality scores"
+          - "Impact analysis tool warns downstream consumers before schema changes deploy"
+      - title: "Compliance"
+        icon: shield
+        subtitle: "Regulatory and internal policy adherence"
+        points:
+          - "GDPR right-to-erasure pipeline processes deletion requests within 24 hours"
+          - "Data retention policies enforced automatically via lakehouse lifecycle rules"
+          - "SOC 2 Type II audit completed March 2026 with zero findings"
+    callout:
+      label: "Governance by the numbers"
+      columns:
+        - title: "4,200 Rules"
+          description: "Automated data quality checks executed on every pipeline run"
+        - title: "99.8% Pass Rate"
+          description: "Current data quality score across all Gold layer tables"
+    speaker_notes: "The SOC 2 audit was a major milestone. It required us to formalize runbooks, incident response procedures, and access review cadences that we had been doing informally."
+
+  # ──────────────────────────────────────────────
+  # 11. PRODUCTION READINESS — Checklist
+  # ──────────────────────────────────────────────
+  - type: checklist
+    section: "READINESS"
+    title: "Production Readiness Checklist"
+    subtitle: "Status of all requirements for GA release of the new platform"
+    columns: 3
+    items:
+      - text: "Lakehouse infrastructure deployed to all 3 availability zones"
+        status: done
+        note: "Completed Feb 2026"
+      - text: "All 278 Hadoop jobs migrated or retired"
+        status: in_progress
+        note: "160/278 complete"
+      - text: "Flink streaming jobs converted from MapReduce"
+        status: in_progress
+        note: "8/14 jobs migrated"
+      - text: "Data quality rules ported to Great Expectations"
+        status: done
+        note: "4,200 rules active"
+      - text: "Disaster recovery tested with full failover drill"
+        status: done
+        note: "RTO: 12 min, RPO: 0"
+      - text: "Trino query performance benchmarked against Hive baseline"
+        status: done
+        note: "3.4x faster on average"
+      - text: "GDPR deletion pipeline validated end-to-end"
+        status: done
+        note: "< 24 hour SLA met"
+      - text: "Cost model validated against cloud budget"
+        status: done
+        note: "18% under budget"
+      - text: "Team training completed for all 8 data engineering squads"
+        status: in_progress
+        note: "6/8 squads certified"
+      - text: "DataHub catalog populated with all Gold layer table metadata"
+        status: done
+        note: "1,800 tables indexed"
+      - text: "Legacy HDFS decommission plan approved by infrastructure team"
+        status: pending
+        note: "Review scheduled Q2 2026"
+      - text: "Runbooks and incident response procedures documented"
+        status: done
+        note: "42 runbooks in Confluence"
+    speaker_notes: "We are targeting GA for the end of Q2 2026. The three in-progress items are all on track to complete within the next 8 weeks. The HDFS decommission plan is the only blocker awaiting external approval."
+
+  # ──────────────────────────────────────────────
+  # 12. NEXT STEPS — Content (fallback)
+  # ──────────────────────────────────────────────
+  - type: content
+    section: "NEXT STEPS"
+    title: "Immediate Priorities & Open Questions"
+    subtitle: "Action items for the architecture review board"
+    content:
+      - "**Complete the remaining 118 batch job migrations** by end of Q2 2026 -- the platform team needs 2 additional SREs to meet this deadline"
+      - "**Finalize the Iceberg-only table format decision** -- prototype results show 15% query performance improvement and simpler maintenance"
+      - text: "Evaluate GPU-accelerated query engines (RAPIDS + Spark) for ML feature engineering workloads"
+        level: 1
+      - text: "Run cost comparison: Trino on Kubernetes vs managed Athena for ad-hoc query tier"
+        level: 1
+      - "**Staff the real-time analytics team** -- we need 2 Flink engineers and 1 streaming data architect to support the Q3 streaming expansion"
+      - "**Present migration cost savings to CFO** -- projected $1.8M annual savings from Hadoop decommission funds the cloud platform with $400K headroom"
+    speaker_notes: "The Iceberg decision is time-sensitive because it affects how we structure the remaining batch job migrations. If we commit to Iceberg-only, we should convert existing Delta tables before migrating more jobs on top of them."

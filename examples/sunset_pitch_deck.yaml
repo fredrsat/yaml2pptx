@@ -1,0 +1,356 @@
+output: "sunset_pitch_deck.pptx"
+metadata:
+  title: "NovaPay Series A Pitch Deck"
+  author: "NovaPay Founders"
+  subject: "Series A Fundraising"
+theme: sunset
+theme_config:
+  organization: "NovaPay"
+  document_title: "Series A Pitch Deck"
+
+slides:
+
+  # ──────────────────────────────────────────────
+  # 1. TITLE PAGE
+  # ──────────────────────────────────────────────
+  - type: title_page
+    category: "SERIES A FUNDRAISE"
+    title: "NovaPay"
+    subtitle: "Instant cross-border payments for the next billion merchants"
+    author: "Sofia Andersen & Marco Reyes, Co-Founders"
+    date: "April 2026"
+    speaker_notes: "Open with the personal story of Sofia trying to pay a supplier in Lagos from Stockholm and waiting 5 days for the transfer to clear."
+
+  # ──────────────────────────────────────────────
+  # 2. AGENDA
+  # ──────────────────────────────────────────────
+  - type: agenda
+    section: "OVERVIEW"
+    title: "What We Will Cover"
+    subtitle: "A structured walkthrough of the NovaPay opportunity"
+    items:
+      - title: "The Problem"
+        description: "Why cross-border payments are broken for SMBs"
+      - title: "Our Solution"
+        description: "Real-time settlement on a unified rails network"
+      - title: "Market Opportunity"
+        description: "$48T cross-border flows and growing 7% YoY"
+      - title: "Traction & Metrics"
+        description: "18 months of compounding growth"
+      - title: "Business Model & Financials"
+        description: "Unit economics and path to profitability"
+      - title: "The Ask"
+        description: "$18M Series A to scale across 12 new markets"
+
+  # ──────────────────────────────────────────────
+  # 3. PROBLEM vs SOLUTION — Two Panels
+  # ──────────────────────────────────────────────
+  - type: two_panels
+    section: "THE PROBLEM"
+    title: "Cross-Border Payments Are Broken for SMBs"
+    subtitle: "Small merchants face disproportionate pain compared to enterprise"
+    left_panel:
+      letter: "A"
+      label: "TODAY"
+      title: "The Status Quo"
+      dark: true
+      points:
+        - "Average settlement time is 3-5 business days"
+        - "Fees range from 3-7% per transaction with hidden FX markups"
+        - "Compliance paperwork requires manual document uploads per transfer"
+        - "No visibility into where funds are during transit"
+        - "Failed payments cost merchants $180B annually in lost revenue"
+    right_panel:
+      letter: "B"
+      label: "WITH NOVAPAY"
+      title: "The Future We Are Building"
+      dark: false
+      points:
+        - "Settlement in under 90 seconds to 40+ countries"
+        - "Flat 0.9% fee with transparent, real-time FX rates"
+        - "One-time KYB onboarding with automated ongoing compliance"
+        - "Full transaction tracking with webhook notifications"
+        - "Smart retry logic recovers 94% of initially failed payments"
+    speaker_notes: "Emphasize the 3-7% fee range. Most founders underestimate how much SMBs lose to hidden FX markups on top of the stated wire fee."
+
+  # ──────────────────────────────────────────────
+  # 4. MARKET SIZE — Stat Cards
+  # ──────────────────────────────────────────────
+  - type: stat_cards
+    section: "MARKET OPPORTUNITY"
+    title: "A Massive and Growing Market"
+    subtitle: "Cross-border B2B payments are one of the last frontiers in fintech"
+    cards:
+      - stat: "$48T"
+        label: "annual flows"
+        title: "Global Cross-Border Volume"
+        description: "Total value of cross-border payments processed annually, projected to reach $56T by 2028"
+      - stat: "71%"
+        label: "underserved"
+        title: "SMB Market Gap"
+        description: "Of small and mid-size merchants lack access to affordable international payment solutions"
+      - stat: "$290B"
+        label: "revenue pool"
+        title: "Addressable Revenue"
+        description: "Total fees and FX margins collected on cross-border SMB transactions globally each year"
+    footnotes: "Sources: McKinsey Global Payments Report 2025, World Bank Remittance Data, internal analysis"
+    speaker_notes: "The $290B revenue pool is our TAM. Our SAM is the $42B segment focused on merchants with $100K-$10M in annual cross-border volume."
+
+  # ──────────────────────────────────────────────
+  # 5. VALUE PROPOSITION — Icon Cards
+  # ──────────────────────────────────────────────
+  - type: icon_cards
+    section: "WHY NOVAPAY"
+    message: "Four pillars that make NovaPay the obvious choice for merchants"
+    cards:
+      - title: "Instant Settlement"
+        icon: lightning
+        description: "Funds arrive in the recipient's account in under 90 seconds, compared to the industry average of 3-5 days. We achieve this through pre-funded liquidity pools in each corridor."
+      - title: "Radical Transparency"
+        icon: search
+        description: "No hidden fees, no FX markups, no surprises. Merchants see the exact cost before confirming every transaction, and our public pricing page shows real-time corridor rates."
+      - title: "Built-In Compliance"
+        icon: shield
+        description: "Automated KYB, sanctions screening, and transaction monitoring powered by our proprietary risk engine. We hold licenses in 14 jurisdictions and growing."
+      - title: "Developer-First API"
+        icon: code
+        description: "Single REST API with SDKs in 8 languages. Merchants integrate in under a day. Our median time-to-first-transaction is 47 minutes from API key issuance."
+
+  # ──────────────────────────────────────────────
+  # 6. HOW IT WORKS — Process
+  # ──────────────────────────────────────────────
+  - type: process
+    section: "PRODUCT"
+    title: "How NovaPay Works"
+    subtitle: "From merchant initiation to recipient settlement in four steps"
+    steps:
+      - number: 1
+        icon: person
+        title: "Merchant Initiates"
+        description: "Merchant submits a payment via dashboard or API"
+        items:
+          - "Supports 28 currencies with automatic FX conversion"
+          - "Recipient details validated instantly against local banking networks"
+      - number: 2
+        icon: shield
+        title: "Compliance Screening"
+        description: "Real-time sanctions, PEP, and fraud checks"
+        items:
+          - "Sub-200ms screening latency using our ML risk model"
+          - "Automated escalation for edge cases with 4-hour SLA"
+      - number: 3
+        icon: network
+        title: "Smart Routing"
+        description: "Optimal path selected from our corridor network"
+        items:
+          - "Chooses between local rails, SWIFT gpi, and partner networks"
+          - "Cost and speed optimization with automatic fallback"
+      - number: 4
+        icon: check
+        title: "Instant Settlement"
+        description: "Funds credited to recipient account"
+        items:
+          - "Real-time confirmation via webhook and dashboard"
+          - "Automatic reconciliation with downloadable reports"
+    speaker_notes: "Walk through each step slowly. The smart routing engine is our core IP -- it dynamically selects the cheapest and fastest corridor in real-time."
+
+  # ──────────────────────────────────────────────
+  # 7. TRACTION — Key Metrics
+  # ──────────────────────────────────────────────
+  - type: key_metrics
+    section: "TRACTION"
+    title: "18 Months of Compounding Growth"
+    subtitle: "Key operating metrics as of March 2026"
+    metrics:
+      - value: "$127M"
+        label: "Monthly TPV"
+        trend: "up"
+        trend_label: "+34% MoM"
+        color: "primary"
+      - value: "2,840"
+        label: "Active Merchants"
+        trend: "up"
+        trend_label: "+22% MoM"
+        color: "success"
+      - value: "$4.2M"
+        label: "Monthly Revenue"
+        trend: "up"
+        trend_label: "+28% MoM"
+        color: "accent"
+      - value: "0.12%"
+        label: "Fraud Rate"
+        trend: "down"
+        trend_label: "-40bps QoQ"
+        color: "blue"
+      - value: "68"
+        label: "NPS Score"
+        trend: "up"
+        trend_label: "+12 pts YoY"
+        color: "primary"
+      - value: "4.3%"
+        label: "Monthly Churn"
+        trend: "down"
+        trend_label: "-1.8pp QoQ"
+        color: "success"
+    speaker_notes: "Highlight the TPV growth trajectory. At this rate we cross $200M monthly TPV by Q3 2026. Churn reduction is driven by the new merchant success program launched in Q4 2025."
+
+  # ──────────────────────────────────────────────
+  # 8. COMPETITIVE LANDSCAPE — Comparison
+  # ──────────────────────────────────────────────
+  - type: comparison
+    section: "COMPETITION"
+    title: "Competitive Landscape"
+    subtitle: "NovaPay vs. incumbent solutions for SMB cross-border payments"
+    left_panel:
+      header: "NOVAPAY"
+      title: "Built for SMBs from day one"
+      rows:
+        - label: "Settlement Speed"
+          value: "< 90 seconds"
+        - label: "Pricing"
+          value: "0.9% flat, no FX markup"
+        - label: "Onboarding"
+          value: "< 1 day automated KYB"
+        - label: "API Integration"
+          value: "47 min median time-to-first-tx"
+    right_panel:
+      header: "LEGACY PROVIDERS"
+      title: "Wise Business / PayPal / Banks"
+      rows:
+        - label: "Settlement Speed"
+          value: "1-5 business days"
+        - label: "Pricing"
+          value: "1.5-7% with hidden FX spreads"
+        - label: "Onboarding"
+          value: "5-14 days manual review"
+        - label: "API Integration"
+          value: "Weeks to months, limited docs"
+    footer_text: "Comparison based on published pricing and independent merchant surveys conducted Q1 2026"
+    speaker_notes: "Investors often ask why Wise or PayPal won't just copy us. The answer is infrastructure -- we built our own settlement network rather than relying on correspondent banking."
+
+  # ──────────────────────────────────────────────
+  # 9. PRODUCT ROADMAP — Timeline
+  # ──────────────────────────────────────────────
+  - type: timeline
+    section: "ROADMAP"
+    title: "Product Roadmap"
+    subtitle: "Key milestones from launch through 2027"
+    phases:
+      - label: "2024"
+        title: "Foundation"
+        description: "Launched MVP with 8 corridors. Onboarded first 200 merchants. Obtained UK FCA and EU EMI licenses."
+      - label: "2025"
+        title: "Scale & Expand"
+        active: true
+        description: "Expanded to 42 corridors including Nigeria, Kenya, and Vietnam. Launched smart routing engine and merchant dashboard v2. Reached $100M monthly TPV."
+      - label: "2026"
+        title: "Accelerate"
+        items:
+          - "Launch NovaPay Capital: working capital advances for merchants"
+          - "Expand to 60+ corridors including LATAM"
+          - "Introduce multi-currency wallets for merchant cash management"
+      - label: "2027"
+        title: "Dominate"
+        items:
+          - "Target 15,000 active merchants and $1B monthly TPV"
+          - "Apply for banking licenses in 3 key markets"
+          - "Launch NovaPay for Platforms: embedded payments for marketplaces"
+
+  # ──────────────────────────────────────────────
+  # 10. TEAM — Content Cards
+  # ──────────────────────────────────────────────
+  - type: content_cards
+    section: "TEAM"
+    title: "Built by Operators Who Lived the Problem"
+    subtitle: "Combined 40+ years in payments, compliance, and infrastructure"
+    cards:
+      - title: "Sofia Andersen"
+        icon: star
+        subtitle: "CEO & Co-Founder"
+        points:
+          - "Former Head of SMB Payments at Klarna"
+          - "Scaled Klarna's merchant network from 2K to 45K"
+          - "MSc Financial Engineering, KTH Stockholm"
+      - title: "Marco Reyes"
+        icon: code
+        subtitle: "CTO & Co-Founder"
+        points:
+          - "Former Staff Engineer at Stripe (Atlas team)"
+          - "Built Stripe's FX optimization layer processing $8B/month"
+          - "PhD Computer Science, ETH Zurich"
+      - title: "Amira Hassan"
+        icon: shield
+        subtitle: "Chief Compliance Officer"
+        points:
+          - "15 years in financial regulation at the FCA and BaFin"
+          - "Led compliance for TransferWise's European expansion"
+          - "Certified Anti-Money Laundering Specialist (CAMS)"
+    callout:
+      label: "Plus a world-class team"
+      columns:
+        - title: "32 Engineers"
+          description: "Across payments infrastructure, risk ML, and platform"
+        - title: "12 Countries"
+          description: "Team members spanning Europe, Africa, and Southeast Asia"
+    speaker_notes: "Sofia and Marco met at a fintech conference in 2023 where they both shared frustration about the state of SMB cross-border payments. They started building NovaPay three months later."
+
+  # ──────────────────────────────────────────────
+  # 11. FINANCIAL PROJECTIONS — Table
+  # ──────────────────────────────────────────────
+  - type: table
+    section: "FINANCIALS"
+    title: "Financial Projections"
+    subtitle: "Path to profitability by Q4 2027 with disciplined unit economics"
+    headers: ["Metric", "FY2025 (Actual)", "FY2026 (Projected)", "FY2027 (Projected)"]
+    rows:
+      - ["Annual TPV", "$860M", "$3.2B", "$9.5B"]
+      - ["Revenue", "$28M", "$96M", "$285M"]
+      - ["Gross Margin", "62%", "68%", "74%"]
+      - ["EBITDA", "-$8M", "-$2M", "+$42M"]
+      - ["Active Merchants", "2,840", "8,500", "15,000"]
+      - ["Avg. Revenue per Merchant", "$9,860", "$11,290", "$19,000"]
+      - ["Customer Acquisition Cost", "$420", "$380", "$310"]
+      - ["LTV:CAC Ratio", "6.2x", "8.1x", "11.4x"]
+    speaker_notes: "The improving gross margin reflects scale advantages in our liquidity pool management and corridor optimization. LTV:CAC of 6.2x today is already best-in-class for B2B fintech."
+
+  # ──────────────────────────────────────────────
+  # 12. CUSTOMER QUOTE
+  # ──────────────────────────────────────────────
+  - type: quote
+    section: "CUSTOMERS"
+    quote: "We used to lose two full days every month reconciling international payments. With NovaPay, our finance team went from dreading month-end to finishing reconciliation before lunch. The transparent pricing alone saves us over $14,000 a month compared to our old bank."
+    attribution: "Daniel Okafor"
+    source: "CFO, AfriMart (e-commerce, Lagos) -- $2.4M monthly cross-border volume"
+    dark: true
+    speaker_notes: "AfriMart is one of our top 10 merchants by volume and an excellent reference customer. They completed onboarding in 4 hours and processed their first payment the same day."
+
+  # ──────────────────────────────────────────────
+  # 13. THE ASK — Section Divider
+  # ──────────────────────────────────────────────
+  - type: section_divider
+    number: "06"
+    title: "The Ask"
+    subtitle: "How we deploy $18M to capture the SMB cross-border opportunity"
+
+  # ──────────────────────────────────────────────
+  # 14. USE OF FUNDS — Stat Cards
+  # ──────────────────────────────────────────────
+  - type: stat_cards
+    section: "THE ASK"
+    title: "Raising $18M Series A"
+    subtitle: "24 months of runway to reach profitability"
+    cards:
+      - stat: "$8M"
+        label: "44% of raise"
+        title: "Market Expansion"
+        description: "Launch 18 new corridors across LATAM and Southeast Asia, including licensing, local partnerships, and liquidity pool seeding"
+      - stat: "$6M"
+        label: "33% of raise"
+        title: "Engineering & Product"
+        description: "Grow engineering team from 32 to 55, build NovaPay Capital lending product, and ship multi-currency merchant wallets"
+      - stat: "$4M"
+        label: "23% of raise"
+        title: "Go-to-Market"
+        description: "Scale sales team, launch partner channel program, and invest in brand awareness across target merchant segments"
+    footnotes: "Pre-money valuation: $72M. Existing investors include Northzone, Cherry Ventures, and Y Combinator (W24 batch)."
+    speaker_notes: "We are targeting a close by end of June 2026. We have $6M in soft commitments from existing investors and are looking for a lead to anchor the remaining $12M."

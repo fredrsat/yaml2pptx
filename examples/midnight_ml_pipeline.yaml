@@ -1,0 +1,355 @@
+output: "midnight_ml_pipeline.pptx"
+theme: midnight
+metadata:
+  title: "Building Production ML Pipelines"
+  author: "ML Platform Team"
+  subject: "Machine Learning Infrastructure"
+theme_config:
+  organization: "Arcus AI"
+  document_title: "Production ML Pipelines"
+  classification: "Internal"
+
+slides:
+
+  # ──────────────────────────────────────────────
+  # 1. TITLE PAGE
+  # ──────────────────────────────────────────────
+  - type: title_page
+    category: "ML ENGINEERING"
+    title: "Building Production ML Pipelines"
+    subtitle: "From notebook experiments to reliable, scalable inference at 50,000 predictions per second"
+    author: "ML Platform Team"
+    date: "April 2026"
+    speaker_notes: "Welcome everyone. Today we walk through the full lifecycle of getting ML models into production -- from raw data all the way to monitored, auto-scaling inference endpoints."
+
+  # ──────────────────────────────────────────────
+  # 2. AGENDA
+  # ──────────────────────────────────────────────
+  - type: agenda
+    section: "OVERVIEW"
+    title: "What We Will Cover"
+    subtitle: "End-to-end ML infrastructure for the real world"
+    items:
+      - title: "Data Ingestion"
+        description: "Unified data layer with schema validation and lineage tracking"
+      - title: "Feature Engineering"
+        description: "Centralized feature store serving both training and inference"
+      - title: "Model Training"
+        description: "Distributed training, hyperparameter optimization, and experiment tracking"
+      - title: "Evaluation & Validation"
+        description: "Automated quality gates and bias detection before promotion"
+      - title: "Deployment Patterns"
+        description: "Batch vs real-time inference -- when to use which"
+      - title: "Monitoring & Observability"
+        description: "Drift detection, performance dashboards, and automated retraining"
+    speaker_notes: "Six sections, each building on the previous. The goal is a system where a data scientist can push a model and everything else is automated."
+
+  # ──────────────────────────────────────────────
+  # 3. STAT CARDS -- Model Performance
+  # ──────────────────────────────────────────────
+  - type: stat_cards
+    section: "CURRENT STATE"
+    title: "Platform Performance Snapshot"
+    subtitle: "Metrics from the last 90 days across all production models"
+    cards:
+      - stat: "142"
+        label: "models in production"
+        title: "Active Models"
+        description: "Spanning fraud detection, recommendation, NLP, and forecasting -- up from 87 models one year ago"
+      - stat: "99.91%"
+        label: "uptime"
+        title: "Inference Availability"
+        description: "Across all real-time endpoints, with automated failover to shadow replicas on degradation"
+      - stat: "23ms"
+        label: "p99 latency"
+        title: "Prediction Speed"
+        description: "99th percentile end-to-end latency including feature retrieval, model inference, and post-processing"
+    footnotes: "Measured Q1 2026. Excludes batch-only pipelines which run on a separate SLA."
+    speaker_notes: "These numbers represent a 3x improvement over where we were 18 months ago when we started the platform initiative."
+
+  # ──────────────────────────────────────────────
+  # 4. PROCESS -- ML Pipeline Steps
+  # ──────────────────────────────────────────────
+  - type: process
+    section: "ARCHITECTURE"
+    title: "The ML Pipeline"
+    subtitle: "Seven stages from raw data to monitored production inference"
+    steps:
+      - icon: "database"
+        title: "Ingest"
+        description: "Collect and validate raw data from upstream sources"
+        items:
+          - "Schema enforcement with Great Expectations"
+          - "CDC streams via Debezium for real-time sources"
+          - "Data lineage tracked in Apache Atlas"
+      - icon: "gear"
+        title: "Transform"
+        description: "Build features in a centralized feature store"
+        items:
+          - "Feast feature store for online/offline parity"
+          - "Point-in-time correct joins to prevent leakage"
+          - "Feature importance tracking per model"
+      - icon: "brain"
+        title: "Train"
+        description: "Distributed training with experiment tracking"
+        items:
+          - "Ray for distributed hyperparameter search"
+          - "MLflow for experiment tracking and model registry"
+          - "GPU cluster with preemptible instances"
+      - icon: "rocket"
+        title: "Validate & Deploy"
+        description: "Quality gates followed by canary rollout to production"
+        items:
+          - "Champion/challenger comparison and bias audits"
+          - "Shadow deployment for 48 hours"
+          - "Kubernetes-based serving with automatic rollback"
+    speaker_notes: "Each stage is fully automated. A data scientist interacts only with the training and validation stages -- everything else is infrastructure."
+
+  # ──────────────────────────────────────────────
+  # 5. DEFINITION CARDS -- MLOps Concepts
+  # ──────────────────────────────────────────────
+  - type: definition_cards
+    section: "CONCEPTS"
+    title: "Core MLOps Principles"
+    subtitle: "The engineering practices that make ML sustainable in production"
+    cards:
+      - term: "Feature Store"
+        icon: "database"
+        subtitle: "Consistency Layer"
+        description: "A centralized repository of curated features that serves both training and real-time inference, eliminating the most common source of training-serving skew"
+        border_color: "accent"
+      - term: "Model Registry"
+        icon: "folder"
+        subtitle: "Version Control for Models"
+        description: "A versioned catalog of trained models with metadata, lineage, and approval workflows -- the Git equivalent for machine learning artifacts"
+        border_color: "primary"
+      - term: "Shadow Deploy"
+        icon: "search"
+        subtitle: "Risk-Free Validation"
+        description: "Running a candidate model on live traffic without serving its predictions to users, comparing outputs against the champion model in real time"
+        border_color: "accent"
+    callout:
+      label: "KEY INSIGHT"
+      columns:
+        - title: "ML Debt is Real"
+          description: "Google's famous paper showed that ML code is a tiny fraction of a production ML system. The rest is data pipelines, serving infrastructure, monitoring, and configuration management. Our platform addresses all of it."
+
+  # ──────────────────────────────────────────────
+  # 6. SECTION DIVIDER
+  # ──────────────────────────────────────────────
+  - type: section_divider
+    number: "02"
+    title: "Batch vs Real-Time"
+    subtitle: "Choosing the right inference pattern for each use case"
+
+  # ──────────────────────────────────────────────
+  # 7. COMPARISON -- Batch vs Real-Time
+  # ──────────────────────────────────────────────
+  - type: comparison
+    section: "DEPLOYMENT"
+    title: "Inference Patterns"
+    subtitle: "Two paradigms for serving predictions at scale"
+    left_panel:
+      header: "BATCH INFERENCE"
+      title: "Pre-computed Predictions"
+      rows:
+        - label: "LATENCY"
+          value: "Minutes to hours -- predictions computed in scheduled jobs"
+        - label: "THROUGHPUT"
+          value: "Millions of predictions per run on Spark clusters"
+        - label: "COST"
+          value: "$0.02 per 1M predictions -- spot instances, no always-on infra"
+        - label: "USE CASES"
+          value: "Recommendation feeds, credit scoring, churn propensity"
+        - label: "FRESHNESS"
+          value: "Updated hourly to daily depending on pipeline schedule"
+    right_panel:
+      header: "REAL-TIME INFERENCE"
+      title: "On-Demand Predictions"
+      rows:
+        - label: "LATENCY"
+          value: "Sub-50ms p99 -- optimized model serving with TensorRT"
+        - label: "THROUGHPUT"
+          value: "50K requests/sec per endpoint with horizontal autoscaling"
+        - label: "COST"
+          value: "$0.35 per 1M predictions -- GPU instances always warm"
+        - label: "USE CASES"
+          value: "Fraud detection, search ranking, dynamic pricing, chatbots"
+        - label: "FRESHNESS"
+          value: "Instant -- uses latest features from the online store"
+    footer_text: "Most production systems use both patterns. Batch for bulk scoring, real-time for latency-critical decisions."
+    speaker_notes: "The key decision factor is latency requirement. If the consumer can tolerate minutes of delay, batch is 15x cheaper."
+
+  # ──────────────────────────────────────────────
+  # 8. KEY METRICS -- Production Dashboard
+  # ──────────────────────────────────────────────
+  - type: key_metrics
+    section: "MONITORING"
+    title: "Production Model Dashboard"
+    subtitle: "Live KPIs from our top-tier fraud detection model (last 30 days)"
+    metrics:
+      - value: "97.3%"
+        label: "Precision"
+        trend: "up"
+        trend_label: "+1.2pp vs previous model"
+        color: "success"
+      - value: "94.8%"
+        label: "Recall"
+        trend: "up"
+        trend_label: "+0.8pp vs previous model"
+        color: "success"
+      - value: "0.012%"
+        label: "False Positive Rate"
+        trend: "down"
+        trend_label: "-0.3pp improvement"
+        color: "primary"
+      - value: "18ms"
+        label: "P95 Latency"
+        trend: "down"
+        trend_label: "-7ms after ONNX optimization"
+        color: "blue"
+      - value: "$2.4M"
+        label: "Fraud Prevented (MTD)"
+        trend: "up"
+        trend_label: "+34% vs same period last year"
+        color: "accent"
+    speaker_notes: "This is our flagship model. The precision improvement alone saved roughly $800K in false decline losses last quarter."
+
+  # ──────────────────────────────────────────────
+  # 9. TABLE -- Model Benchmarks
+  # ──────────────────────────────────────────────
+  - type: table
+    section: "BENCHMARKS"
+    title: "Model Performance Comparison"
+    subtitle: "Evaluation results across candidate architectures on the fraud detection task"
+    headers: ["Model", "AUC-ROC", "Precision@95R", "Latency (p99)", "Model Size", "Status"]
+    rows:
+      - ["XGBoost v3.2", "0.981", "96.1%", "8ms", "42 MB", "Champion"]
+      - ["LightGBM v2.1", "0.978", "95.4%", "6ms", "38 MB", "Previous champion"]
+      - ["Neural Net (MLP)", "0.984", "97.3%", "18ms", "210 MB", "Challenger"]
+      - ["Transformer-based", "0.986", "97.8%", "45ms", "1.2 GB", "Experimental"]
+      - ["Logistic Regression", "0.942", "88.7%", "2ms", "4 MB", "Baseline"]
+      - ["Random Forest", "0.971", "93.9%", "12ms", "680 MB", "Deprecated"]
+    speaker_notes: "The Neural Net MLP is our current challenger. It beats XGBoost on precision but at 2x the latency. The transformer model is promising but too slow for real-time serving today."
+
+  # ──────────────────────────────────────────────
+  # 10. TIMELINE -- Project Roadmap
+  # ──────────────────────────────────────────────
+  - type: timeline
+    section: "ROADMAP"
+    title: "ML Platform Evolution"
+    subtitle: "From manual notebooks to fully automated MLOps"
+    phases:
+      - label: "Q1 2026"
+        title: "Foundation"
+        active: true
+        items:
+          - "Feature store (Feast) deployed to production"
+          - "Model registry with approval workflows"
+          - "Automated training pipelines for top 20 models"
+      - label: "Q2 2026"
+        title: "Scale"
+        active: false
+        items:
+          - "GPU serving cluster with autoscaling"
+          - "A/B testing framework for model experiments"
+          - "Migrate remaining 80+ models to platform"
+      - label: "Q3 2026"
+        title: "Intelligence"
+        active: false
+        items:
+          - "Automated drift detection and retraining triggers"
+          - "Feature importance monitoring dashboards"
+          - "Cost attribution per model per team"
+      - label: "Q4 2026"
+        title: "Self-Service"
+        active: false
+        items:
+          - "No-code model deployment for data scientists"
+          - "Auto-ML pipeline for common use cases"
+          - "Cross-team feature marketplace"
+    speaker_notes: "We are currently in Q1, wrapping up the foundation. The feature store launch last month was the biggest milestone so far."
+
+  # ──────────────────────────────────────────────
+  # 11. CHECKLIST -- Deployment Readiness
+  # ──────────────────────────────────────────────
+  - type: checklist
+    section: "OPERATIONS"
+    title: "Model Deployment Readiness"
+    subtitle: "Standard checklist before any model reaches production traffic"
+    columns: 2
+    items:
+      - text: "Offline evaluation passes quality thresholds"
+        status: "done"
+        note: "AUC > 0.97, precision@95R > 95%"
+      - text: "Bias audit completed across protected groups"
+        status: "done"
+        note: "Disparate impact ratio within 0.8-1.2 band"
+      - text: "Shadow deployment for minimum 48 hours"
+        status: "done"
+        note: "No prediction divergence > 2% from champion"
+      - text: "Load testing at 2x expected peak traffic"
+        status: "in_progress"
+        note: "Currently at 1.5x -- scaling GPU nodes"
+      - text: "Rollback procedure tested end-to-end"
+        status: "in_progress"
+        note: "Automated rollback on latency spike works; accuracy-based rollback in progress"
+      - text: "Monitoring dashboards and alerts configured"
+        status: "done"
+        note: "PagerDuty integration active"
+      - text: "Data pipeline SLA verified with upstream teams"
+        status: "pending"
+        note: "Meeting scheduled with Data Engineering for May 2"
+      - text: "Model card documentation published"
+        status: "blocked"
+        note: "Waiting on legal review of model explainability section"
+    speaker_notes: "This is the actual checklist for our fraud detection model challenger. Two items blocking us from full production promotion."
+
+  # ──────────────────────────────────────────────
+  # 12. CONTENT -- Lessons Learned
+  # ──────────────────────────────────────────────
+  - type: content
+    section: "INSIGHTS"
+    title: "Hard-Won Lessons from 18 Months of MLOps"
+    subtitle: "What we wish we had known when we started"
+    content:
+      - "**Data quality is the bottleneck** -- 80% of model failures trace back to upstream data issues, not model code"
+      - "**Feature stores pay for themselves** -- training-serving skew caused 3 production incidents before we centralized features"
+      - text: "Start monitoring on day one, not after the first outage"
+        level: 0
+      - text: "Track prediction distributions, not just accuracy metrics"
+        level: 1
+      - text: "Set up automated drift alerts before you think you need them"
+        level: 1
+      - "**Shadow deployments are non-negotiable** -- every shortcut we took on validation came back as a production incident"
+      - "**GPU costs are manageable** -- right-sizing, spot instances, and model distillation cut our serving costs by 60%"
+    speaker_notes: "These lessons came from real incidents. The feature store ROI alone justified the entire platform investment."
+
+  # ──────────────────────────────────────────────
+  # 13. QUOTE
+  # ──────────────────────────────────────────────
+  - type: quote
+    section: "PHILOSOPHY"
+    quote: "The most dangerous phrase in ML engineering is 'it works in my notebook.' Production ML is not about building the best model -- it is about building the best system around the model."
+    attribution: "-- Shreya Shankar"
+    source: "Operationalizing Machine Learning, O'Reilly 2025"
+    dark: true
+    speaker_notes: "This captures our philosophy perfectly. The platform exists so that data scientists can focus on modeling while engineers focus on reliability."
+
+  # ──────────────────────────────────────────────
+  # 14. ICON CARDS -- Next Steps
+  # ──────────────────────────────────────────────
+  - type: icon_cards
+    section: "NEXT STEPS"
+    message: "Three priorities for Q2 2026"
+    cards:
+      - title: "Scale the GPU Cluster"
+        icon: "chip"
+        description: "Provision dedicated A100 nodes for real-time serving and expand spot capacity for training jobs to eliminate the current 4-hour queue during peak hours"
+      - title: "Launch the A/B Framework"
+        icon: "chart"
+        description: "Ship the experimentation platform so product teams can run controlled model experiments with statistical rigor instead of relying on offline metrics alone"
+      - title: "Open the Feature Marketplace"
+        icon: "people"
+        description: "Allow any team to publish and discover features across the organization, turning our feature store into a true data product with discoverability and governance"
+    speaker_notes: "These three initiatives are already staffed and funded. We expect all three to be in production by end of Q2."

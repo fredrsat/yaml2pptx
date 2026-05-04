@@ -65,26 +65,30 @@ def render_stat_cards(
 
         # Big stat number
         if card.get("stat"):
-            add_textbox(slide, inner_left, card_top + 0.30, inner_width, 0.85,
+            add_textbox(slide, inner_left, card_top + 0.25, inner_width, 1.10,
                         text=card["stat"], font_size=54, bold=True, color=c.primary)
 
         # Label (below stat)
         if card.get("label"):
-            add_textbox(slide, inner_left, card_top + 1.20, inner_width, 0.25,
+            add_textbox(slide, inner_left, card_top + 1.40, inner_width, 0.25,
                         text=card["label"], font_size=10, bold=True, color=c.accent)
 
         # Card title
         if card.get("title"):
-            add_textbox(slide, inner_left, card_top + 1.55, inner_width, 0.40,
+            add_textbox(slide, inner_left, card_top + 1.65, inner_width, 0.40,
                         text=card["title"], font_size=15, bold=True, color=c.text_dark)
 
-        # Description
+        # Description — fill remaining card space
         if card.get("description"):
-            add_textbox(slide, inner_left, card_top + 2.05, inner_width, 1.55,
+            desc_top = 2.10
+            desc_height = card_height - desc_top - 0.10
+            add_textbox(slide, inner_left, card_top + desc_top, inner_width, desc_height,
                         text=card["description"], font_size=10, italic=True, color=c.text_muted)
 
-    # Footnotes
+    # Footnotes (handle string input as single-item list)
     if footnotes:
+        if isinstance(footnotes, str):
+            footnotes = [footnotes]
         add_multiline_textbox(slide, s.margin_left, 6.10, s.content_width, 0.95,
                               lines=footnotes, font_size=8, color=c.text_light)
 
@@ -115,8 +119,10 @@ def render_definition_cards(
 
     positions = _card_positions(len(cards))
     card_top = s.content_top
-    card_height = 2.30
+    card_height = 3.80 if not callout else 2.80
     inner_pad = 0.30
+    # Scale term font for narrow cards
+    term_font = 20 if len(cards) >= 4 else 26
 
     for i, (left, width) in enumerate(positions):
         card = cards[i] if i < len(cards) else {}
@@ -124,7 +130,7 @@ def render_definition_cards(
         # Card background
         add_rect(slide, left, card_top, width, card_height, fill=c.card_bg)
         # Top accent border
-        border_color = resolve_color(card.get("border_color"), c.primary)
+        border_color = resolve_color(card.get("border_color"), c.primary, theme)
         add_rect(slide, left, card_top, width, s.card_border_height, fill=border_color)
 
         inner_left = left + inner_pad
@@ -133,29 +139,32 @@ def render_definition_cards(
         # Icon
         icon_name = card.get("icon", "")
         if icon_name:
-            add_icon_shape(slide, inner_left, card_top + 0.30, 0.70,
+            add_icon_shape(slide, inner_left, card_top + 0.25, 0.60,
                            icon_name=icon_name, bg_color=c.primary)
         else:
-            add_rect(slide, inner_left, card_top + 0.30, 0.70, 0.70, fill=c.primary)
+            add_rect(slide, inner_left, card_top + 0.25, 0.60, 0.60, fill=c.primary)
 
         # Term (large)
         if card.get("term"):
-            add_textbox(slide, inner_left + 0.85, card_top + 0.30, inner_width - 0.85, 0.50,
-                        text=card["term"], font_size=30, bold=True, color=c.primary)
+            add_textbox(slide, inner_left + 0.75, card_top + 0.25, inner_width - 0.75, 0.65,
+                        text=card["term"], font_size=term_font, bold=True, color=c.primary)
 
         # Subtitle
         if card.get("subtitle"):
-            add_textbox(slide, inner_left, card_top + 1.10, inner_width, 0.35,
-                        text=card["subtitle"], font_size=14, bold=True, color=c.text_dark)
+            add_textbox(slide, inner_left, card_top + 0.95, inner_width, 0.35,
+                        text=card["subtitle"], font_size=13, bold=True, color=c.text_dark)
 
-        # Description
+        # Description — fill remaining card space
         if card.get("description"):
-            add_textbox(slide, inner_left, card_top + 1.45, inner_width, 0.70,
-                        text=card["description"], font_size=11, color=c.text_muted)
+            desc_top = 1.35
+            desc_height = card_height - desc_top - 0.10
+            desc_font = 9 if callout else 10
+            add_textbox(slide, inner_left, card_top + desc_top, inner_width, desc_height,
+                        text=card["description"], font_size=desc_font, color=c.text_muted)
 
     # Optional dark callout section at bottom
     if callout:
-        _render_callout_bar(slide, theme, callout, top=4.55)
+        _render_callout_bar(slide, theme, callout, top=card_top + card_height + 0.15)
 
     add_footer(slide, theme)
 
@@ -184,7 +193,7 @@ def render_content_cards(
 
     positions = _card_positions(len(cards))
     card_top = 2.40
-    card_height = 2.60
+    card_height = 4.10 if not callout else 3.10
     inner_pad = 0.30
 
     for i, (left, width) in enumerate(positions):
@@ -214,18 +223,21 @@ def render_content_cards(
             add_textbox(slide, inner_left, card_top + 1.45, inner_width, 0.30,
                         text=card["subtitle"], font_size=11, italic=True, color=c.accent)
 
-        # Description / points
+        # Description / points — constrained to card boundary
+        body_top = 1.80
+        body_height = card_height - body_top - 0.10
+
         if card.get("description"):
-            add_textbox(slide, inner_left, card_top + 1.80, inner_width, 0.70,
+            add_textbox(slide, inner_left, card_top + body_top, inner_width, body_height,
                         text=card["description"], font_size=12, color=c.text_muted)
 
         if card.get("points"):
-            add_multiline_textbox(slide, inner_left, card_top + 1.80, inner_width, 1.50,
+            add_multiline_textbox(slide, inner_left, card_top + body_top, inner_width, body_height,
                                   lines=card["points"], font_size=10, color=c.text_dark)
 
-    # Optional callout
+    # Optional callout — positioned below cards
     if callout:
-        _render_callout_bar(slide, theme, callout, top=5.30)
+        _render_callout_bar(slide, theme, callout, top=card_top + card_height + 0.20)
 
     add_footer(slide, theme)
 
@@ -255,7 +267,7 @@ def render_icon_cards(
 
     # Big message text
     if message:
-        add_textbox(slide, s.margin_left, 1.40, 12.10, 2.20,
+        add_textbox(slide, s.margin_left, 1.40, 12.10, 1.20,
                     text=message, font_size=28, color=c.text_dark)
 
     if not cards:
@@ -263,8 +275,8 @@ def render_icon_cards(
         return
 
     positions = _card_positions(len(cards))
-    card_top = 4.20
-    card_height = 2.60
+    card_top = 3.00
+    card_height = 3.60
     inner_pad = 0.35
 
     for i, (left, width) in enumerate(positions):
@@ -280,12 +292,14 @@ def render_icon_cards(
 
         # Card title
         if card.get("title"):
-            add_textbox(slide, inner_left, card_top + 0.90, inner_width, 0.50,
+            add_textbox(slide, inner_left, card_top + 0.25, inner_width, 0.50,
                         text=card["title"], font_size=18, bold=True, color=c.text_dark)
 
-        # Description
+        # Description — fill remaining card space
         if card.get("description"):
-            add_textbox(slide, inner_left, card_top + 1.45, inner_width, 1.0,
+            desc_top = 0.80
+            desc_height = card_height - desc_top - 0.10
+            add_textbox(slide, inner_left, card_top + desc_top, inner_width, desc_height,
                         text=card["description"], font_size=12, color=c.text_muted)
 
     add_footer(slide, theme)
@@ -295,12 +309,14 @@ def _render_callout_bar(slide, theme: Theme, callout: dict, top: float = 4.55) -
     """Render a dark callout bar with columns."""
     c = theme.colors
     s = theme.sizes
-    height = callout.get("height", 2.15)
+    # Ensure callout fits on slide (max bottom ~6.90 to leave room for footer)
+    max_height = 6.90 - top
+    height = min(callout.get("height", 1.80), max_height)
     add_rect(slide, s.margin_left, top, s.content_width, height, fill=c.dark_navy)
 
     # Label
     if callout.get("label"):
-        add_textbox(slide, 0.85, top + 0.20, 11.63, 0.30,
+        add_textbox(slide, 0.85, top + 0.15, 11.63, 0.25,
                     text=callout["label"], font_size=10, bold=True, color=c.accent)
 
     # Columns
@@ -310,8 +326,9 @@ def _render_callout_bar(slide, theme: Theme, callout: dict, top: float = 4.55) -
         for i, col in enumerate(columns):
             col_left = 0.85 + i * (col_width + 0.20)
             if col.get("title"):
-                add_textbox(slide, col_left, top + 0.60, col_width, 0.40,
+                add_textbox(slide, col_left, top + 0.45, col_width, 0.35,
                             text=col["title"], font_size=13, bold=True, color=c.white)
             if col.get("description"):
-                add_textbox(slide, col_left, top + 1.00, col_width, 1.05,
-                            text=col["description"], font_size=11, color=c.light_blue)
+                desc_h = height - 0.85 - 0.05
+                add_textbox(slide, col_left, top + 0.80, col_width, desc_h,
+                            text=col["description"], font_size=10, color=c.light_blue)

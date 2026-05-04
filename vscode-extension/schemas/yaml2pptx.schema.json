@@ -1,0 +1,1057 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/fredrsat/yaml2pptx/schemas/yaml2pptx.schema.json",
+  "title": "yaml2pptx Presentation",
+  "description": "Schema for yaml2pptx YAML presentation files. Defines slides, themes, and metadata for generating PowerPoint presentations.",
+  "type": "object",
+  "properties": {
+    "output": {
+      "type": "string",
+      "description": "Output filename for the generated PowerPoint file.",
+      "markdownDescription": "Output filename for the generated `.pptx` file. Example: `\"my_presentation.pptx\"`",
+      "pattern": "\\.pptx$",
+      "examples": ["presentation.pptx", "output.pptx"]
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Document metadata embedded in the PowerPoint file properties.",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Document title stored in file properties."
+        },
+        "author": {
+          "type": "string",
+          "description": "Author name stored in file properties."
+        },
+        "subject": {
+          "type": "string",
+          "description": "Subject/description stored in file properties."
+        }
+      },
+      "additionalProperties": false
+    },
+    "theme": {
+      "type": "string",
+      "description": "Theme name to use for the presentation.",
+      "markdownDescription": "Theme name to use for the presentation. Use `\"default\"` for the built-in theme.",
+      "default": "default",
+      "examples": ["default"]
+    },
+    "theme_config": {
+      "type": "object",
+      "description": "Theme configuration overrides for branding and footer content.",
+      "properties": {
+        "organization": {
+          "type": "string",
+          "description": "Organization name displayed in the presentation."
+        },
+        "document_title": {
+          "type": "string",
+          "description": "Document title displayed in headers/footers."
+        },
+        "classification": {
+          "type": "string",
+          "description": "Classification label (e.g., 'Confidential', 'Internal')."
+        },
+        "footer": {
+          "type": "string",
+          "description": "Custom footer text. Overrides the auto-generated footer.",
+          "markdownDescription": "Custom footer text. **Overrides** the auto-generated footer composed from organization, document_title, and classification."
+        }
+      },
+      "additionalProperties": false
+    },
+    "slides": {
+      "type": "array",
+      "description": "Array of slide definitions. Each slide has a type that determines its available fields.",
+      "markdownDescription": "Array of slide definitions. Each slide has a `type` field that determines which other fields are valid.\n\nAvailable types: `title_page`, `agenda`, `stat_cards`, `definition_cards`, `content_cards`, `icon_cards`, `two_panels`, `comparison`, `section_divider`, `timeline`, `process`, `quote`, `key_metrics`, `checklist`, `image_text`, `table`, `content`",
+      "minItems": 1,
+      "items": {
+        "oneOf": [
+          { "$ref": "#/definitions/slide_title_page" },
+          { "$ref": "#/definitions/slide_agenda" },
+          { "$ref": "#/definitions/slide_stat_cards" },
+          { "$ref": "#/definitions/slide_definition_cards" },
+          { "$ref": "#/definitions/slide_content_cards" },
+          { "$ref": "#/definitions/slide_icon_cards" },
+          { "$ref": "#/definitions/slide_two_panels" },
+          { "$ref": "#/definitions/slide_comparison" },
+          { "$ref": "#/definitions/slide_section_divider" },
+          { "$ref": "#/definitions/slide_timeline" },
+          { "$ref": "#/definitions/slide_process" },
+          { "$ref": "#/definitions/slide_quote" },
+          { "$ref": "#/definitions/slide_key_metrics" },
+          { "$ref": "#/definitions/slide_checklist" },
+          { "$ref": "#/definitions/slide_image_text" },
+          { "$ref": "#/definitions/slide_table" },
+          { "$ref": "#/definitions/slide_content" }
+        ]
+      }
+    }
+  },
+  "required": ["slides"],
+  "additionalProperties": false,
+  "definitions": {
+    "icon": {
+      "type": "string",
+      "description": "Icon identifier. Choose from the built-in icon set.",
+      "markdownDescription": "Icon identifier from the built-in set.\n\n**Objects:** shield, lock, key, unlock, gear, server, cloud, database, code, network, chip, document, folder\n\n**People:** people, person, mail, chat\n\n**Status:** check, cross, warning, info, star, flag\n\n**Data:** chart, target, trend, money\n\n**Science:** brain, heart, health, science, microscope\n\n**Misc:** lightning, globe, sun, leaf, search, link, clock, rocket\n\n**Arrows:** arrow_right, arrow_left, arrow_up, arrow_down\n\n**Shapes:** circle, square, diamond, triangle\n\n**Aliases:** gpu, ai, security, settings, users, time, data, success, error, alert, plus",
+      "enum": [
+        "shield", "lock", "key", "unlock",
+        "gear", "server", "cloud", "database", "code", "network", "chip",
+        "people", "person", "mail", "chat",
+        "check", "cross", "warning", "info", "star", "flag",
+        "chart", "target", "trend", "money",
+        "document", "folder",
+        "brain", "heart", "health", "science", "microscope",
+        "lightning", "globe", "sun", "leaf",
+        "arrow_right", "arrow_left", "arrow_up", "arrow_down",
+        "search", "link", "clock", "rocket",
+        "circle", "square", "diamond", "triangle",
+        "gpu", "ai", "security", "settings", "users", "time", "data",
+        "success", "error", "alert", "plus"
+      ]
+    },
+    "common_slide_properties": {
+      "type": "object",
+      "properties": {
+        "section": {
+          "type": "string",
+          "description": "Section name this slide belongs to. Used for organizational grouping."
+        },
+        "page": {
+          "type": "string",
+          "description": "Page label displayed on the slide (e.g., page number or identifier)."
+        },
+        "speaker_notes": {
+          "type": "string",
+          "description": "Speaker notes attached to this slide, visible in presenter view.",
+          "markdownDescription": "Speaker notes attached to this slide. Visible in **Presenter View** in PowerPoint."
+        }
+      }
+    },
+    "callout": {
+      "type": "object",
+      "description": "Callout box displayed below the main content.",
+      "properties": {
+        "label": {
+          "type": "string",
+          "description": "Callout header label."
+        },
+        "columns": {
+          "type": "array",
+          "description": "Columns within the callout.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string",
+                "description": "Column title."
+              },
+              "description": {
+                "type": "string",
+                "description": "Column description text."
+              }
+            },
+            "required": ["title", "description"],
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "panel_two_panels": {
+      "type": "object",
+      "description": "Panel definition for two_panels slide type.",
+      "properties": {
+        "letter": {
+          "type": "string",
+          "description": "Single letter or short label displayed prominently (e.g., 'A', 'B')."
+        },
+        "label": {
+          "type": "string",
+          "description": "Label text above the panel title."
+        },
+        "title": {
+          "type": "string",
+          "description": "Panel title."
+        },
+        "example": {
+          "type": "string",
+          "description": "Example text or quote displayed in the panel."
+        },
+        "dark": {
+          "type": "boolean",
+          "description": "Use dark background for this panel.",
+          "default": false
+        },
+        "points": {
+          "type": "array",
+          "description": "Bullet points listed in the panel.",
+          "items": { "type": "string" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "panel_comparison": {
+      "type": "object",
+      "description": "Panel definition for comparison slide type.",
+      "properties": {
+        "header": {
+          "type": "string",
+          "description": "Panel header text."
+        },
+        "title": {
+          "type": "string",
+          "description": "Panel title."
+        },
+        "rows": {
+          "type": "array",
+          "description": "Rows of label-value pairs displayed in the panel.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string",
+                "description": "Row label."
+              },
+              "value": {
+                "type": "string",
+                "description": "Row value."
+              }
+            },
+            "required": ["label", "value"],
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "slide_title_page": {
+      "type": "object",
+      "description": "Title page slide - the opening slide of the presentation.",
+      "markdownDescription": "**Title Page** slide. Typically the first slide with the presentation title, subtitle, author, and date.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "title_page",
+          "description": "Slide type: title_page"
+        },
+        "category": {
+          "type": "string",
+          "description": "Category label displayed above the title (e.g., 'Strategy', 'Technical')."
+        },
+        "title": {
+          "type": "string",
+          "description": "Main presentation title."
+        },
+        "subtitle": {
+          "type": "string",
+          "description": "Subtitle displayed below the title."
+        },
+        "author": {
+          "type": "string",
+          "description": "Author name displayed on the title page."
+        },
+        "date": {
+          "type": "string",
+          "description": "Date string displayed on the title page."
+        },
+        "section": { "$ref": "#/definitions/common_slide_properties/properties/section" },
+        "page": { "$ref": "#/definitions/common_slide_properties/properties/page" },
+        "speaker_notes": { "$ref": "#/definitions/common_slide_properties/properties/speaker_notes" }
+      },
+      "required": ["type"],
+      "additionalProperties": false
+    },
+    "slide_agenda": {
+      "type": "object",
+      "description": "Agenda slide - displays a numbered list of agenda items.",
+      "markdownDescription": "**Agenda** slide. Displays a numbered list of topics or agenda items with optional descriptions.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "agenda",
+          "description": "Slide type: agenda"
+        },
+        "title": {
+          "type": "string",
+          "description": "Slide title."
+        },
+        "subtitle": {
+          "type": "string",
+          "description": "Slide subtitle."
+        },
+        "items": {
+          "type": "array",
+          "description": "List of agenda items.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string",
+                "description": "Agenda item title."
+              },
+              "description": {
+                "type": "string",
+                "description": "Agenda item description."
+              },
+              "number": {
+                "type": "string",
+                "description": "Custom number or label for this item. Auto-generated if omitted."
+              }
+            },
+            "required": ["title", "description"],
+            "additionalProperties": false
+          }
+        },
+        "section": { "$ref": "#/definitions/common_slide_properties/properties/section" },
+        "page": { "$ref": "#/definitions/common_slide_properties/properties/page" },
+        "speaker_notes": { "$ref": "#/definitions/common_slide_properties/properties/speaker_notes" }
+      },
+      "required": ["type"],
+      "additionalProperties": false
+    },
+    "slide_stat_cards": {
+      "type": "object",
+      "description": "Stat cards slide - displays statistical highlights in card format.",
+      "markdownDescription": "**Stat Cards** slide. Shows key statistics or KPIs in a card layout with large numbers and labels.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "stat_cards",
+          "description": "Slide type: stat_cards"
+        },
+        "title": {
+          "type": "string",
+          "description": "Slide title."
+        },
+        "subtitle": {
+          "type": "string",
+          "description": "Slide subtitle."
+        },
+        "cards": {
+          "type": "array",
+          "description": "Array of stat cards.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "stat": {
+                "type": "string",
+                "description": "The statistic value displayed prominently (e.g., '99.9%', '24/7')."
+              },
+              "label": {
+                "type": "string",
+                "description": "Short label for the stat."
+              },
+              "title": {
+                "type": "string",
+                "description": "Card title."
+              },
+              "description": {
+                "type": "string",
+                "description": "Detailed description of the statistic."
+              }
+            },
+            "required": ["stat", "label"],
+            "additionalProperties": false
+          }
+        },
+        "footnotes": {
+          "type": "array",
+          "description": "Footnotes displayed below the cards.",
+          "items": { "type": "string" }
+        },
+        "section": { "$ref": "#/definitions/common_slide_properties/properties/section" },
+        "page": { "$ref": "#/definitions/common_slide_properties/properties/page" },
+        "speaker_notes": { "$ref": "#/definitions/common_slide_properties/properties/speaker_notes" }
+      },
+      "required": ["type"],
+      "additionalProperties": false
+    },
+    "slide_definition_cards": {
+      "type": "object",
+      "description": "Definition cards slide - displays term definitions in a card layout.",
+      "markdownDescription": "**Definition Cards** slide. Shows terms and their definitions in card format with optional icons and border colors.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "definition_cards",
+          "description": "Slide type: definition_cards"
+        },
+        "title": {
+          "type": "string",
+          "description": "Slide title."
+        },
+        "subtitle": {
+          "type": "string",
+          "description": "Slide subtitle."
+        },
+        "cards": {
+          "type": "array",
+          "description": "Array of definition cards.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "term": {
+                "type": "string",
+                "description": "The term being defined."
+              },
+              "icon": { "$ref": "#/definitions/icon" },
+              "subtitle": {
+                "type": "string",
+                "description": "Card subtitle."
+              },
+              "description": {
+                "type": "string",
+                "description": "Definition or description of the term."
+              },
+              "border_color": {
+                "type": "string",
+                "description": "Custom border color for the card (e.g., '#FF6B35', 'primary')."
+              }
+            },
+            "required": ["term", "description"],
+            "additionalProperties": false
+          }
+        },
+        "callout": { "$ref": "#/definitions/callout" },
+        "section": { "$ref": "#/definitions/common_slide_properties/properties/section" },
+        "page": { "$ref": "#/definitions/common_slide_properties/properties/page" },
+        "speaker_notes": { "$ref": "#/definitions/common_slide_properties/properties/speaker_notes" }
+      },
+      "required": ["type"],
+      "additionalProperties": false
+    },
+    "slide_content_cards": {
+      "type": "object",
+      "description": "Content cards slide - displays content in card format with bullet points.",
+      "markdownDescription": "**Content Cards** slide. Shows content cards with titles, descriptions, icons, and bullet points.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "content_cards",
+          "description": "Slide type: content_cards"
+        },
+        "title": {
+          "type": "string",
+          "description": "Slide title."
+        },
+        "subtitle": {
+          "type": "string",
+          "description": "Slide subtitle."
+        },
+        "cards": {
+          "type": "array",
+          "description": "Array of content cards.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string",
+                "description": "Card title."
+              },
+              "icon": { "$ref": "#/definitions/icon" },
+              "subtitle": {
+                "type": "string",
+                "description": "Card subtitle."
+              },
+              "description": {
+                "type": "string",
+                "description": "Card description text."
+              },
+              "points": {
+                "type": "array",
+                "description": "Bullet points listed in the card.",
+                "items": { "type": "string" }
+              }
+            },
+            "required": ["title"],
+            "additionalProperties": false
+          }
+        },
+        "callout": { "$ref": "#/definitions/callout" },
+        "section": { "$ref": "#/definitions/common_slide_properties/properties/section" },
+        "page": { "$ref": "#/definitions/common_slide_properties/properties/page" },
+        "speaker_notes": { "$ref": "#/definitions/common_slide_properties/properties/speaker_notes" }
+      },
+      "required": ["type"],
+      "additionalProperties": false
+    },
+    "slide_icon_cards": {
+      "type": "object",
+      "description": "Icon cards slide - displays cards with prominent icons and a message.",
+      "markdownDescription": "**Icon Cards** slide. Shows a top-level message with icon-driven cards below.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "icon_cards",
+          "description": "Slide type: icon_cards"
+        },
+        "message": {
+          "type": "string",
+          "description": "Main message displayed above the cards."
+        },
+        "cards": {
+          "type": "array",
+          "description": "Array of icon cards.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string",
+                "description": "Card title."
+              },
+              "icon": { "$ref": "#/definitions/icon" },
+              "description": {
+                "type": "string",
+                "description": "Card description text."
+              }
+            },
+            "required": ["title"],
+            "additionalProperties": false
+          }
+        },
+        "section": { "$ref": "#/definitions/common_slide_properties/properties/section" },
+        "page": { "$ref": "#/definitions/common_slide_properties/properties/page" },
+        "speaker_notes": { "$ref": "#/definitions/common_slide_properties/properties/speaker_notes" }
+      },
+      "required": ["type"],
+      "additionalProperties": false
+    },
+    "slide_two_panels": {
+      "type": "object",
+      "description": "Two panels slide - side-by-side comparison with two panels.",
+      "markdownDescription": "**Two Panels** slide. Displays two side-by-side panels (e.g., Option A vs Option B) with letter labels, titles, examples, and bullet points.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "two_panels",
+          "description": "Slide type: two_panels"
+        },
+        "title": {
+          "type": "string",
+          "description": "Slide title."
+        },
+        "subtitle": {
+          "type": "string",
+          "description": "Slide subtitle."
+        },
+        "left_panel": { "$ref": "#/definitions/panel_two_panels" },
+        "right_panel": { "$ref": "#/definitions/panel_two_panels" },
+        "section": { "$ref": "#/definitions/common_slide_properties/properties/section" },
+        "page": { "$ref": "#/definitions/common_slide_properties/properties/page" },
+        "speaker_notes": { "$ref": "#/definitions/common_slide_properties/properties/speaker_notes" }
+      },
+      "required": ["type"],
+      "additionalProperties": false
+    },
+    "slide_comparison": {
+      "type": "object",
+      "description": "Comparison slide - structured comparison with label-value rows.",
+      "markdownDescription": "**Comparison** slide. Side-by-side structured comparison with header, title, and rows of label-value pairs in each panel.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "comparison",
+          "description": "Slide type: comparison"
+        },
+        "title": {
+          "type": "string",
+          "description": "Slide title."
+        },
+        "subtitle": {
+          "type": "string",
+          "description": "Slide subtitle."
+        },
+        "left_panel": { "$ref": "#/definitions/panel_comparison" },
+        "right_panel": { "$ref": "#/definitions/panel_comparison" },
+        "footer_text": {
+          "type": "string",
+          "description": "Footer text displayed below the comparison panels."
+        },
+        "section": { "$ref": "#/definitions/common_slide_properties/properties/section" },
+        "page": { "$ref": "#/definitions/common_slide_properties/properties/page" },
+        "speaker_notes": { "$ref": "#/definitions/common_slide_properties/properties/speaker_notes" }
+      },
+      "required": ["type"],
+      "additionalProperties": false
+    },
+    "slide_section_divider": {
+      "type": "object",
+      "description": "Section divider slide - marks the beginning of a new section.",
+      "markdownDescription": "**Section Divider** slide. A visual break between sections, typically with a large number and title.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "section_divider",
+          "description": "Slide type: section_divider"
+        },
+        "number": {
+          "type": "string",
+          "description": "Section number displayed prominently (e.g., '01', '02')."
+        },
+        "title": {
+          "type": "string",
+          "description": "Section title."
+        },
+        "subtitle": {
+          "type": "string",
+          "description": "Section subtitle or description."
+        },
+        "section": { "$ref": "#/definitions/common_slide_properties/properties/section" },
+        "page": { "$ref": "#/definitions/common_slide_properties/properties/page" },
+        "speaker_notes": { "$ref": "#/definitions/common_slide_properties/properties/speaker_notes" }
+      },
+      "required": ["type"],
+      "additionalProperties": false
+    },
+    "slide_timeline": {
+      "type": "object",
+      "description": "Timeline slide - displays phases or milestones along a timeline.",
+      "markdownDescription": "**Timeline** slide. Shows a horizontal timeline with phases, each containing a label, title, description, and items. Use `active: true` to highlight the current phase.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "timeline",
+          "description": "Slide type: timeline"
+        },
+        "title": {
+          "type": "string",
+          "description": "Slide title."
+        },
+        "subtitle": {
+          "type": "string",
+          "description": "Slide subtitle."
+        },
+        "phases": {
+          "type": "array",
+          "description": "Array of timeline phases.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string",
+                "description": "Phase label (e.g., 'Phase 1', 'Q1 2025')."
+              },
+              "title": {
+                "type": "string",
+                "description": "Phase title."
+              },
+              "active": {
+                "type": "boolean",
+                "description": "Whether this phase is the current/active one. Highlighted visually.",
+                "default": false
+              },
+              "description": {
+                "type": "string",
+                "description": "Phase description."
+              },
+              "items": {
+                "type": "array",
+                "description": "List of items or deliverables in this phase.",
+                "items": { "type": "string" }
+              }
+            },
+            "required": ["label", "title"],
+            "additionalProperties": false
+          }
+        },
+        "section": { "$ref": "#/definitions/common_slide_properties/properties/section" },
+        "page": { "$ref": "#/definitions/common_slide_properties/properties/page" },
+        "speaker_notes": { "$ref": "#/definitions/common_slide_properties/properties/speaker_notes" }
+      },
+      "required": ["type"],
+      "additionalProperties": false
+    },
+    "slide_process": {
+      "type": "object",
+      "description": "Process slide - displays a step-by-step process flow.",
+      "markdownDescription": "**Process** slide. Shows a sequential process with numbered steps, each with an icon, title, description, and optional bullet items.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "process",
+          "description": "Slide type: process"
+        },
+        "title": {
+          "type": "string",
+          "description": "Slide title."
+        },
+        "subtitle": {
+          "type": "string",
+          "description": "Slide subtitle."
+        },
+        "steps": {
+          "type": "array",
+          "description": "Array of process steps.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "number": {
+                "type": "string",
+                "description": "Step number (e.g., '1', '01')."
+              },
+              "icon": { "$ref": "#/definitions/icon" },
+              "title": {
+                "type": "string",
+                "description": "Step title."
+              },
+              "description": {
+                "type": "string",
+                "description": "Step description."
+              },
+              "items": {
+                "type": "array",
+                "description": "Sub-items or details for this step.",
+                "items": { "type": "string" }
+              }
+            },
+            "required": ["title"],
+            "additionalProperties": false
+          }
+        },
+        "section": { "$ref": "#/definitions/common_slide_properties/properties/section" },
+        "page": { "$ref": "#/definitions/common_slide_properties/properties/page" },
+        "speaker_notes": { "$ref": "#/definitions/common_slide_properties/properties/speaker_notes" }
+      },
+      "required": ["type"],
+      "additionalProperties": false
+    },
+    "slide_quote": {
+      "type": "object",
+      "description": "Quote slide - displays a prominent quotation.",
+      "markdownDescription": "**Quote** slide. Displays a large quotation with attribution and optional source. Use `dark: true` for a dark background variant.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "quote",
+          "description": "Slide type: quote"
+        },
+        "quote": {
+          "type": "string",
+          "description": "The quotation text."
+        },
+        "attribution": {
+          "type": "string",
+          "description": "Who said the quote (person name and/or title)."
+        },
+        "source": {
+          "type": "string",
+          "description": "Source of the quote (e.g., book, speech, article)."
+        },
+        "dark": {
+          "type": "boolean",
+          "description": "Use dark background for the quote slide.",
+          "default": false
+        },
+        "section": { "$ref": "#/definitions/common_slide_properties/properties/section" },
+        "page": { "$ref": "#/definitions/common_slide_properties/properties/page" },
+        "speaker_notes": { "$ref": "#/definitions/common_slide_properties/properties/speaker_notes" }
+      },
+      "required": ["type"],
+      "additionalProperties": false
+    },
+    "slide_key_metrics": {
+      "type": "object",
+      "description": "Key metrics slide - displays important metrics with trend indicators.",
+      "markdownDescription": "**Key Metrics** slide. Displays metrics with values, labels, trend arrows (up/down), and color coding.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "key_metrics",
+          "description": "Slide type: key_metrics"
+        },
+        "title": {
+          "type": "string",
+          "description": "Slide title."
+        },
+        "subtitle": {
+          "type": "string",
+          "description": "Slide subtitle."
+        },
+        "metrics": {
+          "type": "array",
+          "description": "Array of metric definitions.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string",
+                "description": "Metric value displayed prominently (e.g., '99.9%', '$1.2M')."
+              },
+              "label": {
+                "type": "string",
+                "description": "Label describing the metric."
+              },
+              "trend": {
+                "type": "string",
+                "enum": ["up", "down"],
+                "description": "Trend direction indicator arrow."
+              },
+              "trend_label": {
+                "type": "string",
+                "description": "Text label for the trend (e.g., '+5% from last quarter')."
+              },
+              "color": {
+                "type": "string",
+                "enum": ["primary", "accent", "success", "warning", "blue", "dark"],
+                "description": "Color theme for this metric card.",
+                "markdownDescription": "Color theme for this metric card.\n\n- `primary` - Primary brand color\n- `accent` - Accent/highlight color\n- `success` - Green/positive\n- `warning` - Orange/caution\n- `blue` - Blue\n- `dark` - Dark/neutral"
+              }
+            },
+            "required": ["value", "label"],
+            "additionalProperties": false
+          }
+        },
+        "section": { "$ref": "#/definitions/common_slide_properties/properties/section" },
+        "page": { "$ref": "#/definitions/common_slide_properties/properties/page" },
+        "speaker_notes": { "$ref": "#/definitions/common_slide_properties/properties/speaker_notes" }
+      },
+      "required": ["type"],
+      "additionalProperties": false
+    },
+    "slide_checklist": {
+      "type": "object",
+      "description": "Checklist slide - displays items with status indicators.",
+      "markdownDescription": "**Checklist** slide. Shows a list of items with status indicators (done, in progress, pending, blocked). Supports 1-3 column layout.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "checklist",
+          "description": "Slide type: checklist"
+        },
+        "title": {
+          "type": "string",
+          "description": "Slide title."
+        },
+        "subtitle": {
+          "type": "string",
+          "description": "Slide subtitle."
+        },
+        "columns": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 3,
+          "default": 1,
+          "description": "Number of columns to arrange items in (1-3)."
+        },
+        "items": {
+          "type": "array",
+          "description": "Array of checklist items.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "text": {
+                "type": "string",
+                "description": "Checklist item text."
+              },
+              "status": {
+                "type": "string",
+                "enum": ["done", "in_progress", "pending", "blocked"],
+                "description": "Current status of the checklist item.",
+                "markdownDescription": "Status of the checklist item.\n\n- `done` - Completed (checkmark)\n- `in_progress` - Currently being worked on\n- `pending` - Not yet started\n- `blocked` - Blocked/cannot proceed"
+              },
+              "note": {
+                "type": "string",
+                "description": "Additional note or detail for this item."
+              }
+            },
+            "required": ["text", "status"],
+            "additionalProperties": false
+          }
+        },
+        "section": { "$ref": "#/definitions/common_slide_properties/properties/section" },
+        "page": { "$ref": "#/definitions/common_slide_properties/properties/page" },
+        "speaker_notes": { "$ref": "#/definitions/common_slide_properties/properties/speaker_notes" }
+      },
+      "required": ["type"],
+      "additionalProperties": false
+    },
+    "slide_image_text": {
+      "type": "object",
+      "description": "Image + text slide - displays an image alongside text content.",
+      "markdownDescription": "**Image + Text** slide. Shows an image on one side with text content on the other. Control image placement with `image_position`.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "image_text",
+          "description": "Slide type: image_text"
+        },
+        "title": {
+          "type": "string",
+          "description": "Slide title."
+        },
+        "subtitle": {
+          "type": "string",
+          "description": "Slide subtitle."
+        },
+        "image": {
+          "type": "string",
+          "description": "File path to the image (relative to the YAML file or absolute)."
+        },
+        "image_width": {
+          "type": "number",
+          "description": "Image width as a proportion of the slide (0.0 to 1.0) or in inches.",
+          "markdownDescription": "Image width. Can be a proportion of slide width (e.g., `0.4` for 40%) or a value in inches."
+        },
+        "image_position": {
+          "type": "string",
+          "enum": ["left", "right"],
+          "default": "left",
+          "description": "Which side the image appears on.",
+          "markdownDescription": "Which side the image appears on.\n- `left` - Image on the left, text on the right\n- `right` - Image on the right, text on the left"
+        },
+        "content": {
+          "oneOf": [
+            {
+              "type": "string",
+              "description": "Text content as a single string."
+            },
+            {
+              "type": "array",
+              "description": "Text content as an array of bullet points.",
+              "items": { "type": "string" }
+            }
+          ],
+          "description": "Text content displayed alongside the image. Can be a string or array of strings."
+        },
+        "caption": {
+          "type": "string",
+          "description": "Caption text displayed below the image."
+        },
+        "section": { "$ref": "#/definitions/common_slide_properties/properties/section" },
+        "page": { "$ref": "#/definitions/common_slide_properties/properties/page" },
+        "speaker_notes": { "$ref": "#/definitions/common_slide_properties/properties/speaker_notes" }
+      },
+      "required": ["type"],
+      "additionalProperties": false
+    },
+    "slide_table": {
+      "type": "object",
+      "description": "Table slide - displays data in a table format.",
+      "markdownDescription": "**Table** slide. Renders a data table with headers and rows.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "table",
+          "description": "Slide type: table"
+        },
+        "title": {
+          "type": "string",
+          "description": "Slide title."
+        },
+        "subtitle": {
+          "type": "string",
+          "description": "Slide subtitle."
+        },
+        "headers": {
+          "type": "array",
+          "description": "Table column headers.",
+          "items": { "type": "string" }
+        },
+        "rows": {
+          "type": "array",
+          "description": "Table data rows. Each row is an array of cell values matching the headers.",
+          "items": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        },
+        "section": { "$ref": "#/definitions/common_slide_properties/properties/section" },
+        "page": { "$ref": "#/definitions/common_slide_properties/properties/page" },
+        "speaker_notes": { "$ref": "#/definitions/common_slide_properties/properties/speaker_notes" }
+      },
+      "required": ["type"],
+      "additionalProperties": false
+    },
+    "slide_content": {
+      "type": "object",
+      "description": "Content slide - the default/fallback slide type for general content.",
+      "markdownDescription": "**Content** slide (default/fallback). A flexible slide type that supports text content (string or bullet points), images, and tables. Used when no specific slide type is needed.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "content",
+          "description": "Slide type: content (default/fallback)"
+        },
+        "title": {
+          "type": "string",
+          "description": "Slide title."
+        },
+        "subtitle": {
+          "type": "string",
+          "description": "Slide subtitle."
+        },
+        "content": {
+          "oneOf": [
+            {
+              "type": "string",
+              "description": "Content as a single text block."
+            },
+            {
+              "type": "array",
+              "description": "Content as an array of bullet points (strings or objects with text and level).",
+              "items": {
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "text": {
+                        "type": "string",
+                        "description": "Bullet point text."
+                      },
+                      "level": {
+                        "type": "integer",
+                        "description": "Indentation level (0 = top level, 1 = sub-bullet, etc.).",
+                        "minimum": 0
+                      }
+                    },
+                    "required": ["text"],
+                    "additionalProperties": false
+                  }
+                ]
+              }
+            }
+          ],
+          "description": "Slide content. Can be a string, array of strings, or array of objects with text and level.",
+          "markdownDescription": "Slide content. Supports multiple formats:\n- Single string: `content: \"Hello world\"`\n- Array of strings: `content: [\"Point 1\", \"Point 2\"]`\n- Array of objects: `content: [{text: \"Main point\", level: 0}, {text: \"Sub-point\", level: 1}]`"
+        },
+        "image": {
+          "type": "string",
+          "description": "File path to an image to display on the slide."
+        },
+        "table": {
+          "type": "object",
+          "description": "Inline table to display on the slide.",
+          "properties": {
+            "headers": {
+              "type": "array",
+              "description": "Table column headers.",
+              "items": { "type": "string" }
+            },
+            "rows": {
+              "type": "array",
+              "description": "Table data rows.",
+              "items": {
+                "type": "array",
+                "items": { "type": "string" }
+              }
+            }
+          },
+          "required": ["headers", "rows"],
+          "additionalProperties": false
+        },
+        "section": { "$ref": "#/definitions/common_slide_properties/properties/section" },
+        "page": { "$ref": "#/definitions/common_slide_properties/properties/page" },
+        "speaker_notes": { "$ref": "#/definitions/common_slide_properties/properties/speaker_notes" }
+      },
+      "required": ["type"],
+      "additionalProperties": false
+    }
+  }
+}

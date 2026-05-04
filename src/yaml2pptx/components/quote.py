@@ -48,13 +48,14 @@ def render_quote(
 
     # Quote mark (decorative)
     quote_mark_color = c.accent if not dark else c.light_blue
-    add_textbox(slide, 1.20, 1.40, 1.0, 1.0, text="\u201C",
+    add_textbox(slide, 1.20, 1.40, 1.5, 2.0, text="\u201C",
                 font_size=96, color=quote_mark_color, bold=True)
 
-    # Quote text
+    # Quote text — scale font for long quotes
     text_color = c.text_dark if not dark else c.white
+    quote_font = 22 if len(quote) > 200 else 24 if len(quote) > 120 else 26
     add_textbox(slide, 1.50, 2.30, 10.30, 2.80, text=quote,
-                font_size=26, color=text_color, italic=True)
+                font_size=quote_font, color=text_color, italic=True)
 
     # Accent line
     add_rect(slide, 1.50, 5.20, 1.50, 0.04, fill=c.accent)
@@ -122,7 +123,7 @@ def render_key_metrics(
 
         # Left accent bar
         color_name = metric.get("color")
-        accent_color = resolve_color(color_name, c.primary)
+        accent_color = resolve_color(color_name, c.primary, theme)
         add_rect(slide, left, top, 0.06, metric_height, fill=accent_color)
 
         inner_left = left + inner_pad
@@ -186,9 +187,14 @@ def render_checklist(
 
     col_count = max(1, min(columns, 3))
     col_width = (12.13 - 0.30 * (col_count - 1)) / col_count
-    row_height = 0.50
     start_top = 2.20
     items_per_col = (len(items) + col_count - 1) // col_count
+
+    # Adaptive row height based on available space and whether notes exist
+    has_notes = any(isinstance(it, dict) and it.get("note") for it in items)
+    available = 4.50  # space before footer
+    min_row = 0.55 if has_notes else 0.42
+    row_height = min(0.80, max(min_row, available / items_per_col))
 
     for idx, item in enumerate(items):
         col = idx // items_per_col if col_count > 1 else 0
@@ -204,15 +210,18 @@ def render_checklist(
         add_textbox(slide, left, top, 0.40, 0.35, text=symbol,
                     font_size=16, bold=True, color=color)
 
-        # Item text
+        # Item text — use font that fits row height
         text = item.get("text", "") if isinstance(item, dict) else str(item)
         text_color = c.text_dark if status != "blocked" else c.text_muted
-        add_textbox(slide, left + 0.45, top, col_width - 0.80, 0.35,
-                    text=text, font_size=13, color=text_color)
+        text_height = row_height * 0.55 if has_notes else row_height - 0.05
+        add_textbox(slide, left + 0.45, top, col_width - 0.80, text_height,
+                    text=text, font_size=11, color=text_color)
 
-        # Note (small, muted)
+        # Note (small, muted) — positioned below the text
         if isinstance(item, dict) and item.get("note"):
-            add_textbox(slide, left + 0.45, top + 0.22, col_width - 0.80, 0.25,
+            note_top = row_height * 0.55
+            note_height = row_height - note_top - 0.03
+            add_textbox(slide, left + 0.45, top + note_top, col_width - 0.80, note_height,
                         text=item["note"], font_size=9, italic=True, color=c.text_muted)
 
     add_footer(slide, theme)

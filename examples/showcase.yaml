@@ -1,0 +1,411 @@
+output: "showcase.pptx"
+metadata:
+  title: "yaml2pptx Feature Showcase"
+  author: "yaml2pptx"
+  subject: "Complete feature demonstration"
+theme_config:
+  organization: "yaml2pptx"
+  document_title: "Feature Showcase"
+  classification: "Demo"
+
+slides:
+
+  # ──────────────────────────────────────────────
+  # 1. TITLE PAGE
+  # ──────────────────────────────────────────────
+  - type: title_page
+    category: "YAML2PPTX"
+    title: "Feature Showcase"
+    subtitle: "Every slide type, every feature, one file"
+    author: "yaml2pptx"
+    date: "April 2026"
+
+  # ──────────────────────────────────────────────
+  # 2. AGENDA
+  # ──────────────────────────────────────────────
+  - type: agenda
+    section: "OVERVIEW"
+    title: "What's Inside"
+    subtitle: "16 slide types and all formatting features"
+    items:
+      - title: "Card Layouts"
+        description: "Stat cards, definition cards, content cards, icon cards"
+      - title: "Panel Layouts"
+        description: "Two panels, comparison, section divider"
+      - title: "Flow Layouts"
+        description: "Timeline, process steps"
+      - title: "Data Layouts"
+        description: "Key metrics, table, checklist"
+      - title: "Rich Content"
+        description: "Quote, image+text, Markdown, speaker notes, nested bullets"
+
+  # ──────────────────────────────────────────────
+  # 3. STAT CARDS
+  # ──────────────────────────────────────────────
+  - type: stat_cards
+    section: "CARDS"
+    title: "Stat Cards"
+    subtitle: "Large numbers with context"
+    cards:
+      - stat: "16"
+        label: "slide types"
+        title: "Layout Variety"
+        description: "From title pages to data tables — all built from **YAML**"
+      - stat: "50+"
+        label: "icons"
+        title: "Icon Library"
+        description: "Named Unicode icons for cards and process steps"
+      - stat: "0"
+        label: "GUI clicks"
+        title: "Fully Declarative"
+        description: "Version-controlled, reproducible, ~~manual~~ automated"
+    footnotes:
+      - "[1] All stats are real features of yaml2pptx"
+
+  # ──────────────────────────────────────────────
+  # 4. DEFINITION CARDS (with icons + callout)
+  # ──────────────────────────────────────────────
+  - type: definition_cards
+    section: "CARDS"
+    title: "Definition Cards"
+    subtitle: "Terms with icons, subtitles, and descriptions"
+    cards:
+      - term: "Theme"
+        icon: "star"
+        subtitle: "Visual Identity"
+        description: "Colors, fonts, sizes, and spacing — all configurable per presentation"
+        border_color: "#00A9A5"
+      - term: "Markdown"
+        icon: "code"
+        subtitle: "Inline Formatting"
+        description: "Support for **bold**, *italic*, `code`, [links](https://example.com), and ~~strikethrough~~"
+        border_color: "#6CACE4"
+      - term: "Component"
+        icon: "gear"
+        subtitle: "Slide Renderer"
+        description: "Each slide type is a self-contained renderer function with full theme access"
+        border_color: "#003087"
+    callout:
+      label: "DESIGN PRINCIPLE"
+      columns:
+        - title: "Declarative"
+          description: "Describe what you want, not how to build it"
+        - title: "Composable"
+          description: "Mix and match slide types freely"
+
+  # ──────────────────────────────────────────────
+  # 5. CONTENT CARDS (with icons + points)
+  # ──────────────────────────────────────────────
+  - type: content_cards
+    section: "CARDS"
+    title: "Content Cards"
+    subtitle: "Feature cards with bullet points or descriptions"
+    cards:
+      - title: "Build Command"
+        icon: "rocket"
+        subtitle: "Component Renderer"
+        points:
+          - "Free-form shapes"
+          - "Theme-driven styling"
+          - "16 slide types"
+      - title: "Gen Command"
+        icon: "document"
+        subtitle: "Template Renderer"
+        points:
+          - "Uses .pptx templates"
+          - "Placeholder mapping"
+          - "Layout discovery"
+      - title: "Watch Mode"
+        icon: "clock"
+        subtitle: "Live Rebuild"
+        description: "Automatically rebuilds when the YAML file changes — instant feedback loop"
+    callout:
+      label: "TIP"
+      columns:
+        - title: "Quick Start"
+          description: "Run: yaml2pptx build example.yaml --open"
+
+  # ──────────────────────────────────────────────
+  # 6. ICON CARDS
+  # ──────────────────────────────────────────────
+  - type: icon_cards
+    section: "CARDS"
+    message: "Icon cards display a key message prominently at the top, with supporting cards below."
+    cards:
+      - title: "Security"
+        icon: "shield"
+        description: "Icons from the **shield**, **lock**, **key** family"
+      - title: "Technology"
+        icon: "cloud"
+        description: "Icons like **server**, **database**, **chip**, **network**"
+      - title: "Business"
+        icon: "chart"
+        description: "Icons including **target**, **trend**, **money**, **document**"
+
+  # ──────────────────────────────────────────────
+  # 7. SECTION DIVIDER
+  # ──────────────────────────────────────────────
+  - type: section_divider
+    number: "02"
+    title: "Panel Layouts"
+    subtitle: "Side-by-side comparisons and visual breaks"
+
+  # ──────────────────────────────────────────────
+  # 8. TWO PANELS
+  # ──────────────────────────────────────────────
+  - type: two_panels
+    section: "PANELS"
+    title: "Two Panels"
+    subtitle: "Dark and light panels with bullet points"
+    left_panel:
+      letter: "A"
+      label: "MANUAL APPROACH"
+      title: "PowerPoint GUI"
+      example: "Click, drag, align, repeat for every slide"
+      dark: true
+      points:
+        - "Time-consuming formatting"
+        - "Inconsistent styling across slides"
+        - "No version control"
+        - "Hard to maintain and update"
+    right_panel:
+      letter: "B"
+      label: "YAML APPROACH"
+      title: "yaml2pptx"
+      example: "Define once in YAML, generate consistently"
+      dark: false
+      points:
+        - "**Seconds** to regenerate"
+        - "Theme ensures consistency"
+        - "Full **git** version control"
+        - "Easy to maintain and update"
+
+  # ──────────────────────────────────────────────
+  # 9. COMPARISON
+  # ──────────────────────────────────────────────
+  - type: comparison
+    section: "PANELS"
+    title: "Comparison"
+    subtitle: "Key-value rows with colored headers"
+    left_panel:
+      header: "BEFORE"
+      title: "Traditional Workflow"
+      rows:
+        - label: "SPEED"
+          value: "Hours per deck — manual layout and formatting"
+        - label: "CONSISTENCY"
+          value: "Varies — depends on who made the deck"
+        - label: "UPDATES"
+          value: "Painful — edit each slide individually"
+        - label: "COLLABORATION"
+          value: "Email attachments and version conflicts"
+    right_panel:
+      header: "AFTER"
+      title: "yaml2pptx Workflow"
+      rows:
+        - label: "SPEED"
+          value: "Seconds — change YAML, rebuild"
+        - label: "CONSISTENCY"
+          value: "Guaranteed — theme controls all styling"
+        - label: "UPDATES"
+          value: "Trivial — edit text in YAML, regenerate"
+        - label: "COLLABORATION"
+          value: "Git branches, pull requests, code review"
+    footer_text: "yaml2pptx turns presentations into a software engineering workflow"
+
+  # ──────────────────────────────────────────────
+  # 10. TIMELINE
+  # ──────────────────────────────────────────────
+  - type: timeline
+    section: "FLOW"
+    title: "Timeline"
+    subtitle: "Horizontal phases with active state highlighting"
+    phases:
+      - label: "Phase 1"
+        title: "Parse"
+        active: false
+        description: "Read YAML and validate structure with Pydantic models"
+      - label: "Phase 2"
+        title: "Theme"
+        active: true
+        items:
+          - "Load color palette"
+          - "Set font families"
+          - "Configure dimensions"
+      - label: "Phase 3"
+        title: "Render"
+        active: false
+        items:
+          - "Dispatch to slide renderers"
+          - "Place shapes on blank slides"
+          - "Apply Markdown formatting"
+      - label: "Phase 4"
+        title: "Output"
+        active: false
+        description: "Save .pptx file and optionally open it"
+
+  # ──────────────────────────────────────────────
+  # 11. PROCESS
+  # ──────────────────────────────────────────────
+  - type: process
+    section: "FLOW"
+    title: "Process Steps"
+    subtitle: "Numbered steps with icons and sub-items"
+    steps:
+      - icon: "document"
+        title: "Write YAML"
+        description: "Define slides, content, and metadata"
+        items:
+          - "Choose slide types"
+          - "Add content and formatting"
+      - icon: "gear"
+        title: "Build"
+        description: "Run yaml2pptx build"
+        items:
+          - "Theme applied automatically"
+          - "Markdown parsed inline"
+      - icon: "check"
+        title: "Review"
+        description: "Open and verify the output"
+        items:
+          - "Use --open flag"
+          - "Or --watch for live reload"
+      - icon: "rocket"
+        title: "Ship"
+        description: "Share the final .pptx"
+        items:
+          - "Commit YAML to git"
+          - "Regenerate anytime"
+
+  # ──────────────────────────────────────────────
+  # 12. KEY METRICS
+  # ──────────────────────────────────────────────
+  - type: key_metrics
+    section: "DATA"
+    title: "Key Metrics"
+    subtitle: "Dashboard grid with trend indicators and colors"
+    metrics:
+      - value: "16"
+        label: "Slide types"
+        color: "primary"
+      - value: "50+"
+        label: "Icons available"
+        color: "accent"
+      - value: "5"
+        label: "Markdown styles"
+        trend: "up"
+        trend_label: "bold, italic, code, link, strike"
+        color: "success"
+      - value: "<1s"
+        label: "Build time"
+        trend: "down"
+        trend_label: "Fast generation"
+        color: "success"
+      - value: "100%"
+        label: "YAML-driven"
+        color: "blue"
+      - value: "0"
+        label: "External dependencies"
+        color: "dark"
+
+  # ──────────────────────────────────────────────
+  # 13. TABLE
+  # ──────────────────────────────────────────────
+  - type: table
+    section: "DATA"
+    title: "Table"
+    subtitle: "Structured data with headers and rows"
+    headers: ["Category", "Slide Types", "Count", "Icon Support"]
+    rows:
+      - ["Cards", "stat, definition, content, icon", "4", "Yes"]
+      - ["Panels", "two_panels, comparison, section_divider", "3", "No"]
+      - ["Flow", "timeline, process", "2", "Yes"]
+      - ["Data", "key_metrics, table, checklist", "3", "No"]
+      - ["Content", "quote, image_text, content", "3", "No"]
+      - ["Title", "title_page", "1", "No"]
+      - ["**Total**", "", "**16**", ""]
+
+  # ──────────────────────────────────────────────
+  # 14. CHECKLIST
+  # ──────────────────────────────────────────────
+  - type: checklist
+    section: "DATA"
+    title: "Checklist"
+    subtitle: "Status indicators with multi-column layout"
+    columns: 2
+    items:
+      - text: "Title page with dark background"
+        status: "done"
+      - text: "Agenda with numbered items"
+        status: "done"
+      - text: "All four card types"
+        status: "done"
+      - text: "Two panels and comparison"
+        status: "done"
+      - text: "Section divider"
+        status: "done"
+      - text: "Timeline and process"
+        status: "done"
+      - text: "Quote with dark mode"
+        status: "done"
+      - text: "Key metrics dashboard"
+        status: "done"
+      - text: "Table with headers"
+        status: "done"
+      - text: "Image + text layout"
+        status: "in_progress"
+        note: "Next slide"
+      - text: "Inline Markdown"
+        status: "done"
+      - text: "Speaker notes"
+        status: "done"
+        note: "Check the notes pane"
+    speaker_notes: "This slide demonstrates that speaker notes work on every slide type. Open the notes pane in PowerPoint to see this."
+
+  # ──────────────────────────────────────────────
+  # 15. IMAGE + TEXT
+  # ──────────────────────────────────────────────
+  - type: image_text
+    section: "CONTENT"
+    title: "Image + Text"
+    subtitle: "Side-by-side layout with image and bullet points"
+    image: "logo.png"
+    image_width: 5.0
+    image_position: "left"
+    caption: "Placeholder — replace with a real image path"
+    content:
+      - "Images are placed from a **file path**"
+      - "Set `image_width` to control sizing"
+      - "Choose `image_position`: *left* or *right*"
+      - "Missing images show a placeholder box"
+      - "Add a `caption` for context"
+
+  # ──────────────────────────────────────────────
+  # 16. QUOTE (dark mode)
+  # ──────────────────────────────────────────────
+  - type: quote
+    section: "CLOSING"
+    quote: "The best presentation tool is the one that gets out of your way and lets you focus on the content."
+    attribution: "-- yaml2pptx philosophy"
+    source: "README.md, 2026"
+    dark: true
+
+  # ──────────────────────────────────────────────
+  # 17. CONTENT (fallback — Markdown + nested bullets)
+  # ──────────────────────────────────────────────
+  - type: content
+    section: "FORMATTING"
+    title: "Inline Markdown & Nested Bullets"
+    subtitle: "Rich text formatting without leaving YAML"
+    content:
+      - "**Bold text** for emphasis"
+      - "*Italic text* for nuance"
+      - "Inline `code` for technical terms"
+      - "~~Strikethrough~~ for corrections"
+      - "[Clickable links](https://github.com) to external resources"
+      - text: "Nested bullet — use a dict with `level: 1`"
+        level: 1
+      - text: "Even deeper nesting with `level: 2`"
+        level: 2
+      - "Back to top level — mix freely"
+    speaker_notes: "This is the final slide. It demonstrates all five Markdown styles plus nested bullet levels using dict items with a 'level' key."

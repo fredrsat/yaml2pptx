@@ -1,0 +1,348 @@
+{
+  "yaml2pptx: Full file scaffold": {
+    "prefix": "y2p-init",
+    "description": "Scaffold a complete yaml2pptx presentation file with output, metadata, theme, and first slide",
+    "body": [
+      "output: \"${1:presentation.pptx}\"",
+      "metadata:",
+      "  title: \"${2:Presentation Title}\"",
+      "  author: \"${3:Author Name}\"",
+      "theme_config:",
+      "  organization: \"${4:Organization}\"",
+      "slides:",
+      "  - type: title_page",
+      "    title: \"${5:Title}\"",
+      "    subtitle: \"${6:Subtitle}\"",
+      "$0"
+    ]
+  },
+  "yaml2pptx: Title Page slide": {
+    "prefix": "y2p-title-page",
+    "description": "Title page slide with category, title, subtitle, author, and date",
+    "body": [
+      "- type: title_page",
+      "  category: \"${1:Category}\"",
+      "  title: \"${2:Title}\"",
+      "  subtitle: \"${3:Subtitle}\"",
+      "  author: \"${4:Author}\"",
+      "  date: \"${5:Date}\"",
+      "$0"
+    ]
+  },
+  "yaml2pptx: Agenda slide": {
+    "prefix": "y2p-agenda",
+    "description": "Agenda slide with section heading and agenda items with titles and descriptions",
+    "body": [
+      "- type: agenda",
+      "  section: \"${1:Section}\"",
+      "  title: \"${2:Agenda Title}\"",
+      "  items:",
+      "    - title: \"${3:Item 1 Title}\"",
+      "      description: \"${4:Item 1 Description}\"",
+      "    - title: \"${5:Item 2 Title}\"",
+      "      description: \"${6:Item 2 Description}\"",
+      "$0"
+    ]
+  },
+  "yaml2pptx: Stat Cards slide": {
+    "prefix": "y2p-stat-cards",
+    "description": "Stat cards slide displaying key statistics with labels and descriptions",
+    "body": [
+      "- type: stat_cards",
+      "  section: \"${1:Section}\"",
+      "  title: \"${2:Stat Cards Title}\"",
+      "  cards:",
+      "    - stat: \"${3:99%}\"",
+      "      label: \"${4:Label 1}\"",
+      "      title: \"${5:Card 1 Title}\"",
+      "      description: \"${6:Card 1 Description}\"",
+      "    - stat: \"${7:42}\"",
+      "      label: \"${8:Label 2}\"",
+      "      title: \"${9:Card 2 Title}\"",
+      "      description: \"${10:Card 2 Description}\"",
+      "$0"
+    ]
+  },
+  "yaml2pptx: Definition Cards slide": {
+    "prefix": "y2p-definition-cards",
+    "description": "Definition cards slide with terms, icons, subtitles, and descriptions",
+    "body": [
+      "- type: definition_cards",
+      "  section: \"${1:Section}\"",
+      "  title: \"${2:Definition Cards Title}\"",
+      "  cards:",
+      "    - term: \"${3:Term 1}\"",
+      "      icon: \"${4:icon1}\"",
+      "      subtitle: \"${5:Subtitle 1}\"",
+      "      description: \"${6:Description 1}\"",
+      "    - term: \"${7:Term 2}\"",
+      "      icon: \"${8:icon2}\"",
+      "      subtitle: \"${9:Subtitle 2}\"",
+      "      description: \"${10:Description 2}\"",
+      "$0"
+    ]
+  },
+  "yaml2pptx: Content Cards slide": {
+    "prefix": "y2p-content-cards",
+    "description": "Content cards slide with titles, icons, subtitles, and bullet points",
+    "body": [
+      "- type: content_cards",
+      "  section: \"${1:Section}\"",
+      "  title: \"${2:Content Cards Title}\"",
+      "  cards:",
+      "    - title: \"${3:Card 1 Title}\"",
+      "      icon: \"${4:icon1}\"",
+      "      subtitle: \"${5:Card 1 Subtitle}\"",
+      "      points:",
+      "        - \"${6:Point 1}\"",
+      "        - \"${7:Point 2}\"",
+      "    - title: \"${8:Card 2 Title}\"",
+      "      icon: \"${9:icon2}\"",
+      "      subtitle: \"${10:Card 2 Subtitle}\"",
+      "      points:",
+      "        - \"${11:Point 1}\"",
+      "        - \"${12:Point 2}\"",
+      "$0"
+    ]
+  },
+  "yaml2pptx: Icon Cards slide": {
+    "prefix": "y2p-icon-cards",
+    "description": "Icon cards slide with a message and cards featuring icons and descriptions",
+    "body": [
+      "- type: icon_cards",
+      "  section: \"${1:Section}\"",
+      "  message: \"${2:Message}\"",
+      "  cards:",
+      "    - title: \"${3:Card 1 Title}\"",
+      "      icon: \"${4:icon1}\"",
+      "      description: \"${5:Card 1 Description}\"",
+      "    - title: \"${6:Card 2 Title}\"",
+      "      icon: \"${7:icon2}\"",
+      "      description: \"${8:Card 2 Description}\"",
+      "$0"
+    ]
+  },
+  "yaml2pptx: Two Panels slide": {
+    "prefix": "y2p-two-panels",
+    "description": "Two-panel layout slide with left and right panels containing letter, label, title, and points",
+    "body": [
+      "- type: two_panels",
+      "  section: \"${1:Section}\"",
+      "  title: \"${2:Two Panels Title}\"",
+      "  left_panel:",
+      "    letter: \"${3:A}\"",
+      "    label: \"${4:Left Label}\"",
+      "    title: \"${5:Left Title}\"",
+      "    points:",
+      "      - \"${6:Left Point 1}\"",
+      "      - \"${7:Left Point 2}\"",
+      "  right_panel:",
+      "    letter: \"${8:B}\"",
+      "    label: \"${9:Right Label}\"",
+      "    title: \"${10:Right Title}\"",
+      "    points:",
+      "      - \"${11:Right Point 1}\"",
+      "      - \"${12:Right Point 2}\"",
+      "$0"
+    ]
+  },
+  "yaml2pptx: Comparison slide": {
+    "prefix": "y2p-comparison",
+    "description": "Comparison slide with left and right panels containing header, title, and labeled rows",
+    "body": [
+      "- type: comparison",
+      "  section: \"${1:Section}\"",
+      "  title: \"${2:Comparison Title}\"",
+      "  left_panel:",
+      "    header: \"${3:Left Header}\"",
+      "    title: \"${4:Left Title}\"",
+      "    rows:",
+      "      - label: \"${5:Label 1}\"",
+      "        value: \"${6:Value 1}\"",
+      "      - label: \"${7:Label 2}\"",
+      "        value: \"${8:Value 2}\"",
+      "  right_panel:",
+      "    header: \"${9:Right Header}\"",
+      "    title: \"${10:Right Title}\"",
+      "    rows:",
+      "      - label: \"${11:Label 1}\"",
+      "        value: \"${12:Value 1}\"",
+      "      - label: \"${13:Label 2}\"",
+      "        value: \"${14:Value 2}\"",
+      "$0"
+    ]
+  },
+  "yaml2pptx: Section Divider slide": {
+    "prefix": "y2p-section-divider",
+    "description": "Section divider slide with number, title, and subtitle",
+    "body": [
+      "- type: section_divider",
+      "  number: \"${1:01}\"",
+      "  title: \"${2:Section Title}\"",
+      "  subtitle: \"${3:Section Subtitle}\"",
+      "$0"
+    ]
+  },
+  "yaml2pptx: Timeline slide": {
+    "prefix": "y2p-timeline",
+    "description": "Timeline slide with phases, each containing a label, title, and items",
+    "body": [
+      "- type: timeline",
+      "  section: \"${1:Section}\"",
+      "  title: \"${2:Timeline Title}\"",
+      "  phases:",
+      "    - label: \"${3:Phase 1}\"",
+      "      title: \"${4:Phase 1 Title}\"",
+      "      items:",
+      "        - \"${5:Item 1}\"",
+      "        - \"${6:Item 2}\"",
+      "    - label: \"${7:Phase 2}\"",
+      "      title: \"${8:Phase 2 Title}\"",
+      "      items:",
+      "        - \"${9:Item 1}\"",
+      "        - \"${10:Item 2}\"",
+      "    - label: \"${11:Phase 3}\"",
+      "      title: \"${12:Phase 3 Title}\"",
+      "      items:",
+      "        - \"${13:Item 1}\"",
+      "        - \"${14:Item 2}\"",
+      "$0"
+    ]
+  },
+  "yaml2pptx: Process slide": {
+    "prefix": "y2p-process",
+    "description": "Process slide with sequential steps, each having an icon, title, description, and items",
+    "body": [
+      "- type: process",
+      "  section: \"${1:Section}\"",
+      "  title: \"${2:Process Title}\"",
+      "  steps:",
+      "    - icon: \"${3:icon1}\"",
+      "      title: \"${4:Step 1 Title}\"",
+      "      description: \"${5:Step 1 Description}\"",
+      "      items:",
+      "        - \"${6:Item 1}\"",
+      "        - \"${7:Item 2}\"",
+      "    - icon: \"${8:icon2}\"",
+      "      title: \"${9:Step 2 Title}\"",
+      "      description: \"${10:Step 2 Description}\"",
+      "      items:",
+      "        - \"${11:Item 1}\"",
+      "        - \"${12:Item 2}\"",
+      "    - icon: \"${13:icon3}\"",
+      "      title: \"${14:Step 3 Title}\"",
+      "      description: \"${15:Step 3 Description}\"",
+      "      items:",
+      "        - \"${16:Item 1}\"",
+      "        - \"${17:Item 2}\"",
+      "$0"
+    ]
+  },
+  "yaml2pptx: Quote slide": {
+    "prefix": "y2p-quote",
+    "description": "Quote slide with attribution and optional dark background",
+    "body": [
+      "- type: quote",
+      "  section: \"${1:Section}\"",
+      "  quote: \"${2:Quote text}\"",
+      "  attribution: \"${3:Author Name}\"",
+      "  dark: ${4|true,false|}",
+      "$0"
+    ]
+  },
+  "yaml2pptx: Key Metrics slide": {
+    "prefix": "y2p-key-metrics",
+    "description": "Key metrics slide displaying values with labels, trends, and colors",
+    "body": [
+      "- type: key_metrics",
+      "  section: \"${1:Section}\"",
+      "  title: \"${2:Key Metrics Title}\"",
+      "  metrics:",
+      "    - value: \"${3:100}\"",
+      "      label: \"${4:Metric 1}\"",
+      "      trend: \"${5:up}\"",
+      "      color: \"${6:green}\"",
+      "    - value: \"${7:200}\"",
+      "      label: \"${8:Metric 2}\"",
+      "      trend: \"${9:up}\"",
+      "      color: \"${10:blue}\"",
+      "    - value: \"${11:300}\"",
+      "      label: \"${12:Metric 3}\"",
+      "      trend: \"${13:stable}\"",
+      "      color: \"${14:orange}\"",
+      "$0"
+    ]
+  },
+  "yaml2pptx: Checklist slide": {
+    "prefix": "y2p-checklist",
+    "description": "Checklist slide with multi-column items, each having text, status, and optional note",
+    "body": [
+      "- type: checklist",
+      "  section: \"${1:Section}\"",
+      "  title: \"${2:Checklist Title}\"",
+      "  columns: 2",
+      "  items:",
+      "    - text: \"${3:Item 1}\"",
+      "      status: \"${4|done,in_progress,pending|}\"",
+      "      note: \"${5:Note 1}\"",
+      "    - text: \"${6:Item 2}\"",
+      "      status: \"${7|done,in_progress,pending|}\"",
+      "      note: \"${8:Note 2}\"",
+      "    - text: \"${9:Item 3}\"",
+      "      status: \"${10|done,in_progress,pending|}\"",
+      "      note: \"${11:Note 3}\"",
+      "$0"
+    ]
+  },
+  "yaml2pptx: Image + Text slide": {
+    "prefix": "y2p-image-text",
+    "description": "Image and text slide with configurable image position and content bullets",
+    "body": [
+      "- type: image_text",
+      "  section: \"${1:Section}\"",
+      "  title: \"${2:Image Text Title}\"",
+      "  image: \"${3:path/to/image.png}\"",
+      "  image_position: ${4|left,right|}",
+      "  content:",
+      "    - \"${5:Content point 1}\"",
+      "    - \"${6:Content point 2}\"",
+      "    - \"${7:Content point 3}\"",
+      "$0"
+    ]
+  },
+  "yaml2pptx: Table slide": {
+    "prefix": "y2p-table",
+    "description": "Table slide with headers and data rows",
+    "body": [
+      "- type: table",
+      "  section: \"${1:Section}\"",
+      "  title: \"${2:Table Title}\"",
+      "  headers:",
+      "    - \"${3:Header 1}\"",
+      "    - \"${4:Header 2}\"",
+      "    - \"${5:Header 3}\"",
+      "  rows:",
+      "    - - \"${6:Row 1 Col 1}\"",
+      "      - \"${7:Row 1 Col 2}\"",
+      "      - \"${8:Row 1 Col 3}\"",
+      "    - - \"${9:Row 2 Col 1}\"",
+      "      - \"${10:Row 2 Col 2}\"",
+      "      - \"${11:Row 2 Col 3}\"",
+      "$0"
+    ]
+  },
+  "yaml2pptx: Content slide": {
+    "prefix": "y2p-content",
+    "description": "Content slide with section, title, and bullet point list",
+    "body": [
+      "- type: content",
+      "  section: \"${1:Section}\"",
+      "  title: \"${2:Content Title}\"",
+      "  content:",
+      "    - \"${3:Bullet point 1}\"",
+      "    - \"${4:Bullet point 2}\"",
+      "    - \"${5:Bullet point 3}\"",
+      "$0"
+    ]
+  }
+}

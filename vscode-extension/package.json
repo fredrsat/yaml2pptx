@@ -1,0 +1,76 @@
+{
+  "name": "yaml2pptx",
+  "displayName": "yaml2pptx",
+  "description": "Autocomplete, validation, and live preview for yaml2pptx presentations",
+  "version": "0.1.0",
+  "publisher": "yaml2pptx",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other",
+    "Snippets"
+  ],
+  "activationEvents": [
+    "onLanguage:yaml"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "yaml2pptx.preview",
+        "title": "yaml2pptx: Open Preview",
+        "icon": "$(open-preview)"
+      },
+      {
+        "command": "yaml2pptx.generate",
+        "title": "yaml2pptx: Generate PPTX"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "when": "resourceLangId == yaml",
+          "command": "yaml2pptx.preview",
+          "group": "navigation"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "yaml2pptx.preview",
+        "key": "ctrl+shift+p",
+        "mac": "cmd+shift+p",
+        "when": "editorLangId == yaml"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "yaml",
+        "path": "./snippets/yaml2pptx.json"
+      }
+    ],
+    "yamlValidation": [
+      {
+        "fileMatch": "*.yaml",
+        "url": "./schemas/yaml2pptx.schema.json"
+      }
+    ]
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package",
+    "build": "npm run compile && vsce package"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^2.22.0",
+    "typescript": "^5.3.0"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  }
+}

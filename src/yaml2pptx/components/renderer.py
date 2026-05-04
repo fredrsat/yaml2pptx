@@ -199,6 +199,7 @@ def _add_themed_table(
 ) -> None:
     """Add a styled table to a slide."""
     c = theme.colors
+    s = theme.sizes
     has_headers = headers is not None
     if not rows and not has_headers:
         return
@@ -206,7 +207,16 @@ def _add_themed_table(
     num_cols = len(headers) if has_headers else (len(rows[0]) if rows else 0)
     if num_cols == 0:
         return
+
+    # Auto-scale row height to fit within slide
+    max_height = s.footer_top - top - 0.15
+    total_height = row_height * num_rows
+    if total_height > max_height:
+        row_height = max_height / num_rows
     height = row_height * num_rows
+
+    # Use smaller font for dense tables
+    font_size = 11 if row_height >= 0.35 else 9
 
     table_shape = slide.shapes.add_table(
         num_rows, num_cols,
@@ -221,7 +231,7 @@ def _add_themed_table(
             cell.text = header
             for p in cell.text_frame.paragraphs:
                 for run in p.runs:
-                    run.font.size = Pt(11)
+                    run.font.size = Pt(font_size)
                     run.font.bold = True
                     run.font.name = theme.fonts.primary
         row_offset = 1
@@ -232,7 +242,7 @@ def _add_themed_table(
             cell.text = str(value)
             for p in cell.text_frame.paragraphs:
                 for run in p.runs:
-                    run.font.size = Pt(11)
+                    run.font.size = Pt(font_size)
                     run.font.name = theme.fonts.primary
 
 

@@ -35,8 +35,9 @@ def render_agenda(
     if not items:
         return
 
-    row_height = 0.36
     start_top = 2.30
+    available = 4.20  # space before footer
+    row_height = min(0.80, max(0.36, available / len(items)))
     num_left = s.margin_left
     title_left = 1.70
     desc_left = 6.30

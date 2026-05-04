@@ -1,0 +1,347 @@
+output: "ocean_research.pptx"
+theme: ocean
+metadata:
+  title: "Deep Ocean Biodiversity Survey — Expedition Findings"
+  author: "Pacific Deep-Sea Research Consortium"
+  subject: "Expedition ABYSS-IV Results"
+theme_config:
+  organization: "Pacific Deep-Sea Research Consortium"
+  document_title: "Expedition ABYSS-IV Findings"
+
+slides:
+  # --- Title Page ---
+  - type: title_page
+    category: "EXPEDITION REPORT — ABYSS-IV"
+    title: "Deep Ocean Biodiversity Survey"
+    subtitle: "Findings from 47 Days Exploring the Clarion-Clipperton Fracture Zone, 3,800-5,200m Depth"
+    author: "Dr. Elena Vasquez, Chief Scientist"
+    date: "April 2026"
+    speaker_notes: "Expedition ABYSS-IV was conducted from January 12 to February 27, 2026 aboard the R/V Pelagic Explorer. This is the most comprehensive biodiversity survey ever conducted in the Clarion-Clipperton Zone."
+
+  # --- Agenda ---
+  - type: agenda
+    section: "OVERVIEW"
+    title: "Expedition Report Structure"
+    subtitle: "Comprehensive findings from the ABYSS-IV deep-sea survey mission"
+    items:
+      - title: "Expedition Overview"
+        description: "Mission parameters, vessel capabilities, and survey area coverage"
+      - title: "Species Discoveries"
+        description: "23 previously undescribed species identified across 4 phyla"
+      - title: "Hydrothermal Vent Systems"
+        description: "Two newly mapped vent fields with unique chemosynthetic communities"
+      - title: "Anthropogenic Impacts"
+        description: "Microplastic contamination levels and deep-sea mining threat assessment"
+      - title: "Conservation Recommendations"
+        description: "Proposed protections for the International Seabed Authority"
+    speaker_notes: "This presentation covers the headline findings. The full technical report is 340 pages and will be submitted to the ISA in June. All specimen data is being uploaded to the Ocean Biodiversity Information System."
+
+  # --- Stat Cards: Expedition Stats ---
+  - type: stat_cards
+    section: "EXPEDITION"
+    title: "ABYSS-IV by the Numbers"
+    subtitle: "47 days at sea, 3 ROVs, and 142 research dives in the abyssal Pacific"
+    cards:
+      - stat: "142"
+        label: "ROV dives"
+        title: "Survey Operations"
+        description: "Using the deep-rated ROV Nereus III, capable of operating at depths to 6,000m with 4K imaging, manipulator arms, and integrated eDNA water sampling system"
+      - stat: "23"
+        label: "new species"
+        title: "Undescribed Taxa"
+        description: "Including 9 polychaete worms, 6 crustaceans, 4 cnidarians, 3 sponges, and 1 cephalopod — a translucent octopod found at 4,800m that may represent a new genus"
+      - stat: "1,247 km2"
+        label: "area mapped"
+        title: "Bathymetric Coverage"
+        description: "High-resolution multibeam sonar mapping at 1m horizontal resolution, revealing 2 previously unknown hydrothermal vent fields and 14 polymetallic nodule deposits"
+    footnotes: "All specimens collected under ISA exploration contract ABYSS-2024/CCZ-7. Species descriptions pending formal taxonomic publication in Zootaxa and Deep-Sea Research Part I."
+    speaker_notes: "The 23 new species is remarkable but likely conservative. eDNA analysis is still ongoing and may reveal additional cryptic species. The new octopod genus is the headline discovery."
+
+  # --- Definition Cards: Ecosystem Zones ---
+  - type: definition_cards
+    section: "ECOSYSTEMS"
+    title: "Deep-Sea Ecosystem Zones Surveyed"
+    subtitle: "ABYSS-IV sampled across four distinct deep-ocean habitats"
+    cards:
+      - term: "Abyssal Plain"
+        icon: "globe"
+        subtitle: "3,800 - 4,500m Depth"
+        description: "Vast flat sediment plains dotted with polymetallic nodules. Surprisingly high megafauna density of 2.4 organisms per square meter, dominated by holothurians, xenophyophores, and stalked crinoids"
+        border_color: "#0066cc"
+      - term: "Hydrothermal Vents"
+        icon: "lightning"
+        subtitle: "4,200 - 4,600m Depth"
+        description: "Two newly discovered low-temperature vent fields hosting chemosynthetic communities of tubeworms, bathymodiolin mussels, and dense microbial mats independent of photosynthetic energy"
+        border_color: "#ff4444"
+      - term: "Seamount Flanks"
+        icon: "triangle"
+        subtitle: "3,800 - 5,200m Depth"
+        description: "Rocky substrate on extinct volcanic seamounts supporting dense communities of cold-water corals, glass sponges, and associated mobile fauna at significantly higher densities than surrounding plains"
+        border_color: "#00aa88"
+    callout:
+      label: "CRITICAL FINDING"
+      columns:
+        - title: "Connectivity Between Habitats"
+          description: "eDNA analysis revealed that 34% of species detected on seamount flanks were also present at vent sites 80km away, suggesting larval dispersal corridors that must be considered in any spatial management plan."
+        - title: "Nodule-Dependent Species"
+          description: "17 of the 23 new species were found exclusively on or adjacent to polymetallic nodules. Removal of these nodules through deep-sea mining would eliminate their only known habitat."
+    speaker_notes: "The connectivity finding is critical for conservation policy. It means we cannot protect individual features in isolation — we need network-based protection that preserves corridors."
+
+  # --- Key Metrics: Biodiversity Indices ---
+  - type: key_metrics
+    section: "BIODIVERSITY"
+    title: "Biodiversity Assessment Indices"
+    subtitle: "Ecological health indicators measured across all survey stations"
+    metrics:
+      - value: "347"
+        label: "Species Identified"
+        trend: "up"
+        trend_label: "78% more than ABYSS-III survey"
+        color: "primary"
+      - value: "3.82"
+        label: "Shannon Diversity"
+        trend: "up"
+        trend_label: "Indicates high species evenness"
+        color: "success"
+      - value: "0.91"
+        label: "Simpson Index"
+        trend: "up"
+        trend_label: "Very high community diversity"
+        color: "blue"
+      - value: "23"
+        label: "New to Science"
+        trend: "up"
+        trend_label: "6.6% of total species count"
+        color: "accent"
+    speaker_notes: "A Shannon index of 3.82 is remarkably high for the deep sea and comparable to shallow-water tropical reef systems. This challenges the historical assumption that the abyss is a biological desert."
+
+  # --- Comparison: Pristine vs Impacted Sites ---
+  - type: comparison
+    section: "IMPACT ASSESSMENT"
+    title: "Pristine vs Disturbed Survey Stations"
+    subtitle: "Comparing biodiversity at undisturbed stations versus those near historic test-mining tracks"
+    left_panel:
+      header: "PRISTINE STATIONS"
+      title: "Undisturbed Abyssal Plain"
+      rows:
+        - label: "Species Richness"
+          value: "184 species"
+        - label: "Megafauna Density"
+          value: "2.4 / m2"
+        - label: "Nodule Coverage"
+          value: "38% of seafloor"
+        - label: "eDNA Richness"
+          value: "892 OTUs"
+    right_panel:
+      header: "DISTURBED STATIONS"
+      title: "Historic Test-Mining Tracks (1989)"
+      rows:
+        - label: "Species Richness"
+          value: "61 species"
+        - label: "Megafauna Density"
+          value: "0.4 / m2"
+        - label: "Nodule Coverage"
+          value: "< 1% of seafloor"
+        - label: "eDNA Richness"
+          value: "203 OTUs"
+    footer_text: "Disturbed stations are located within the IOM BIE test-mining tracks created in 1989. After 37 years, ecosystem recovery is minimal — these tracks may persist for centuries."
+    speaker_notes: "This is the most powerful slide in the deck. 37 years after a small-scale test, species richness is down 67%, megafauna density down 83%, and nodule coverage is essentially zero. The deep sea does not recover on human timescales."
+
+  # --- Section Divider ---
+  - type: section_divider
+    number: "03"
+    title: "Key Discoveries"
+    subtitle: "Hydrothermal vents, bioluminescence, and the translucent octopod"
+
+  # --- Content Cards: Key Findings ---
+  - type: content_cards
+    section: "DISCOVERIES"
+    title: "Headline Findings"
+    subtitle: "Four discoveries that reshape our understanding of abyssal ecology"
+    cards:
+      - title: "Ghost Octopod"
+        icon: "diamond"
+        subtitle: "Potential New Genus"
+        description: "A translucent octopod observed at 4,800m depth, with gelatinous tissue, reduced musculature, and no chromatophores. Genetic analysis suggests it diverged from known octopod lineages approximately 40 million years ago."
+      - title: "Vent Field Valhalla"
+        icon: "lightning"
+        subtitle: "Low-Temperature System"
+        points:
+          - "Discovered at 4,340m on a fracture zone escarpment"
+          - "Fluid temperature 12-28 degrees C — unusually cool"
+          - "Unique tubeworm species with novel symbiont bacteria"
+          - "Estimated 200m x 400m active area with 14 individual chimneys"
+      - title: "Bioluminescence Diversity"
+        icon: "star"
+        subtitle: "Light in Permanent Darkness"
+        points:
+          - "89% of organisms observed at depth displayed bioluminescence"
+          - "Identified 7 distinct emission wavelengths across species"
+          - "First documented deep-sea bioluminescent sponge species"
+          - "Evidence of counter-illumination camouflage at 4,000m depth"
+      - title: "Microplastic Penetration"
+        icon: "warning"
+        subtitle: "Contamination at Maximum Depth"
+        description: "Microplastic particles detected in 100% of sediment samples and 78% of organism tissue samples analyzed. Mean concentration of 14.2 particles per gram of dry sediment, dominated by polyester fibers and polyethylene fragments."
+    speaker_notes: "The ghost octopod will get media attention, but the microplastic finding is more significant for policy. 100% sediment contamination at 5,000m depth means there is no uncontaminated baseline left anywhere in the ocean."
+
+  # --- Process: Research Methodology ---
+  - type: process
+    section: "METHODOLOGY"
+    title: "Survey Methodology"
+    subtitle: "Integrated approach combining acoustic, visual, genetic, and physical sampling"
+    steps:
+      - number: 1
+        icon: "search"
+        title: "Acoustic Mapping"
+        description: "High-resolution multibeam sonar survey of the entire study area"
+        items:
+          - "EM 304 multibeam echosounder at 1m horizontal resolution"
+          - "Sub-bottom profiler for sediment layer characterization"
+          - "Acoustic backscatter analysis to classify substrate types"
+          - "3D terrain models generated for ROV dive planning"
+      - number: 2
+        icon: "target"
+        title: "ROV Visual Surveys"
+        description: "Systematic transect surveys using the Nereus III ROV platform"
+        items:
+          - "142 dives averaging 8.3 hours bottom time each"
+          - "4K stereo video with laser-scaled photographic quadrats"
+          - "Standardized transect protocol — 500m length, 2m width, 0.5 knot speed"
+          - "Real-time species identification by onboard taxonomists"
+      - number: 3
+        icon: "database"
+        title: "Physical Sampling"
+        description: "Targeted collection of biological, geological, and water samples"
+        items:
+          - "847 biological specimens collected via ROV manipulator arms"
+          - "128 sediment cores (30cm depth) for infauna and geochemistry analysis"
+          - "96 water samples for eDNA extraction and microplastic filtration"
+          - "24 polymetallic nodules collected for associated fauna analysis"
+      - number: 4
+        icon: "brain"
+        title: "Laboratory Analysis"
+        description: "Ongoing taxonomic, genetic, and chemical analysis at partner institutions"
+        items:
+          - "DNA barcoding of all collected specimens using COI and 18S markers"
+          - "eDNA metabarcoding using Illumina NovaSeq 6000 platform"
+          - "Microplastic identification via FTIR spectroscopy"
+          - "Stable isotope analysis for food web reconstruction"
+    speaker_notes: "The eDNA metabarcoding is detecting far more species than visual surveys alone. Preliminary results suggest the true species count may be 3-4 times the 347 species identified visually."
+
+  # --- Table: Species Catalog ---
+  - type: table
+    section: "TAXONOMY"
+    title: "New Species Discoveries — Summary"
+    subtitle: "23 undescribed species across 4 phyla collected during ABYSS-IV"
+    headers:
+      - "Phylum"
+      - "Count"
+      - "Notable Discovery"
+      - "Depth Range"
+      - "Habitat"
+    rows:
+      - ["Annelida", "9", "Paralvinella valhallaensis (vent tubeworm)", "4,200-4,600m", "Hydrothermal vent"]
+      - ["Arthropoda", "6", "Munidopsis translucida (squat lobster)", "4,400-4,900m", "Nodule fields"]
+      - ["Cnidaria", "4", "Umbellula gigantea (3m tall sea pen)", "3,800-4,200m", "Seamount flank"]
+      - ["Porifera", "3", "Hyalonema luminosa (bioluminescent sponge)", "4,100-4,500m", "Nodule substrate"]
+      - ["Mollusca", "1", "Cirroteuthis phantasma (ghost octopod)", "4,800-5,200m", "Abyssal plain"]
+    speaker_notes: "All species names are provisional pending formal publication. The 3-meter sea pen Umbellula gigantea is the largest individual organism ever recorded below 3,500m depth. The ghost octopod Cirroteuthis phantasma may require a new genus designation pending phylogenetic analysis."
+
+  # --- Timeline: Future Expeditions ---
+  - type: timeline
+    section: "FUTURE WORK"
+    title: "Deep-Sea Research Roadmap"
+    subtitle: "Building on ABYSS-IV findings with targeted follow-up expeditions"
+    phases:
+      - label: "2026 Q3"
+        title: "ABYSS-IV Lab Phase"
+        active: true
+        items:
+          - "Complete taxonomic descriptions of all 23 new species"
+          - "Finish eDNA metabarcoding analysis for all 96 water samples"
+          - "Publish primary findings in Nature Ecology & Evolution"
+          - "Submit conservation recommendations to ISA Council session"
+      - label: "2027"
+        title: "ABYSS-V — Vent Ecology"
+        active: false
+        items:
+          - "Return to Valhalla vent field for long-term monitoring deployment"
+          - "Install 4 deep-sea camera systems for 12-month continuous observation"
+          - "Conduct larval dispersal study using fluorescent dye tracers"
+          - "Characterize vent fluid chemistry and microbial community genomics"
+      - label: "2028"
+        title: "ABYSS-VI — Mining Impact"
+        active: false
+        items:
+          - "Before-After-Control-Impact study at proposed mining lease areas"
+          - "Deploy sediment plume monitoring array across 50km transect"
+          - "Assess noise impact on deep-sea fauna using passive acoustic recorders"
+          - "Collaborate with BGR and NOAA on environmental baseline protocol"
+      - label: "2029-2030"
+        title: "CCZ Biodiversity Atlas"
+        active: false
+        description: "Synthesize data from ABYSS I-VI into the first comprehensive biodiversity atlas of the Clarion-Clipperton Zone, establishing the definitive scientific baseline against which any mining impact must be measured."
+    speaker_notes: "The 2028 BACI study is strategically timed. The ISA is expected to finalize mining regulations in 2027. We need environmental baselines established before any extraction begins."
+
+  # --- Checklist: Conservation Actions ---
+  - type: checklist
+    section: "CONSERVATION"
+    title: "Conservation Recommendations"
+    subtitle: "Actions recommended to the International Seabed Authority based on ABYSS-IV findings"
+    columns: 2
+    items:
+      - text: "Designate Valhalla vent field as Area of Particular Environmental Interest"
+        status: "in_progress"
+        note: "Proposal submitted to ISA Legal and Technical Commission"
+      - text: "Establish 50km buffer zones around all active hydrothermal vents"
+        status: "pending"
+        note: "Supported by larval dispersal connectivity data"
+      - text: "Require eDNA baseline surveys before any exploration license approval"
+        status: "in_progress"
+        note: "Draft protocol submitted to ISA environmental committee"
+      - text: "Moratorium on mining in areas with >30% nodule coverage"
+        status: "blocked"
+        note: "Opposed by mining contractor nations, advocacy ongoing"
+      - text: "Create representative network of no-mining reference areas"
+        status: "pending"
+        note: "9 reference areas proposed across 3 biogeographic regions"
+      - text: "Mandatory real-time environmental monitoring during any extraction"
+        status: "in_progress"
+        note: "Technology demonstration planned for ABYSS-VI expedition"
+      - text: "Fund 10-year deep-sea biodiversity monitoring program"
+        status: "pending"
+        note: "Estimated cost 45M USD, seeking multi-nation consortium funding"
+      - text: "Publish open-access species catalog and genetic database"
+        status: "done"
+        note: "All data uploaded to OBIS and GenBank, DOIs assigned"
+    speaker_notes: "The mining moratorium is the most contentious recommendation. However, our data from the 1989 test-mining tracks is unambiguous — recovery after 37 years is negligible. We cannot in good conscience endorse extraction without proven recovery methods."
+
+  # --- Quote ---
+  - type: quote
+    section: "CLOSING"
+    quote: "We know more about the surface of Mars than we do about the deep ocean floor. And yet we are on the verge of permitting industrial-scale mining in an ecosystem we have barely begun to understand. ABYSS-IV shows us what we stand to lose — and how much remains to be discovered."
+    attribution: "Dr. Elena Vasquez"
+    source: "ABYSS-IV Expedition Chief Scientist, post-expedition press conference, March 2026"
+    dark: true
+    speaker_notes: "End with this call to action. The deep sea is not empty, not barren, and not expendable. 23 new species in 47 days tells us we are only scratching the surface of what lives down there."
+
+  # --- Closing Content ---
+  - type: content
+    section: "ACKNOWLEDGMENTS"
+    title: "Expedition Partners & Data Access"
+    subtitle: "ABYSS-IV was made possible through international collaboration"
+    content:
+      - "**Funding**: Pacific Deep-Sea Research Consortium, National Science Foundation (OCE-2401847), European Research Council (DeepLife-101088924)"
+      - "**Vessel**: R/V Pelagic Explorer operated by the National Oceanographic Institute, with ROV Nereus III maintained by the Deep Submergence Laboratory"
+      - "**Science team**: 34 researchers from 12 institutions across 8 countries, supported by 28 vessel crew members"
+      - "**Data availability**: All datasets are open access under CC-BY 4.0"
+      - text: "Specimen data: Ocean Biodiversity Information System (OBIS) — obis.org/dataset/abyss-iv"
+        level: 2
+      - text: "Genetic sequences: NCBI GenBank — BioProject PRJNA987654"
+        level: 2
+      - text: "Bathymetric data: NOAA National Centers for Environmental Information"
+        level: 2
+      - text: "ROV video archive: Deep-Sea Biology Society Video Repository (420 hours)"
+        level: 2
+    speaker_notes: "Thank the funding agencies by name. Mention that all data is open access — this is a deliberate choice to maximize the conservation impact of these findings."

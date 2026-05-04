@@ -61,7 +61,7 @@ def render_two_panels(
         # Big letter (A/B)
         if panel.get("letter"):
             letter_color = c.light_blue if is_dark else c.accent
-            add_textbox(slide, inner_left, panel_top + 0.20, 1.0, 1.0,
+            add_textbox(slide, inner_left, panel_top + 0.15, 1.2, 1.40,
                         text=panel["letter"], font_size=68, bold=True, color=letter_color)
 
         # Label
@@ -81,8 +81,12 @@ def render_two_panels(
 
         # Points
         if panel.get("points"):
-            add_multiline_textbox(slide, inner_left, panel_top + 2.60, inner_width, 1.55,
-                                  lines=panel["points"], font_size=13, color=text_color)
+            points_top = panel_top + 2.60
+            points_height = panel_height - 2.60 + panel_top - points_top + panel_top - 0.10
+            points_height = panel_top + panel_height - points_top - 0.10
+            font = 12 if len(panel["points"]) > 5 else 13
+            add_multiline_textbox(slide, inner_left, points_top, inner_width, points_height,
+                                  lines=panel["points"], font_size=font, color=text_color)
 
     add_footer(slide, theme)
 
@@ -139,15 +143,18 @@ def render_comparison(
         rows = panel.get("rows", [])
         label_color = header_color
         row_top = panel_top + 1.25
+        available_for_rows = panel_height - 1.25 - 0.15
+        row_spacing = min(0.65, max(0.40, available_for_rows / max(len(rows), 1)))
+        row_font = 12 if len(rows) > 5 else 13
 
         for j, row in enumerate(rows):
-            y = row_top + j * 0.55
+            y = row_top + j * row_spacing
             # Label
             add_textbox(slide, left + 0.25, y, 1.40, 0.30,
                         text=row.get("label", ""), font_size=10, bold=True, color=label_color)
             # Value
-            add_textbox(slide, left + 1.70, y, 4.05, 0.50,
-                        text=row.get("value", ""), font_size=13, color=c.text_dark)
+            add_textbox(slide, left + 1.70, y, 4.05, row_spacing - 0.05,
+                        text=row.get("value", ""), font_size=row_font, color=c.text_dark)
 
     # Footer text (centered, italic)
     if footer_text:
@@ -178,17 +185,17 @@ def render_section_divider(
 
     # Number (large, light blue)
     if number:
-        add_textbox(slide, 1.0, 1.5, 3.0, 1.5,
-                    text=number, font_size=96, bold=True, color=c.light_blue)
+        add_textbox(slide, 1.0, 1.2, 3.5, 2.00,
+                    text=str(number), font_size=96, bold=True, color=c.light_blue)
 
     # Title
-    add_textbox(slide, 1.0, 3.2, 11.0, 1.0,
+    add_textbox(slide, 1.0, 3.4, 11.0, 1.0,
                 text=title, font_size=40, bold=True, color=c.white)
 
     # Subtitle
     if subtitle:
-        add_textbox(slide, 1.0, 4.3, 11.0, 0.60,
+        add_textbox(slide, 1.0, 4.5, 11.0, 0.80,
                     text=subtitle, font_size=18, color=c.light_blue)
 
     # Accent line
-    add_rect(slide, 1.0, 4.95, 2.0, 0.04, fill=c.accent)
+    add_rect(slide, 1.0, 5.40, 2.0, 0.04, fill=c.accent)

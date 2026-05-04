@@ -1,0 +1,340 @@
+output: "coral_brand_refresh.pptx"
+theme: coral
+metadata:
+  title: "Brand Refresh Proposal"
+  author: "Meridian Creative Studio"
+  subject: "Solara Brand Overhaul"
+theme_config:
+  organization: "Meridian Creative"
+  document_title: "Solara Brand Refresh"
+slides:
+
+  # ──────────────────────────────────────────────
+  # 1. TITLE PAGE
+  # ──────────────────────────────────────────────
+  - type: title_page
+    category: "BRAND STRATEGY"
+    title: "The Solara Brand Refresh"
+    subtitle: "A comprehensive identity overhaul to reposition Solara as the premium choice in sustainable consumer goods"
+    author: "Meridian Creative Studio"
+    date: "April 2026"
+    speaker_notes: "Thank you for having us. Over the past eight weeks our team has conducted a thorough audit of the Solara brand and developed a complete refresh proposal. Today we present our findings and creative direction."
+
+  # ──────────────────────────────────────────────
+  # 2. AGENDA
+  # ──────────────────────────────────────────────
+  - type: agenda
+    section: "OVERVIEW"
+    title: "Presentation Outline"
+    subtitle: "From diagnosis to rollout"
+    items:
+      - title: "Brand Audit Findings"
+        description: "What consumers and stakeholders told us about Solara today"
+      - title: "New Brand Pillars"
+        description: "The strategic foundation for the refreshed identity"
+      - title: "Visual Identity"
+        description: "Logo evolution, typography, color system, and photography direction"
+      - title: "Brand Voice"
+        description: "Tone, messaging framework, and content principles"
+      - title: "Competitive Positioning"
+        description: "How the refresh differentiates Solara in a crowded market"
+      - title: "Rollout Timeline"
+        description: "Phased implementation plan across all touchpoints"
+
+  # ──────────────────────────────────────────────
+  # 3. STAT CARDS -- Brand Perception Survey
+  # ──────────────────────────────────────────────
+  - type: stat_cards
+    section: "BRAND AUDIT"
+    title: "Brand Perception Survey Results"
+    subtitle: "Fielded to 2,400 consumers in Solara's target demographic (ages 25-45, sustainability-conscious)"
+    cards:
+      - stat: "34%"
+        label: "unaided recall"
+        title: "Brand Awareness"
+        description: "Only a third of target consumers mention Solara unprompted when asked about sustainable household brands -- down from 41% in 2024"
+      - stat: "6.2/10"
+        label: "premium perception"
+        title: "Quality Signal"
+        description: "Consumers rate Solara's packaging and visual identity below competitors like Grove (8.1) and Blueland (7.8) on perceived quality"
+      - stat: "72%"
+        label: "would consider switching"
+        title: "Loyalty Risk"
+        description: "Nearly three-quarters of current customers say they would try a competitor if the price and values were comparable -- brand alone is not retaining them"
+    footnotes: "Survey conducted February 2026 by Meridian Research. Margin of error +/- 2.1 percentage points."
+    speaker_notes: "These numbers tell a clear story: Solara's products are loved but the brand itself is not doing the heavy lifting. The refresh needs to close this gap."
+
+  # ──────────────────────────────────────────────
+  # 4. DEFINITION CARDS -- Brand Pillars
+  # ──────────────────────────────────────────────
+  - type: definition_cards
+    section: "STRATEGY"
+    title: "The Three Brand Pillars"
+    subtitle: "Every creative decision filters through these strategic anchors"
+    cards:
+      - term: "Rooted"
+        icon: "leaf"
+        subtitle: "Authentic Sustainability"
+        description: "Solara's environmental commitment is not a marketing angle -- it is the founding DNA. The brand should communicate sustainability through substance, not slogans, letting certifications and supply chain transparency speak louder than claims"
+        border_color: "accent"
+      - term: "Refined"
+        icon: "diamond"
+        subtitle: "Elevated Everyday"
+        description: "Sustainable does not mean spartan. The visual identity should signal premium quality and thoughtful design, making consumers feel that choosing Solara is choosing the better product, not just the responsible one"
+        border_color: "primary"
+      - term: "Resilient"
+        icon: "shield"
+        subtitle: "Built to Last"
+        description: "From product formulation to brand architecture, everything should communicate longevity and durability -- a counterpoint to the disposable culture that Solara exists to challenge"
+        border_color: "accent"
+    callout:
+      label: "STRATEGIC FILTER"
+      columns:
+        - title: "The Pillar Test"
+          description: "Every brand touchpoint -- from packaging to social media to customer service scripts -- must authentically express at least two of the three pillars. If it does not, it does not ship."
+    speaker_notes: "These pillars emerged from workshops with your leadership team and were validated in consumer focus groups. They give us a clear creative brief."
+
+  # ──────────────────────────────────────────────
+  # 5. TWO PANELS -- Old vs New Brand
+  # ──────────────────────────────────────────────
+  - type: two_panels
+    section: "VISUAL IDENTITY"
+    title: "Brand Evolution"
+    subtitle: "Honoring the heritage while signaling a new chapter"
+    left_panel:
+      letter: "A"
+      label: "CURRENT"
+      title: "Existing Identity"
+      example: "Friendly but generic -- blends into the sustainable goods shelf"
+      dark: true
+      points:
+        - "Script logotype reads as casual and unpolished"
+        - "Green-heavy palette signals eco but not premium"
+        - "Inconsistent typography across packaging and digital"
+        - "Photography style varies by channel with no art direction"
+        - "No distinctive brand mark -- relies entirely on wordmark"
+    right_panel:
+      letter: "B"
+      label: "PROPOSED"
+      title: "Refreshed Identity"
+      example: "Confident, warm, and unmistakably premium"
+      dark: false
+      points:
+        - "Custom sans-serif logotype with botanical mark"
+        - "**Warm terracotta and sage** palette -- premium and natural"
+        - "Strict type hierarchy: editorial headlines, functional body"
+        - "Defined photography: close-up textures, natural light, muted tones"
+        - "Modular brand mark works at any scale from favicon to billboard"
+    speaker_notes: "Side by side, the difference is striking. The new identity retains the warmth consumers associate with Solara but elevates it to compete with premium players."
+
+  # ──────────────────────────────────────────────
+  # 6. CONTENT CARDS -- Typography & Color
+  # ──────────────────────────────────────────────
+  - type: content_cards
+    section: "DESIGN SYSTEM"
+    title: "Typography & Color Strategy"
+    subtitle: "The building blocks of visual consistency across every touchpoint"
+    cards:
+      - title: "Type System"
+        icon: "document"
+        subtitle: "Two families, infinite flexibility"
+        points:
+          - "**Display:** Libre Caslon for editorial headlines -- warmth and heritage"
+          - "**Functional:** Inter for body text, UI, and packaging -- clean and legible"
+          - "Strict scale: 48/32/24/18/14pt with consistent leading"
+          - "All-caps reserved for section labels and certifications only"
+      - title: "Color Palette"
+        icon: "sun"
+        subtitle: "Warm, grounded, unmistakable"
+        points:
+          - "**Primary:** Terracotta (#C4654A) -- warm, earthy, confident"
+          - "**Secondary:** Sage (#7D8B6A) -- natural without being cliche green"
+          - "**Neutral:** Warm cream (#F5F0E8) replaces stark white backgrounds"
+          - "**Accent:** Deep clay (#8B4534) for emphasis and depth"
+      - title: "Photography"
+        icon: "search"
+        subtitle: "Art direction that sells the lifestyle"
+        points:
+          - "Natural light only -- no flash, no heavy post-processing"
+          - "Close-up textures: wood grain, linen, raw ingredients"
+          - "People shown in candid moments, never staged smiles"
+          - "Muted, warm color grading consistent across all channels"
+    speaker_notes: "We will provide a comprehensive brand guidelines document with specifications for every medium -- print, digital, packaging, and environmental."
+
+  # ──────────────────────────────────────────────
+  # 7. COMPARISON -- Competitive Positioning
+  # ──────────────────────────────────────────────
+  - type: comparison
+    section: "MARKET POSITION"
+    title: "Competitive Landscape"
+    subtitle: "How the refreshed Solara brand stacks up against key competitors"
+    left_panel:
+      header: "GROVE COLLABORATIVE"
+      title: "Mass-Market Sustainable"
+      rows:
+        - label: "POSITIONING"
+          value: "Affordable, accessible sustainability for mainstream families"
+        - label: "VISUAL TONE"
+          value: "Bright, playful, heavily illustrated -- approachable but not premium"
+        - label: "PRICE POINT"
+          value: "$6-18 per product -- value positioning drives high volume"
+        - label: "WEAKNESS"
+          value: "Perceived as the budget option -- struggles with quality perception"
+    right_panel:
+      header: "SOLARA (REFRESHED)"
+      title: "Premium Sustainable"
+      rows:
+        - label: "POSITIONING"
+          value: "Elevated everyday essentials for design-conscious, values-driven consumers"
+        - label: "VISUAL TONE"
+          value: "Warm, refined, textural -- premium without being pretentious"
+        - label: "PRICE POINT"
+          value: "$12-32 per product -- justified by quality materials and design"
+        - label: "STRENGTH"
+          value: "Occupies the white space between mass eco and luxury -- underserved segment"
+    footer_text: "The refresh moves Solara from 'eco-friendly alternative' to 'the brand I am proud to have on my shelf.' This is the premium sustainable position no competitor owns."
+    speaker_notes: "We analyzed 12 competitors. The premium sustainable position is genuinely unoccupied -- most brands compete on price or luxury, not both substance and style."
+
+  # ──────────────────────────────────────────────
+  # 8. ICON CARDS -- Brand Values
+  # ──────────────────────────────────────────────
+  - type: icon_cards
+    section: "BRAND VOICE"
+    message: "Four principles that govern every word Solara puts into the world"
+    cards:
+      - title: "Honest Over Clever"
+        icon: "heart"
+        description: "Skip the puns and greenwashing buzzwords. Solara speaks plainly about what its products do, how they are made, and what impact they have. Transparency is the ultimate brand voice."
+      - title: "Warm But Never Twee"
+        icon: "sun"
+        description: "The tone is approachable and human -- like a knowledgeable friend, not a corporate entity. But it never tips into cutesy language, emojis in headlines, or forced casualness."
+      - title: "Substance First"
+        icon: "shield"
+        description: "Lead with the fact, then the feeling. Every claim is backed by a specific -- a certification, a number, a named supplier. Credibility is the foundation of every message."
+      - title: "Quietly Confident"
+        icon: "star"
+        description: "Solara does not need to shout. The brand speaks with the calm authority of a company that knows its products are excellent and its values are genuine."
+    speaker_notes: "We have drafted a full messaging framework with sample copy for key channels -- website, social, packaging, and email. It is in the appendix."
+
+  # ──────────────────────────────────────────────
+  # 9. SECTION DIVIDER
+  # ──────────────────────────────────────────────
+  - type: section_divider
+    number: "03"
+    title: "Implementation"
+    subtitle: "Bringing the new brand to life across every consumer touchpoint"
+
+  # ──────────────────────────────────────────────
+  # 10. TIMELINE -- Rollout Phases
+  # ──────────────────────────────────────────────
+  - type: timeline
+    section: "ROLLOUT"
+    title: "Brand Refresh Timeline"
+    subtitle: "Phased rollout over 9 months to manage cost and ensure consistency"
+    phases:
+      - label: "May-Jun 2026"
+        title: "Foundation"
+        active: true
+        items:
+          - "Finalize brand guidelines and design system"
+          - "Redesign website and e-commerce experience"
+          - "Train internal teams on new brand standards"
+      - label: "Jul-Aug 2026"
+        title: "Digital Launch"
+        active: false
+        items:
+          - "Website relaunch with new visual identity"
+          - "Social media rebrand across all platforms"
+          - "Email templates and CRM materials updated"
+      - label: "Sep-Nov 2026"
+        title: "Physical Touchpoints"
+        active: false
+        items:
+          - "New packaging rolls out as current inventory depletes"
+          - "Retail display and point-of-sale materials refreshed"
+          - "Shipping materials and unboxing experience redesigned"
+      - label: "Dec 2026"
+        title: "Campaign Launch"
+        active: false
+        description: "Hero brand campaign across digital, OOH, and podcast sponsorships timed to the New Year wellness moment"
+    speaker_notes: "The phased approach means we do not throw away existing packaging inventory. Digital first, physical follows as stock rotates naturally."
+
+  # ──────────────────────────────────────────────
+  # 11. CHECKLIST -- Launch Readiness
+  # ──────────────────────────────────────────────
+  - type: checklist
+    section: "READINESS"
+    title: "Brand Launch Checklist"
+    subtitle: "Status of key deliverables for the Phase 1 launch"
+    columns: 2
+    items:
+      - text: "Brand strategy document approved by leadership"
+        status: "done"
+        note: "Signed off March 28"
+      - text: "Logo and brand mark finalized"
+        status: "done"
+        note: "Three rounds of revision complete"
+      - text: "Color palette and typography specifications"
+        status: "done"
+      - text: "Photography art direction and initial shoot"
+        status: "in_progress"
+        note: "Shoot scheduled May 14-16 in Portland"
+      - text: "Website wireframes and UX design"
+        status: "in_progress"
+        note: "Homepage and PDP approved, category pages in review"
+      - text: "Packaging structural design for hero SKUs"
+        status: "in_progress"
+        note: "Dieline proofs expected May 8"
+      - text: "Brand guidelines document (100+ pages)"
+        status: "pending"
+        note: "First draft due May 20"
+      - text: "Social media content playbook"
+        status: "pending"
+      - text: "Retail partner communication kit"
+        status: "pending"
+        note: "Requires final packaging renders"
+      - text: "Legal trademark review for new mark"
+        status: "blocked"
+        note: "Waiting on USPTO search results -- expected early May"
+    speaker_notes: "We are on track for a July digital launch. The trademark search is the one external dependency we cannot control, but our IP counsel is confident."
+
+  # ──────────────────────────────────────────────
+  # 12. QUOTE
+  # ──────────────────────────────────────────────
+  - type: quote
+    section: "PERSPECTIVE"
+    quote: "A brand is not a logo or a color palette. It is the gut feeling people have about your company. Our job is to make sure that feeling -- for every person who encounters Solara -- is warmth, trust, and quiet admiration."
+    attribution: "-- Elena Vasquez, Brand Strategy Director"
+    source: "Meridian Creative Studio"
+    dark: true
+    speaker_notes: "Elena has led brand work for Patagonia, Aesop, and Allbirds. She is personally overseeing the Solara engagement."
+
+  # ──────────────────────────────────────────────
+  # 13. KEY METRICS -- Investment & Expected ROI
+  # ──────────────────────────────────────────────
+  - type: key_metrics
+    section: "INVESTMENT"
+    title: "Projected Brand Impact"
+    subtitle: "Conservative estimates based on comparable brand refresh case studies"
+    metrics:
+      - value: "+15%"
+        label: "Unaided Recall"
+        trend: "up"
+        trend_label: "From 34% to 49% within 12 months"
+        color: "success"
+      - value: "+22%"
+        label: "E-Commerce Conversion"
+        trend: "up"
+        trend_label: "Driven by improved trust signals and UX"
+        color: "accent"
+      - value: "+8pts"
+        label: "Premium Perception"
+        trend: "up"
+        trend_label: "From 6.2 to 7.4 on consumer survey"
+        color: "primary"
+      - value: "-18%"
+        label: "Customer Acquisition Cost"
+        trend: "down"
+        trend_label: "Stronger brand reduces paid media dependency"
+        color: "blue"
+    speaker_notes: "These projections are based on outcomes we have seen in five comparable engagements. We will set up measurement frameworks to track each of these KPIs from launch."

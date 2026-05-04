@@ -1,0 +1,403 @@
+output: "executive_board_report.pptx"
+metadata:
+  title: "Annual Board Report FY2025"
+  author: "Office of the CEO"
+  subject: "FY2025 Annual Review"
+theme: executive
+theme_config:
+  organization: "Haldor Industries"
+  document_title: "Annual Board Report FY2025"
+  classification: "Board Confidential"
+
+slides:
+
+  # ──────────────────────────────────────────────
+  # 1. TITLE PAGE
+  # ──────────────────────────────────────────────
+  - type: title_page
+    category: "BOARD OF DIRECTORS"
+    title: "Annual Report FY2025"
+    subtitle: "Haldor Industries -- Operational review, financial performance, and strategic outlook"
+    author: "Erik Nordahl, Chief Executive Officer"
+    date: "March 2026"
+    speaker_notes: "This is the formal annual board presentation covering FY2025 results. The meeting agenda allocates 45 minutes for the presentation and 30 minutes for Q&A. Supplementary data packs have been distributed."
+
+  # ──────────────────────────────────────────────
+  # 2. AGENDA
+  # ──────────────────────────────────────────────
+  - type: agenda
+    section: "AGENDA"
+    title: "Board Meeting Agenda"
+    subtitle: "Comprehensive review of FY2025 performance and FY2026 outlook"
+    items:
+      - title: "Financial Performance"
+        description: "Revenue, profitability, and key financial metrics vs plan"
+      - title: "Strategic Initiatives"
+        description: "Progress on the five strategic pillars approved in March 2025"
+      - title: "Risk Management"
+        description: "Enterprise risk register update and emerging threats"
+      - title: "Customer Satisfaction"
+        description: "NPS trends, retention rates, and key account health"
+      - title: "FY2026 Outlook"
+        description: "Guidance, capital allocation priorities, and board approvals requested"
+
+  # ──────────────────────────────────────────────
+  # 3. FINANCIAL DASHBOARD — Key Metrics
+  # ──────────────────────────────────────────────
+  - type: key_metrics
+    section: "FINANCIAL PERFORMANCE"
+    title: "FY2025 Financial Dashboard"
+    subtitle: "All figures in millions EUR unless stated otherwise"
+    metrics:
+      - value: "EUR 842M"
+        label: "Total Revenue"
+        trend: "up"
+        trend_label: "+11.2% YoY"
+        color: "primary"
+      - value: "EUR 189M"
+        label: "EBITDA"
+        trend: "up"
+        trend_label: "+14.5% YoY"
+        color: "success"
+      - value: "22.4%"
+        label: "EBITDA Margin"
+        trend: "up"
+        trend_label: "+0.6pp YoY"
+        color: "success"
+      - value: "EUR 118M"
+        label: "Free Cash Flow"
+        trend: "up"
+        trend_label: "+22% YoY"
+        color: "accent"
+      - value: "EUR 14.20"
+        label: "Earnings per Share"
+        trend: "up"
+        trend_label: "+16% YoY"
+        color: "primary"
+      - value: "1.4x"
+        label: "Net Debt / EBITDA"
+        trend: "down"
+        trend_label: "From 1.8x"
+        color: "success"
+    speaker_notes: "Revenue exceeded plan by EUR 27M driven by strong performance in the Industrial Solutions segment. The EBITDA margin improvement reflects both revenue leverage and the cost optimization program delivering EUR 18M in annualized savings."
+
+  # ──────────────────────────────────────────────
+  # 4. TOP-LINE RESULTS — Stat Cards
+  # ──────────────────────────────────────────────
+  - type: stat_cards
+    section: "FINANCIAL PERFORMANCE"
+    title: "Headline Results"
+    subtitle: "FY2025 delivered record revenue and the strongest margin performance in five years"
+    cards:
+      - stat: "EUR 842M"
+        label: "revenue"
+        title: "Record Top Line"
+        description: "Driven by 15% growth in Industrial Solutions and 9% growth in Digital Services. Organic growth contributed 8.4% with acquisitions adding 2.8%."
+      - stat: "EUR 118M"
+        label: "free cash flow"
+        title: "Cash Generation"
+        description: "FCF conversion rate of 62%, up from 54% in FY2024. Working capital optimization released EUR 23M through improved receivables collection."
+      - stat: "EUR 2.40"
+        label: "per share"
+        title: "Proposed Dividend"
+        description: "Represents a 17% payout ratio and 20% increase over FY2024 dividend. Board approval requested during this meeting."
+    footnotes: "All figures audited by KPMG. FY2025 fiscal year ended December 31, 2025."
+    speaker_notes: "The dividend increase reflects our confidence in sustainable cash generation. Even after the proposed dividend and planned CapEx, we retain EUR 45M for opportunistic M&A."
+
+  # ──────────────────────────────────────────────
+  # 5. BUDGET vs ACTUAL — Comparison
+  # ──────────────────────────────────────────────
+  - type: comparison
+    section: "FINANCIAL PERFORMANCE"
+    title: "Budget vs Actual"
+    subtitle: "FY2025 performance against the board-approved plan"
+    left_panel:
+      header: "ACTUAL FY2025"
+      title: "Outperformed on all key metrics"
+      rows:
+        - label: "Revenue"
+          value: "EUR 842M"
+        - label: "EBITDA"
+          value: "EUR 189M (22.4%)"
+        - label: "Net Income"
+          value: "EUR 112M"
+        - label: "CapEx"
+          value: "EUR 54M (6.4% of rev)"
+    right_panel:
+      header: "BUDGET FY2025"
+      title: "Original board-approved plan"
+      rows:
+        - label: "Revenue"
+          value: "EUR 815M"
+        - label: "EBITDA"
+          value: "EUR 174M (21.3%)"
+        - label: "Net Income"
+          value: "EUR 98M"
+        - label: "CapEx"
+          value: "EUR 62M (7.6% of rev)"
+    footer_text: "Revenue beat plan by EUR 27M (+3.3%). EBITDA beat plan by EUR 15M (+8.6%). CapEx came in EUR 8M under budget due to phasing of the Stavanger facility expansion."
+    speaker_notes: "The headcount variance of 80 FTE below plan is intentional -- we deliberately slowed hiring in Q3 to focus on productivity improvements. Revenue per employee increased 14% as a result."
+
+  # ──────────────────────────────────────────────
+  # 6. P&L SUMMARY — Table
+  # ──────────────────────────────────────────────
+  - type: table
+    section: "FINANCIAL PERFORMANCE"
+    title: "Consolidated Profit & Loss"
+    subtitle: "Three-year trend showing consistent margin expansion"
+    headers: ["Line Item", "FY2023", "FY2024", "FY2025", "YoY Change"]
+    rows:
+      - ["Revenue", "EUR 694M", "EUR 757M", "EUR 842M", "+11.2%"]
+      - ["Gross Profit", "EUR 296M", "EUR 336M", "EUR 378M", "+12.5%"]
+      - ["Gross Margin", "42.7%", "44.4%", "44.9%", "+0.5pp"]
+      - ["EBITDA", "EUR 134M", "EUR 165M", "EUR 189M", "+14.5%"]
+      - ["EBITDA Margin", "19.3%", "21.8%", "22.4%", "+0.6pp"]
+      - ["D&A + Net Interest", "(EUR 50M)", "(EUR 51M)", "(EUR 52M)", "+2.0%"]
+      - ["Net Income", "EUR 63M", "EUR 89M", "EUR 112M", "+25.8%"]
+      - ["Net Margin", "9.1%", "11.8%", "13.3%", "+1.5pp"]
+    speaker_notes: "Three consecutive years of margin expansion. The gross margin improvement is structural -- driven by product mix shift toward higher-margin Digital Services and procurement savings. The declining interest expense reflects our deleveraging strategy."
+
+  # ──────────────────────────────────────────────
+  # 7. STRATEGIC INITIATIVE PROGRESS — Timeline
+  # ──────────────────────────────────────────────
+  - type: timeline
+    section: "STRATEGIC INITIATIVES"
+    title: "Five-Pillar Strategy Progress"
+    subtitle: "Status of the strategic initiatives approved by the board in March 2025"
+    phases:
+      - label: "Pillar 1"
+        title: "Digital Transformation"
+        active: true
+        items:
+          - "ERP migration to SAP S/4HANA: 70% complete, on track for Q3 2026 go-live"
+          - "Customer portal launched with 82% adoption rate in first 6 months"
+          - "AI-powered demand forecasting reduced inventory holding costs by 12%"
+      - label: "Pillar 2"
+        title: "Geographic Expansion"
+        items:
+          - "Opened Singapore office to serve APAC market, 45 FTEs hired"
+          - "Acquired BrightTech (Australia) for EUR 28M, adding EUR 19M annual revenue"
+          - "APAC now represents 14% of total revenue, up from 8% in FY2024"
+      - label: "Pillar 3"
+        title: "Product Innovation"
+        items:
+          - "Launched 3 new product lines generating EUR 34M in first-year revenue"
+          - "R&D investment increased to 6.8% of revenue (EUR 57M)"
+          - "12 patents filed, 8 granted during FY2025"
+      - label: "Pillar 4"
+        title: "Operational Excellence"
+        items:
+          - "Cost optimization program delivered EUR 18M in annualized savings"
+          - "Manufacturing cycle time reduced 22% through lean implementation"
+          - "Supplier consolidation from 840 to 620 vendors, improving negotiating leverage"
+      - label: "Pillar 5"
+        title: "Talent & Sustainability"
+        items:
+          - "Employee engagement score increased from 72 to 78 (target: 80)"
+          - "Carbon emissions reduced 16% vs FY2024 baseline"
+          - "Diversity in leadership roles reached 34%, on track for 40% target by 2027"
+    speaker_notes: "All five pillars are on track or ahead of schedule. The digital transformation pillar is the most complex -- the SAP migration is the largest IT project in company history and requires careful change management."
+
+  # ──────────────────────────────────────────────
+  # 8. RISK CATEGORIES — Definition Cards
+  # ──────────────────────────────────────────────
+  - type: definition_cards
+    section: "RISK MANAGEMENT"
+    title: "Enterprise Risk Register"
+    subtitle: "Top risk categories with current assessment and mitigation status"
+    cards:
+      - term: "Cyber Risk"
+        icon: lock
+        subtitle: "Risk Level: High"
+        description: "Ransomware and supply chain attacks remain elevated threats. We completed SOC 2 Type II certification, deployed XDR across all endpoints, and conducted two tabletop exercises with the board. Zero material incidents in FY2025."
+        border_color: "#E53935"
+      - term: "Supply Chain"
+        icon: globe
+        subtitle: "Risk Level: Medium"
+        description: "Semiconductor lead times have normalized but geopolitical tensions present ongoing risk. We increased safety stock for critical components to 90 days and qualified secondary suppliers for all single-source components."
+        border_color: "#FF9800"
+      - term: "Regulatory"
+        icon: document
+        subtitle: "Risk Level: Medium"
+        description: "EU AI Act and evolving ESG disclosure requirements create compliance complexity. Dedicated compliance team expanded to 8 FTEs. External counsel engaged for AI Act readiness assessment, due Q2 2026."
+        border_color: "#FF9800"
+      - term: "Talent"
+        icon: people
+        subtitle: "Risk Level: Low-Medium"
+        description: "Engineering talent market remains competitive. Voluntary attrition improved to 11.2% from 14.8% in FY2024. New retention packages for critical roles and expanded remote work policy contributing to improvement."
+        border_color: "#FFC107"
+    callout:
+      label: "Risk governance"
+      columns:
+        - title: "Quarterly Reviews"
+          description: "Enterprise risk committee meets quarterly with full board reporting twice per year"
+        - title: "24 Controls Tested"
+          description: "Internal audit completed 24 control effectiveness tests with 2 minor findings remediated"
+    speaker_notes: "The board should note that cyber risk has been elevated from Medium to High following the industry-wide increase in ransomware attacks targeting manufacturing companies. Our insurance coverage has been reviewed and increased accordingly."
+
+  # ──────────────────────────────────────────────
+  # 9. GOVERNANCE COMPLIANCE — Checklist
+  # ──────────────────────────────────────────────
+  - type: checklist
+    section: "GOVERNANCE"
+    title: "Governance & Compliance Status"
+    subtitle: "Annual compliance requirements and board-mandated actions"
+    columns: 2
+    items:
+      - text: "Annual financial audit completed (KPMG)"
+        status: done
+        note: "Clean opinion issued Feb 2026"
+      - text: "SOC 2 Type II certification renewed"
+        status: done
+        note: "Zero material findings"
+      - text: "Board diversity policy compliance reviewed"
+        status: done
+        note: "3 of 9 directors independent women"
+      - text: "Executive compensation benchmarking completed"
+        status: done
+        note: "Peer group of 18 companies"
+      - text: "Anti-bribery and corruption training (all employees)"
+        status: done
+        note: "98.4% completion rate"
+      - text: "ESG disclosure report (CSRD-aligned)"
+        status: in_progress
+        note: "Draft under review, due May 2026"
+      - text: "EU AI Act readiness assessment"
+        status: in_progress
+        note: "External assessment in progress"
+      - text: "Whistleblower channel annual review"
+        status: done
+        note: "7 reports received, all resolved"
+      - text: "Insurance program renewal and coverage review"
+        status: done
+        note: "Cyber coverage increased 40%"
+      - text: "Data privacy impact assessments (GDPR)"
+        status: done
+        note: "14 DPIAs completed for new processing"
+    speaker_notes: "The ESG disclosure report is on track for the May deadline. The CSRD alignment is new this year and required significant additional data collection from our supply chain partners."
+
+  # ──────────────────────────────────────────────
+  # 10. ORGANIC vs ACQUISITION GROWTH — Two Panels
+  # ──────────────────────────────────────────────
+  - type: two_panels
+    section: "GROWTH STRATEGY"
+    title: "Organic Growth vs Acquisition Growth"
+    subtitle: "Balanced approach delivering sustainable, diversified revenue expansion"
+    left_panel:
+      letter: "O"
+      label: "ORGANIC"
+      title: "Internal Growth Engines"
+      dark: false
+      example: "EUR 71M revenue growth (+8.4% organic)"
+      points:
+        - "Industrial Solutions grew 10% driven by new product launches and cross-selling"
+        - "Digital Services grew 14% as recurring SaaS revenue reached EUR 94M ARR"
+        - "Customer expansion revenue contributed EUR 38M from existing accounts"
+        - "Geographic expansion into APAC generated EUR 18M from the Singapore office"
+        - "New customer acquisition added 340 accounts with average deal size up 22%"
+    right_panel:
+      letter: "A"
+      label: "ACQUISITIONS"
+      title: "Inorganic Growth"
+      dark: true
+      example: "EUR 24M revenue from acquisitions (+2.8%)"
+      points:
+        - "BrightTech (Australia) acquired in June 2025 for EUR 28M (1.5x revenue)"
+        - "Added 120 enterprise customers in APAC with strong cross-sell potential"
+        - "Integration on track: back-office consolidated, product integration Q2 2026"
+        - "M&A pipeline active with 3 targets in due diligence for FY2026"
+        - "Acquisition criteria: EUR 10-50M revenue, 20%+ EBITDA margins, strategic fit"
+    speaker_notes: "The board should note our disciplined M&A approach. We evaluated 14 targets in FY2025 and proceeded with only one. BrightTech is already EBITDA-positive post-acquisition, which is unusual within the first year."
+
+  # ──────────────────────────────────────────────
+  # 11. CHAIRMAN QUOTE
+  # ──────────────────────────────────────────────
+  - type: quote
+    section: "CHAIRMAN'S MESSAGE"
+    quote: "FY2025 was a defining year for Haldor Industries. We delivered record financial results while making bold investments in digital transformation and geographic expansion. The management team has demonstrated that operational discipline and strategic ambition are not mutually exclusive. I am confident that the foundations laid this year will drive shareholder value for years to come."
+    attribution: "Ingrid Haugen"
+    source: "Chair of the Board, Haldor Industries"
+    dark: true
+    speaker_notes: "Ingrid will deliver these remarks live at the start of the meeting. This slide is included for reference and for the board materials distributed in advance."
+
+  # ──────────────────────────────────────────────
+  # 12. CUSTOMER SATISFACTION — Key Metrics
+  # ──────────────────────────────────────────────
+  - type: key_metrics
+    section: "CUSTOMERS"
+    title: "Customer Satisfaction & Retention"
+    subtitle: "Strong momentum across all customer experience metrics"
+    metrics:
+      - value: "72"
+        label: "NPS Score"
+        trend: "up"
+        trend_label: "+8 pts YoY"
+        color: "primary"
+      - value: "94.2%"
+        label: "Gross Retention"
+        trend: "up"
+        trend_label: "+1.8pp YoY"
+        color: "success"
+      - value: "112%"
+        label: "Net Revenue Retention"
+        trend: "up"
+        trend_label: "+4pp YoY"
+        color: "accent"
+      - value: "4.6/5"
+        label: "Support CSAT"
+        trend: "up"
+        trend_label: "+0.3 YoY"
+        color: "blue"
+      - value: "2.1 hrs"
+        label: "Avg Response Time"
+        trend: "down"
+        trend_label: "-40% YoY"
+        color: "success"
+    speaker_notes: "The NPS improvement from 64 to 72 is the largest single-year gain in company history. The primary driver was the new customer portal which resolved 60% of support tickets through self-service, dramatically reducing wait times."
+
+  # ──────────────────────────────────────────────
+  # 13. FY2026 OUTLOOK — Content Cards
+  # ──────────────────────────────────────────────
+  - type: content_cards
+    section: "FY2026 OUTLOOK"
+    title: "FY2026 Strategic Priorities & Guidance"
+    subtitle: "Three focus areas for the year ahead, with financial guidance for board approval"
+    cards:
+      - title: "Revenue Guidance"
+        icon: chart
+        subtitle: "EUR 930-960M (10-14% growth)"
+        points:
+          - "Organic growth expected at 7-9% driven by Digital Services expansion"
+          - "Inorganic growth of 3-5% from BrightTech full-year contribution and pipeline targets"
+          - "EBITDA margin guidance of 23-24%, reflecting continued operational leverage"
+      - title: "Capital Allocation"
+        icon: money
+        subtitle: "EUR 180M deployment planned"
+        points:
+          - "CapEx: EUR 58M including Stavanger facility completion (EUR 22M)"
+          - "M&A: EUR 80M earmarked for 1-2 bolt-on acquisitions in APAC and North America"
+          - "Dividends: EUR 42M (subject to board approval at this meeting)"
+          - "Share buyback: EUR 20M authorized to offset dilution from equity incentives"
+      - title: "Strategic Bets"
+        icon: rocket
+        subtitle: "Investing in the next growth vector"
+        points:
+          - "Launch AI-powered predictive maintenance product for Industrial Solutions customers"
+          - "Expand Digital Services to North American market with dedicated sales team"
+          - "Complete SAP S/4HANA migration and begin realizing EUR 12M in annual efficiency gains"
+    callout:
+      label: "Board approvals requested"
+      columns:
+        - title: "Dividend of EUR 2.40/share"
+          description: "Total distribution of EUR 42M representing 17% payout ratio"
+        - title: "M&A mandate of EUR 80M"
+          description: "Authorization for management to pursue acquisitions within approved criteria"
+    speaker_notes: "The revenue guidance range of 10-14% reflects uncertainty around the timing of two pipeline acquisitions. The low end assumes organic growth only; the high end assumes one acquisition closing by Q2 2026."
+
+  # ──────────────────────────────────────────────
+  # 14. SECTION DIVIDER — Closing
+  # ──────────────────────────────────────────────
+  - type: section_divider
+    number: "08"
+    title: "Discussion & Resolutions"
+    subtitle: "Open floor for board questions, followed by formal votes on dividend and M&A mandate"

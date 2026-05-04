@@ -1,4 +1,4 @@
-output: "tech_strategy.yaml.pptx"
+output: "tech_strategy.pptx"
 metadata:
   title: "Cloud Migration Strategy"
   author: "Engineering"

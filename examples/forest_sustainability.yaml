@@ -1,0 +1,362 @@
+output: "forest_sustainability.pptx"
+theme: forest
+metadata:
+  title: "Annual Sustainability Report 2025"
+  author: "Northvane Industries"
+  subject: "Environmental Impact and ESG Progress"
+theme_config:
+  organization: "Northvane Industries"
+  document_title: "Sustainability Report 2025"
+  classification: "Public"
+
+slides:
+
+  # ──────────────────────────────────────────────
+  # 1. TITLE PAGE
+  # ──────────────────────────────────────────────
+  - type: title_page
+    category: "SUSTAINABILITY"
+    title: "Annual Sustainability Report"
+    subtitle: "Our progress toward net zero, circular operations, and responsible supply chains -- fiscal year 2025"
+    author: "Sustainability & ESG Team"
+    date: "2025"
+    speaker_notes: "This is our fourth annual sustainability report. For the first time, we are reporting against the full GHG Protocol, including Scope 3 emissions. The data has been independently verified by Deloitte."
+
+  # ──────────────────────────────────────────────
+  # 2. QUOTE -- CEO Letter
+  # ──────────────────────────────────────────────
+  - type: quote
+    section: "FROM THE CEO"
+    quote: "Sustainability is not a department at Northvane -- it is an operating principle. This year we proved that decarbonization and profitability are not in tension. Our emissions fell 18% while revenue grew 12%. That is the future we are building."
+    attribution: "-- Ingrid Halvorsen, CEO"
+    source: "Northvane Industries Annual Report 2025"
+    dark: true
+    speaker_notes: "Ingrid has made sustainability a board-level priority since taking over as CEO in 2022. This letter sets the tone for the full report."
+
+  # ──────────────────────────────────────────────
+  # 3. KEY METRICS -- Environmental KPIs
+  # ──────────────────────────────────────────────
+  - type: key_metrics
+    section: "HIGHLIGHTS"
+    title: "Environmental Performance at a Glance"
+    subtitle: "Headline metrics for fiscal year 2025 vs 2024"
+    metrics:
+      - value: "42%"
+        label: "Reduction in Scope 1+2 Emissions"
+        trend: "down"
+        trend_label: "vs 2020 baseline -- on track for 50% by 2027"
+        color: "success"
+      - value: "78%"
+        label: "Renewable Energy Share"
+        trend: "up"
+        trend_label: "+14pp year-over-year"
+        color: "success"
+      - value: "91%"
+        label: "Waste Diversion Rate"
+        trend: "up"
+        trend_label: "Only 9% of operational waste goes to landfill"
+        color: "accent"
+      - value: "34%"
+        label: "Water Intensity Reduction"
+        trend: "down"
+        trend_label: "Liters per unit produced, vs 2020 baseline"
+        color: "blue"
+      - value: "A-"
+        label: "CDP Climate Score"
+        trend: "up"
+        trend_label: "Up from B in 2024 -- top 8% of sector"
+        color: "primary"
+    speaker_notes: "Five headline numbers that tell the story. The CDP score improvement is particularly significant -- it directly influences institutional investor decisions."
+
+  # ──────────────────────────────────────────────
+  # 4. STAT CARDS -- Headline Achievements
+  # ──────────────────────────────────────────────
+  - type: stat_cards
+    section: "ACHIEVEMENTS"
+    title: "Milestone Accomplishments"
+    subtitle: "Three outcomes we are especially proud of this year"
+    cards:
+      - stat: "100%"
+        label: "renewable electricity"
+        title: "Clean Power"
+        description: "All five manufacturing facilities now run on 100% renewable electricity through a combination of on-site solar, PPAs, and certified green tariffs"
+      - stat: "Zero"
+        label: "waste to landfill"
+        title: "Nordic Operations"
+        description: "Our Trondheim and Gothenburg plants achieved zero-waste-to-landfill status in Q3, validated by independent auditors from Bureau Veritas"
+      - stat: "12,400"
+        label: "tonnes CO2e avoided"
+        title: "Supply Chain Impact"
+        description: "Our supplier engagement program helped 47 tier-1 suppliers reduce their collective emissions by 12,400 tonnes through energy efficiency and fuel switching"
+    footnotes: "All figures independently verified. Full methodology available in the ESG Data Supplement."
+    speaker_notes: "The zero-waste milestone at our Nordic plants is a blueprint we are now replicating at the remaining three facilities."
+
+  # ──────────────────────────────────────────────
+  # 5. TABLE -- Emissions Breakdown by Scope
+  # ──────────────────────────────────────────────
+  - type: table
+    section: "CARBON"
+    title: "Greenhouse Gas Emissions by Scope"
+    subtitle: "Tonnes CO2 equivalent, reported per the GHG Protocol Corporate Standard"
+    headers: ["Category", "2023", "2024", "2025", "Change", "Target 2027"]
+    rows:
+      - ["Scope 1 -- Direct", "18,400", "15,200", "12,800", "-16%", "9,000"]
+      - ["Scope 2 -- Electricity (market)", "24,600", "16,800", "8,900", "-47%", "3,000"]
+      - ["Scope 3 -- Purchased goods", "82,300", "78,100", "71,600", "-8%", "62,000"]
+      - ["Scope 3 -- Transportation", "14,200", "13,500", "12,100", "-10%", "9,500"]
+      - ["Scope 3 -- Business travel", "3,100", "2,800", "2,400", "-14%", "2,000"]
+      - ["Scope 3 -- End-of-life", "8,900", "8,200", "7,300", "-11%", "5,500"]
+      - ["Total", "151,500", "134,600", "115,100", "-14%", "91,000"]
+    speaker_notes: "Scope 2 is our biggest success story -- the shift to renewables has nearly halved electricity-related emissions in two years. Scope 3 purchased goods remains our largest category and our biggest challenge."
+
+  # ──────────────────────────────────────────────
+  # 6. COMPARISON -- Year-over-Year Progress
+  # ──────────────────────────────────────────────
+  - type: comparison
+    section: "PROGRESS"
+    title: "Year-over-Year Environmental Progress"
+    subtitle: "Key operational metrics comparing FY2024 to FY2025"
+    left_panel:
+      header: "FY 2024"
+      title: "Previous Year"
+      rows:
+        - label: "TOTAL EMISSIONS"
+          value: "134,600 tCO2e -- baseline for year-on-year tracking"
+        - label: "ENERGY MIX"
+          value: "64% renewable -- four sites on green tariffs, one on gas"
+        - label: "WATER USE"
+          value: "2.8M cubic meters -- 12% below 2020 baseline"
+        - label: "WASTE DIVERTED"
+          value: "87% diversion rate -- two sites achieved zero-to-landfill"
+        - label: "SUPPLIER ENGAGEMENT"
+          value: "32 suppliers in carbon reduction program"
+    right_panel:
+      header: "FY 2025"
+      title: "Current Year"
+      rows:
+        - label: "TOTAL EMISSIONS"
+          value: "115,100 tCO2e -- 14% reduction year-on-year"
+        - label: "ENERGY MIX"
+          value: "78% renewable -- fifth site transitioning to PPA in Q1 2026"
+        - label: "WATER USE"
+          value: "2.3M cubic meters -- closed-loop cooling at two plants"
+        - label: "WASTE DIVERTED"
+          value: "91% diversion rate -- three of five sites at zero-to-landfill"
+        - label: "SUPPLIER ENGAGEMENT"
+          value: "47 suppliers -- expanded to cover 82% of procurement spend"
+    footer_text: "Every major metric improved. The acceleration in Scope 2 reduction reflects our largest PPA coming online in March 2025."
+    speaker_notes: "The water reduction deserves a call-out. Installing closed-loop cooling at Trondheim and Krakow saved 420,000 cubic meters per year."
+
+  # ──────────────────────────────────────────────
+  # 7. DEFINITION CARDS -- ESG Framework
+  # ──────────────────────────────────────────────
+  - type: definition_cards
+    section: "FRAMEWORK"
+    title: "Our ESG Reporting Framework"
+    subtitle: "Aligned with international standards for transparency and comparability"
+    cards:
+      - term: "TCFD"
+        icon: "chart"
+        subtitle: "Climate Risk Disclosure"
+        description: "We report climate-related financial risks and opportunities following the Task Force on Climate-related Financial Disclosures framework, including scenario analysis under 1.5C and 3C pathways"
+        border_color: "primary"
+      - term: "GRI"
+        icon: "document"
+        subtitle: "Impact Reporting"
+        description: "Our sustainability disclosures follow the Global Reporting Initiative Universal Standards 2021, covering material topics identified through stakeholder engagement"
+        border_color: "accent"
+      - term: "SBTi"
+        icon: "target"
+        subtitle: "Science-Based Targets"
+        description: "Our emission reduction targets are validated by the Science Based Targets initiative, aligned with a 1.5C trajectory. Near-term targets approved in 2023, net-zero commitment for 2040"
+        border_color: "primary"
+    callout:
+      label: "ASSURANCE"
+      columns:
+        - title: "Independent Verification"
+          description: "All environmental data in this report has been independently assured by Deloitte to ISAE 3000 (Revised) limited assurance standard. The full assurance statement is published in our ESG Data Supplement."
+    speaker_notes: "Framework alignment is not optional -- our institutional investors require TCFD and GRI reporting, and our science-based targets are a condition of our green bond covenants."
+
+  # ──────────────────────────────────────────────
+  # 8. PROCESS -- Circular Economy
+  # ──────────────────────────────────────────────
+  - type: process
+    section: "CIRCULARITY"
+    title: "Our Circular Economy Model"
+    subtitle: "Designing waste out of the value chain from material selection to end-of-life"
+    steps:
+      - icon: "search"
+        title: "Design"
+        description: "Products engineered for disassembly and recyclability"
+        items:
+          - "Material passport for every product"
+          - "Mono-material design where possible"
+          - "Fasteners designed for easy separation"
+      - icon: "leaf"
+        title: "Source"
+        description: "Prioritize recycled, renewable, and certified materials"
+        items:
+          - "62% recycled content in packaging"
+          - "FSC-certified paper and cardboard"
+          - "Bio-based plastics from agricultural waste"
+      - icon: "gear"
+        title: "Manufacture"
+        description: "Minimize waste and maximize resource efficiency"
+        items:
+          - "Closed-loop water systems"
+          - "Production scrap reintegrated into feedstock"
+          - "Energy recovery from unavoidable waste"
+      - icon: "arrow_right"
+        title: "Recover"
+        description: "Take-back programs and recycling partnerships"
+        items:
+          - "Product return program in 14 countries"
+          - "Partnerships with TerraCycle and local recyclers"
+          - "Refurbishment line for returned products"
+    speaker_notes: "The circular model is not theoretical -- 23% of our raw materials now come from recovered sources, up from 8% in 2022."
+
+  # ──────────────────────────────────────────────
+  # 9. SECTION DIVIDER
+  # ──────────────────────────────────────────────
+  - type: section_divider
+    number: "03"
+    title: "Community & Governance"
+    subtitle: "Our impact beyond carbon -- people, partners, and accountability"
+
+  # ──────────────────────────────────────────────
+  # 10. TIMELINE -- Sustainability Roadmap
+  # ──────────────────────────────────────────────
+  - type: timeline
+    section: "ROADMAP"
+    title: "Path to Net Zero by 2040"
+    subtitle: "Key milestones on our decarbonization journey"
+    phases:
+      - label: "2020-2023"
+        title: "Foundation"
+        active: true
+        items:
+          - "Baseline emissions inventory established"
+          - "Science-based targets approved by SBTi"
+          - "First two PPAs signed for renewable electricity"
+      - label: "2024-2025"
+        title: "Acceleration"
+        active: true
+        items:
+          - "42% Scope 1+2 reduction achieved"
+          - "Supplier engagement program launched (47 partners)"
+          - "Zero-waste-to-landfill at Nordic operations"
+      - label: "2026-2030"
+        title: "Transformation"
+        active: false
+        items:
+          - "Electrify remaining gas-fired processes"
+          - "50% reduction in Scope 3 purchased goods emissions"
+          - "100% recyclable or compostable packaging"
+      - label: "2031-2040"
+        title: "Net Zero"
+        active: false
+        items:
+          - "Residual emissions offset via verified carbon removal"
+          - "Fully circular material flows for core product lines"
+          - "Net-zero across all scopes validated by SBTi"
+    speaker_notes: "We are on the boundary between Foundation and Acceleration. The 2026-2030 phase is where it gets hard -- Scope 3 reduction requires deep supply chain collaboration."
+
+  # ──────────────────────────────────────────────
+  # 11. CHECKLIST -- Certification Status
+  # ──────────────────────────────────────────────
+  - type: checklist
+    section: "CERTIFICATIONS"
+    title: "Sustainability Certifications & Ratings"
+    subtitle: "Status of key external validations and certifications"
+    columns: 2
+    items:
+      - text: "SBTi near-term targets validated"
+        status: "done"
+        note: "Approved October 2023"
+      - text: "ISO 14001 Environmental Management (all sites)"
+        status: "done"
+        note: "Recertified annually -- last audit December 2025"
+      - text: "CDP Climate A-List"
+        status: "in_progress"
+        note: "Current score A- -- targeting A-List in 2026 submission"
+      - text: "B Corp certification"
+        status: "in_progress"
+        note: "Assessment score 84.2 -- threshold is 80, verification pending"
+      - text: "ISO 50001 Energy Management"
+        status: "done"
+        note: "Certified at all five manufacturing sites"
+      - text: "EU Taxonomy alignment assessment"
+        status: "in_progress"
+        note: "62% of revenue currently taxonomy-eligible, working on alignment"
+      - text: "SBTi net-zero target validation"
+        status: "pending"
+        note: "Submission planned Q3 2026"
+      - text: "TNFD nature-related disclosures"
+        status: "pending"
+        note: "Biodiversity impact assessment underway"
+      - text: "Cradle to Cradle product certification"
+        status: "blocked"
+        note: "Reformulation needed for two chemical inputs -- R&D in progress"
+    speaker_notes: "The B Corp certification is the one most visible to consumers. We expect verification to complete by August 2026."
+
+  # ──────────────────────────────────────────────
+  # 12. CONTENT -- Community Impact
+  # ──────────────────────────────────────────────
+  - type: content
+    section: "COMMUNITY"
+    title: "Social Impact & Community Investment"
+    subtitle: "Our commitment extends beyond environmental metrics"
+    content:
+      - "**$4.2M invested** in community programs across our operating regions in 2025"
+      - text: "Workforce development"
+        level: 0
+      - text: "Green skills training program graduated 340 participants, with 89% employed within 6 months"
+        level: 1
+      - text: "Apprenticeship pipeline with 12 vocational schools in Norway, Poland, and Germany"
+        level: 1
+      - text: "Environmental education"
+        level: 0
+      - text: "Funded climate literacy programs in 28 schools reaching 6,200 students"
+        level: 1
+      - text: "Annual Sustainability Challenge engaged 1,400 university students across 8 countries"
+        level: 1
+      - "**Living wage verified** across all operations and tier-1 suppliers by the Fair Wage Network"
+      - "**48% women in leadership** -- up from 39% in 2022, with a target of 50% by 2027"
+      - "**Zero fatalities and 0.8 LTIFR** (lost-time injury frequency rate) -- best in our sector peer group"
+    speaker_notes: "The social dimension is often overlooked in sustainability reports. These numbers show that our commitment to people is as rigorous as our commitment to the planet."
+
+  # ──────────────────────────────────────────────
+  # 13. ICON CARDS -- Strategic Priorities
+  # ──────────────────────────────────────────────
+  - type: icon_cards
+    section: "LOOKING AHEAD"
+    message: "Three strategic priorities for 2026"
+    cards:
+      - title: "Decarbonize the Supply Chain"
+        icon: "globe"
+        description: "Expand our supplier engagement program to cover 95% of procurement spend and introduce carbon reduction clauses into all new supplier contracts. This is where the majority of our remaining emissions live."
+      - title: "Close the Loop on Packaging"
+        icon: "leaf"
+        description: "Achieve 100% recyclable or compostable packaging across all product lines by December 2026. Pilot a reusable packaging system with three retail partners in the Nordics."
+      - title: "Biodiversity Baseline"
+        icon: "search"
+        description: "Complete our first comprehensive biodiversity impact assessment aligned with the TNFD framework. Identify nature-positive interventions for our highest-impact operations and raw material sourcing."
+    speaker_notes: "These three priorities are reflected in executive KPIs and compensation. They are not aspirational -- they are operational targets with quarterly milestones."
+
+  # ──────────────────────────────────────────────
+  # 14. CONTENT -- Closing
+  # ──────────────────────────────────────────────
+  - type: content
+    section: "COMMITMENT"
+    title: "Our Pledge"
+    subtitle: "Accountability, transparency, and continuous improvement"
+    content:
+      - "This report covers Northvane Industries' global operations for the fiscal year ending December 31, 2025"
+      - "**Independent assurance** provided by Deloitte under ISAE 3000 (Revised)"
+      - "**Full data tables** available in the ESG Data Supplement at northvane.com/esg"
+      - "**Questions and feedback** welcomed at sustainability@northvane.com"
+      - text: "We commit to publishing this report annually and to continuously improving the scope and quality of our disclosures"
+        level: 0
+      - text: "Next report: April 2027, covering fiscal year 2026"
+        level: 1
+    speaker_notes: "Thank you for your time. We welcome scrutiny -- transparency is how we hold ourselves accountable. The full ESG Data Supplement with detailed methodology is available on our website."

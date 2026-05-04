@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from pptx.dml.color import RGBColor
-from pptx.enum.text import PP_ALIGN
+from pptx.enum.text import MSO_AUTO_SIZE, PP_ALIGN
 from pptx.util import Inches, Pt
 
 from yaml2pptx.parser.markdown_parser import RunSegment, parse_markdown
@@ -100,6 +100,11 @@ def add_textbox(
     )
     tf = txBox.text_frame
     tf.word_wrap = word_wrap
+    tf.auto_size = MSO_AUTO_SIZE.TEXT_TO_FIT_SHAPE
+    tf.margin_top = Inches(0.03)
+    tf.margin_bottom = Inches(0.03)
+    tf.margin_left = Inches(0.05)
+    tf.margin_right = Inches(0.05)
     p = tf.paragraphs[0]
     if alignment:
         p.alignment = alignment
@@ -133,6 +138,11 @@ def add_multiline_textbox(
     )
     tf = txBox.text_frame
     tf.word_wrap = True
+    tf.auto_size = MSO_AUTO_SIZE.TEXT_TO_FIT_SHAPE
+    tf.margin_top = Inches(0.03)
+    tf.margin_bottom = Inches(0.03)
+    tf.margin_left = Inches(0.05)
+    tf.margin_right = Inches(0.05)
     for i, line in enumerate(lines):
         if i == 0:
             p = tf.paragraphs[0]

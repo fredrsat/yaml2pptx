@@ -123,6 +123,10 @@ def render_process(
     step_top = 2.40
     step_height = 4.10
     inner_pad = 0.25
+    # Scale font sizes for narrow steps
+    title_font = 14 if count > 3 else 16
+    desc_font = 9 if count > 3 else 11
+    item_font = 8 if count > 3 else 9
 
     for i, step in enumerate(steps):
         left = s.margin_left + i * (step_width + gap)
@@ -137,7 +141,7 @@ def render_process(
         inner_width = step_width - inner_pad * 2
 
         # Step number circle
-        number = step.get("number", str(i + 1))
+        number = str(step.get("number", i + 1))
         add_rect(slide, inner_left, step_top + 0.25, 0.55, 0.55, fill=c.primary)
         add_textbox(slide, inner_left, step_top + 0.30, 0.55, 0.45,
                     text=number, font_size=22, bold=True, color=c.white,
@@ -151,18 +155,20 @@ def render_process(
         # Step title
         if step.get("title"):
             add_textbox(slide, inner_left, step_top + 1.00, inner_width, 0.45,
-                        text=step["title"], font_size=16, bold=True, color=c.text_dark)
+                        text=step["title"], font_size=title_font, bold=True, color=c.text_dark)
 
         # Description
         if step.get("description"):
             add_textbox(slide, inner_left, step_top + 1.50, inner_width, 1.20,
-                        text=step["description"], font_size=11, color=c.text_muted)
+                        text=step["description"], font_size=desc_font, color=c.text_muted)
 
-        # Sub-items
+        # Sub-items — fill remaining step space
         if step.get("items"):
+            items_top = 2.70
+            items_height = step_height - items_top - 0.10
             add_multiline_textbox(
-                slide, inner_left, step_top + 2.70, inner_width, 1.20,
-                lines=step["items"], font_size=10, color=c.text_dark, bullet="•  ",
+                slide, inner_left, step_top + items_top, inner_width, items_height,
+                lines=step["items"], font_size=item_font, color=c.text_dark, bullet="•  ",
             )
 
         # Arrow between steps (except last)

@@ -1,0 +1,355 @@
+output: "earth_urban_plan.pptx"
+theme: earth
+metadata:
+  title: "Riverside District Masterplan"
+  author: "City Planning Commission"
+  subject: "Urban Revitalization Proposal"
+theme_config:
+  organization: "Greenfield City Planning"
+  document_title: "Riverside District Masterplan"
+
+slides:
+  # --- Title Page ---
+  - type: title_page
+    category: "URBAN DEVELOPMENT PROPOSAL"
+    title: "Riverside District Masterplan"
+    subtitle: "Transforming 48 Hectares of Post-Industrial Waterfront into a Thriving Mixed-Use Neighborhood"
+    author: "Greenfield City Planning Commission"
+    date: "April 2026"
+    speaker_notes: "Open with the history of the site — a former industrial port that has been dormant for 15 years. Show aerial photos of the current state. The community has been waiting for this plan."
+
+  # --- Agenda ---
+  - type: agenda
+    section: "OVERVIEW"
+    title: "Masterplan Contents"
+    subtitle: "A comprehensive vision for the next 15 years of Riverside development"
+    items:
+      - title: "Site Analysis"
+        description: "Current conditions, constraints, and opportunities of the 48-hectare waterfront area"
+      - title: "Vision & Design Principles"
+        description: "The guiding framework that shapes every decision in this masterplan"
+      - title: "Mixed-Use Zoning"
+        description: "How residential, commercial, cultural, and civic uses are distributed across the district"
+      - title: "Green Infrastructure & Public Spaces"
+        description: "Parks, greenways, stormwater management, and urban ecology corridors"
+      - title: "Transportation Network"
+        description: "Multi-modal connectivity including light rail, cycling infrastructure, and pedestrian priority zones"
+      - title: "Phased Development & Economic Impact"
+        description: "A 15-year implementation roadmap with projected economic returns"
+    speaker_notes: "This presentation covers the full masterplan. For the council meeting, we will focus on the zoning changes and transportation network that require immediate approval."
+
+  # --- Stat Cards: Site Analysis ---
+  - type: stat_cards
+    section: "SITE ANALYSIS"
+    title: "Riverside District Today"
+    subtitle: "Key data from the 18-month environmental and structural assessment"
+    cards:
+      - stat: "48 ha"
+        label: "total site area"
+        title: "Development Footprint"
+        description: "Stretching 2.3 km along the river, the site encompasses former shipping warehouses, a decommissioned rail yard, and 6 hectares of brownfield requiring remediation"
+      - stat: "12"
+        label: "heritage structures"
+        title: "Preserved Buildings"
+        description: "Including the 1892 Grain Exchange, two Art Deco warehouses, and the original harbor master's office — all designated for adaptive reuse as cultural and commercial anchors"
+      - stat: "4,200"
+        label: "residents projected"
+        title: "New Housing Units"
+        description: "Across 1,800 apartments in a mix of mid-rise (6-8 stories) and low-rise (3-4 stories) typologies with 30% designated as affordable housing"
+    footnotes: "Environmental assessment conducted by Meridian Environmental Consultants, 2024-2025. Heritage designations confirmed by the National Heritage Board."
+    speaker_notes: "The brownfield remediation is the single largest cost item in Phase 1. Funding from the National Environmental Remediation Fund covers 60% of the estimated 42 million cost."
+
+  # --- Definition Cards: Design Principles ---
+  - type: definition_cards
+    section: "VISION"
+    title: "Five Design Principles"
+    subtitle: "Every design decision in this masterplan traces back to one of these principles"
+    cards:
+      - term: "Porosity"
+        icon: "network"
+        subtitle: "Connected to the City"
+        description: "The district must not be an island. Sight lines, pedestrian routes, and transit connections stitch Riverside into the existing urban fabric at every edge"
+        border_color: "#2d5016"
+      - term: "Resilience"
+        icon: "leaf"
+        subtitle: "Climate-Adapted Design"
+        description: "All development accounts for 1-meter sea level rise by 2080, integrates bioswales and rain gardens for stormwater, and meets passive house energy standards"
+        border_color: "#4a7c2e"
+      - term: "Equity"
+        icon: "people"
+        subtitle: "Inclusive by Design"
+        description: "30% affordable housing, universal accessibility, multilingual wayfinding, and community land trust ownership models to prevent displacement"
+        border_color: "#6b8e23"
+    callout:
+      label: "GUIDING VISION"
+      columns:
+        - title: "A 15-Minute Neighborhood"
+          description: "Every resident can reach a grocery store, school, park, healthcare clinic, and public transit stop within a 15-minute walk from their home."
+        - title: "Net-Positive Ecology"
+          description: "The completed district will support greater biodiversity than the undeveloped site through constructed wetlands, green roofs, and native habitat corridors."
+    speaker_notes: "The 15-minute neighborhood concept comes from Carlos Moreno's work in Paris. It has been validated in Portland, Melbourne, and Barcelona with measurable quality-of-life improvements."
+
+  # --- Two Panels: Existing vs Proposed ---
+  - type: two_panels
+    section: "TRANSFORMATION"
+    title: "Existing vs Proposed"
+    subtitle: "A side-by-side comparison of the Riverside waterfront"
+    left_panel:
+      letter: "A"
+      label: "CURRENT STATE"
+      title: "Dormant Industrial Zone"
+      dark: false
+      points:
+        - "78% impervious surface — concrete, asphalt, and derelict structures"
+        - "Zero public access to 2.3 km of riverfront"
+        - "Contaminated soil across 6 hectares of former chemical storage"
+        - "No public transit connections — nearest bus stop is 1.2 km away"
+        - "Single vehicular access point creating bottleneck traffic patterns"
+        - "No residential population — area is vacant between 6pm and 7am"
+    right_panel:
+      letter: "B"
+      label: "PROPOSED PLAN"
+      title: "Mixed-Use Waterfront District"
+      dark: true
+      points:
+        - "42% green and blue infrastructure — parks, wetlands, and permeable surfaces"
+        - "Continuous public riverfront promenade with 4 access points"
+        - "Fully remediated soil with ongoing groundwater monitoring network"
+        - "Light rail extension with 3 stations plus dedicated cycling network"
+        - "Grid street pattern with 6 entry points and car-free central zone"
+        - "4,200 housing units supporting an estimated 8,500 residents"
+    speaker_notes: "Show the before and after renders here. The contrast between impervious surface percentages is particularly striking for the stormwater management story."
+
+  # --- Section Divider ---
+  - type: section_divider
+    number: "03"
+    title: "Green Infrastructure"
+    subtitle: "Parks, ecology corridors, and climate-adaptive stormwater systems"
+
+  # --- Icon Cards: District Features ---
+  - type: icon_cards
+    section: "DISTRICT FEATURES"
+    message: "Riverside will offer a diverse range of amenities and public spaces woven into the urban fabric"
+    cards:
+      - title: "River Park"
+        icon: "leaf"
+        description: "A 5.8-hectare waterfront park with native plantings, a children's nature playground, outdoor amphitheater, and seasonal farmers market pavilion"
+      - title: "Innovation Quarter"
+        icon: "lightning"
+        description: "Adaptive reuse of the Grain Exchange and adjacent warehouses as a technology and creative industries hub with shared workshops and co-working spaces"
+      - title: "Wetland Commons"
+        icon: "sun"
+        description: "A 2.2-hectare constructed wetland that naturally filters stormwater runoff while providing habitat for migratory birds and serving as an outdoor classroom"
+    speaker_notes: "These anchor destinations give people reasons to come to Riverside from across the city. The Market Hall in particular is modeled on successful examples like Torvehallerne in Copenhagen."
+
+  # --- Comparison: Transportation Modes ---
+  - type: comparison
+    section: "MOBILITY"
+    title: "Transportation Mode Share Targets"
+    subtitle: "Shifting from car-dependent to multi-modal mobility"
+    left_panel:
+      header: "CITY AVERAGE"
+      title: "Current Mode Share"
+      rows:
+        - label: "Private Vehicle"
+          value: "62%"
+        - label: "Public Transit"
+          value: "18%"
+        - label: "Cycling"
+          value: "8%"
+        - label: "Car Parking Ratio"
+          value: "1.4 per unit"
+    right_panel:
+      header: "RIVERSIDE TARGET"
+      title: "Planned Mode Share"
+      rows:
+        - label: "Private Vehicle"
+          value: "15%"
+        - label: "Public Transit"
+          value: "38%"
+        - label: "Cycling"
+          value: "25%"
+        - label: "Car Parking Ratio"
+          value: "0.3 per unit"
+    footer_text: "Targets based on achieved mode shares in comparable car-light districts: Vauban (Freiburg), Hammarby Sjostad (Stockholm), and HafenCity (Hamburg)."
+    speaker_notes: "The 0.3 parking ratio will be controversial. Emphasize that it is paired with 3 light rail stations, 12 km of protected bike lanes, and 4 car-sharing hubs. This ratio is already proven in European waterfront districts."
+
+  # --- Timeline: Phased Development ---
+  - type: timeline
+    section: "IMPLEMENTATION"
+    title: "15-Year Phased Development"
+    subtitle: "Four phases from remediation to full build-out"
+    phases:
+      - label: "PHASE 1"
+        title: "Remediation & Infrastructure"
+        active: true
+        items:
+          - "Soil remediation and groundwater treatment across 6-hectare brownfield zone"
+          - "Light rail extension construction with 3 new stations"
+          - "Primary road grid, utilities backbone, and fiber optic network installation"
+          - "River Park Phase 1 — promenade, amphitheater, and central lawn"
+      - label: "PHASE 2"
+        title: "Anchor Development"
+        active: false
+        items:
+          - "Heritage building adaptive reuse — Grain Exchange, warehouses, Harbor Master's"
+          - "First 1,200 residential units with 30% affordable allocation"
+          - "Community Center and primary school construction"
+          - "Market Hall opening and Innovation Quarter first tenants"
+      - label: "PHASE 3"
+        title: "District Expansion"
+        active: false
+        items:
+          - "Additional 1,800 residential units across 4 new city blocks"
+          - "Constructed wetland and ecology corridor completion"
+          - "Secondary commercial and retail streets activated"
+          - "District energy system operational — geothermal with solar supplement"
+      - label: "PHASE 4"
+        title: "Completion & Maturation"
+        active: false
+        items:
+          - "Final 1,200 residential units and remaining commercial spaces"
+          - "Full cycling network and pedestrian bridge connections"
+          - "Community land trust fully capitalized and self-sustaining"
+          - "Post-occupancy evaluation and long-term stewardship handover"
+    speaker_notes: "Phase 1 is the most capital-intensive due to remediation costs. The light rail extension is co-funded by the regional transit authority. Construction is expected to begin Q3 2026 pending council approval."
+
+  # --- Key Metrics: Sustainability Targets ---
+  - type: key_metrics
+    section: "SUSTAINABILITY"
+    title: "Environmental Performance Targets"
+    subtitle: "Measurable commitments tracked annually through the district's sustainability dashboard"
+    metrics:
+      - value: "42%"
+        label: "Green Coverage"
+        trend: "up"
+        trend_label: "From 3% existing to 42%"
+        color: "success"
+      - value: "85%"
+        label: "Stormwater Retained"
+        trend: "up"
+        trend_label: "On-site via bioswales and wetlands"
+        color: "blue"
+      - value: "Net Zero"
+        label: "Carbon Target"
+        trend: "down"
+        trend_label: "Operational carbon by 2035"
+        color: "primary"
+      - value: "140+"
+        label: "Bird Species"
+        trend: "up"
+        trend_label: "Target via habitat corridors"
+        color: "accent"
+    speaker_notes: "The 85% stormwater retention target exceeds the city standard of 60%. This is achievable through the constructed wetland, bioswales along every street, green roofs on all buildings over 4 stories, and permeable paving throughout."
+
+  # --- Table: Land Use Allocation ---
+  - type: table
+    section: "ZONING"
+    title: "Land Use Allocation"
+    subtitle: "Distribution of uses across the 48-hectare site"
+    headers:
+      - "Land Use Category"
+      - "Area (ha)"
+      - "% of Site"
+      - "Key Components"
+    rows:
+      - ["Residential", "14.4", "30%", "Mid-rise apartments, townhouses, co-housing"]
+      - ["Mixed-Use Commercial", "7.2", "15%", "Retail ground floors, offices, co-working"]
+      - ["Parks & Open Space", "10.1", "21%", "River Park, pocket parks, playgrounds"]
+      - ["Green Infrastructure", "5.3", "11%", "Wetlands, bioswales, ecology corridors"]
+      - ["Transportation & Streets", "6.2", "13%", "Roads, cycle paths, light rail corridor"]
+      - ["Civic & Cultural", "3.4", "7%", "Community center, school, library, market"]
+      - ["Heritage & Innovation", "1.4", "3%", "Grain Exchange, warehouses, workshops"]
+    speaker_notes: "The 32% combined green space and green infrastructure is well above the city minimum of 15%. This reflects our commitment to the resilience and net-positive ecology principles."
+
+  # --- Process: Community Engagement ---
+  - type: process
+    section: "ENGAGEMENT"
+    title: "Community Engagement Process"
+    subtitle: "How residents and stakeholders shaped this masterplan"
+    steps:
+      - number: 1
+        icon: "people"
+        title: "Listening Phase"
+        description: "Broad community outreach to understand needs, concerns, and aspirations"
+        items:
+          - "14 community workshops held across 7 neighborhoods over 3 months"
+          - "Online survey received 3,842 responses in 6 languages"
+          - "Youth engagement program with 3 local schools — students created vision maps"
+          - "Door-to-door interviews with 200 residents in adjacent neighborhoods"
+      - number: 2
+        icon: "document"
+        title: "Co-Design Phase"
+        description: "Working with residents to develop and evaluate design alternatives"
+        items:
+          - "3 design scenarios presented at public exhibition (attended by 1,200 people)"
+          - "Interactive model workshops where residents placed buildings and parks on site map"
+          - "Design review panels with local business owners, disability advocates, and elder groups"
+          - "Environmental justice assessment conducted with frontline community representatives"
+      - number: 3
+        icon: "chart"
+        title: "Refinement Phase"
+        description: "Incorporating feedback into the final masterplan"
+        items:
+          - "Draft masterplan exhibited for 45-day public comment period"
+          - "342 written submissions received and individually responded to"
+          - "12 material changes made to the plan based on community feedback"
+          - "Final plan endorsed by the Community Advisory Panel with 18-2 vote"
+      - number: 4
+        icon: "check"
+        title: "Ongoing Stewardship"
+        description: "Ensuring community voice continues through implementation"
+        items:
+          - "Permanent Community Advisory Panel with elected resident representatives"
+          - "Annual public reporting on development progress and sustainability metrics"
+          - "Community benefit agreement with binding commitments on affordable housing and local hiring"
+          - "Digital engagement platform for ongoing feedback and issue reporting"
+    speaker_notes: "The 12 material changes made after public comment are important to highlight. They include the addition of the community land trust, expansion of the wetland area, and relocation of the tallest buildings away from the adjacent neighborhood."
+
+  # --- Checklist: Regulatory Approvals ---
+  - type: checklist
+    section: "APPROVALS"
+    title: "Regulatory Approval Status"
+    subtitle: "Required approvals and their current status as of April 2026"
+    columns: 2
+    items:
+      - text: "Environmental Impact Assessment approved"
+        status: "done"
+        note: "Approved by Environmental Protection Agency, Feb 2026"
+      - text: "Heritage impact statement accepted"
+        status: "done"
+        note: "National Heritage Board confirmed all 12 preservation conditions"
+      - text: "Zoning amendment for mixed-use designation"
+        status: "in_progress"
+        note: "Council first reading passed, second reading scheduled May 2026"
+      - text: "Light rail extension funding agreement"
+        status: "done"
+        note: "Regional Transit Authority committed 180M over 4 years"
+      - text: "Brownfield remediation plan certified"
+        status: "in_progress"
+        note: "Under review by state environmental agency, expected June 2026"
+      - text: "Affordable housing covenant registered"
+        status: "pending"
+        note: "Requires zoning amendment approval before registration"
+      - text: "Stormwater management plan approved"
+        status: "done"
+        note: "Exceeds municipal requirements — approved with commendation"
+      - text: "Transportation impact assessment completed"
+        status: "in_progress"
+        note: "Traffic modeling 90% complete, pedestrian safety audit underway"
+      - text: "Community benefit agreement signed"
+        status: "pending"
+        note: "Final terms under negotiation with Community Advisory Panel"
+      - text: "District energy system permit"
+        status: "blocked"
+        note: "Awaiting updated geothermal regulations expected Q3 2026"
+    speaker_notes: "The critical path item is the zoning amendment. Without it, Phase 2 residential development cannot proceed. The second council reading in May requires 2/3 majority approval."
+
+  # --- Quote ---
+  - type: quote
+    section: "VISION"
+    quote: "Cities have the capability of providing something for everybody, only because, and only when, they are created by everybody."
+    attribution: "Jane Jacobs"
+    source: "The Death and Life of Great American Cities, 1961"
+    dark: true
+    speaker_notes: "Close with Jane Jacobs. This masterplan was shaped by 3,842 survey responses, 14 workshops, and 342 written submissions. It genuinely was created by everybody."

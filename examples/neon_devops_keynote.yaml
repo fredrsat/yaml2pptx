@@ -1,0 +1,326 @@
+output: "neon_devops_keynote.pptx"
+theme: neon
+metadata:
+  title: "Platform Engineering: The Next Evolution of DevOps"
+  author: "DevOps Conference 2026"
+  subject: "Platform Engineering Keynote"
+theme_config:
+  organization: "DevOpsCon"
+  document_title: "Platform Engineering Keynote"
+
+slides:
+  # --- Title Page ---
+  - type: title_page
+    category: "DEVOPSCON 2026 KEYNOTE"
+    title: "Platform Engineering"
+    subtitle: "The Next Evolution of DevOps — From Tribal Knowledge to Golden Paths"
+    author: "Kira Nakamura, VP Platform Engineering"
+    date: "April 2026"
+    speaker_notes: "Open with the story of onboarding a new developer who needed 3 weeks and 14 Confluence pages to deploy their first service. That friction is the problem we solve."
+
+  # --- Agenda ---
+  - type: agenda
+    section: "OVERVIEW"
+    title: "What We Will Cover"
+    subtitle: "From the problem to the path forward"
+    items:
+      - title: "The DIY DevOps Problem"
+        description: "Why giving every team full infrastructure autonomy created chaos instead of velocity"
+      - title: "Internal Developer Platforms"
+        description: "What they are, what they are not, and why they matter now"
+      - title: "Golden Paths & Self-Service"
+        description: "Designing paved roads that developers actually want to use"
+      - title: "Developer Experience Metrics"
+        description: "Measuring what matters — cognitive load, lead time, and developer satisfaction"
+      - title: "Platform Team Structure"
+        description: "Building the team that builds the platform"
+      - title: "Adoption Strategy"
+        description: "Getting from pilot to enterprise-wide adoption without mandates"
+    speaker_notes: "Frame the talk as a journey from pain to solution. Mention that every section maps to real lessons learned at organizations with 500+ engineers."
+
+  # --- The Problem: Stat Cards ---
+  - type: stat_cards
+    section: "THE PROBLEM"
+    title: "The Hidden Tax of DIY DevOps"
+    subtitle: "What happens when every team builds their own deployment pipeline"
+    cards:
+      - stat: "72%"
+        label: "time on toil"
+        title: "Infrastructure Overhead"
+        description: "Senior engineers at organizations without platforms spend nearly three-quarters of their time on undifferentiated infrastructure work rather than product features"
+      - stat: "14"
+        label: "days to first deploy"
+        title: "Onboarding Friction"
+        description: "Average time for a new hire to push their first change to production, including environment setup, access provisioning, and pipeline configuration"
+      - stat: "43"
+        label: "unique CI pipelines"
+        title: "Configuration Sprawl"
+        description: "The median number of distinct, team-maintained CI/CD configurations in enterprises with 200+ developers — each a snowflake with its own failure modes"
+    footnotes: "Source: 2025 Puppet State of DevOps Report and internal surveys across 12 enterprise engineering organizations"
+    speaker_notes: "Let these numbers sink in. 72% on toil means for every dollar you spend on engineering salary, 72 cents goes to keeping the lights on."
+
+  # --- Definition Cards: Platform Pillars ---
+  - type: definition_cards
+    section: "FOUNDATIONS"
+    title: "The Five Pillars of Platform Engineering"
+    subtitle: "A platform is not a tool — it is a product built for developers"
+    cards:
+      - term: "Self-Service"
+        icon: "rocket"
+        subtitle: "On-Demand Infrastructure"
+        description: "Developers provision databases, environments, and services through a portal or CLI without filing tickets or waiting for approvals"
+        border_color: "#00ff88"
+      - term: "Golden Paths"
+        icon: "target"
+        subtitle: "Opinionated Defaults"
+        description: "Pre-configured, tested, and supported workflows for common tasks — deploy a service, create a data pipeline, set up monitoring — that encode organizational best practices"
+        border_color: "#00ccff"
+      - term: "Guardrails"
+        icon: "shield"
+        subtitle: "Safety by Design"
+        description: "Policy-as-code, automated compliance checks, and resource quotas built into the platform so security and governance happen automatically, not after the fact"
+        border_color: "#ff6600"
+    callout:
+      label: "KEY INSIGHT"
+      columns:
+        - title: "Product Thinking"
+          description: "The most successful platforms treat developers as customers. They conduct user research, track adoption metrics, and iterate based on feedback — just like any product team."
+        - title: "Optional by Default"
+          description: "Mandated platforms fail. The golden path must be so good that teams choose it voluntarily. If you have to force adoption, your platform has a product problem."
+    speaker_notes: "Emphasize the product thinking angle. Most failed platforms were built by infrastructure teams who never talked to their users."
+
+  # --- Two Panels: DevOps vs Platform Engineering ---
+  - type: two_panels
+    section: "PARADIGM SHIFT"
+    title: "DevOps vs Platform Engineering"
+    subtitle: "Evolution, not replacement"
+    left_panel:
+      letter: "A"
+      label: "TRADITIONAL DEVOPS"
+      title: "You Build It, You Run It"
+      dark: false
+      points:
+        - "Every team owns their full stack end-to-end"
+        - "Teams choose their own tools, languages, and deployment methods"
+        - "Deep expertise required across infrastructure, security, and operations"
+        - "High cognitive load per developer — must understand Kubernetes, networking, IAM, observability"
+        - "Knowledge silos form around team-specific tooling"
+    right_panel:
+      letter: "B"
+      label: "PLATFORM ENGINEERING"
+      title: "You Build It, We Pave the Road"
+      dark: true
+      points:
+        - "Platform team abstracts common infrastructure concerns"
+        - "Curated set of tools with deep integration and first-class support"
+        - "Developers focus on business logic, platform handles the undifferentiated heavy lifting"
+        - "Lower cognitive load — standardized abstractions hide complexity"
+        - "Shared golden paths create organizational leverage and consistency"
+    speaker_notes: "Make clear this is not a step backward to centralized ops. The platform team does not deploy your code — they build the tools that let you deploy it easily."
+
+  # --- Section Divider ---
+  - type: section_divider
+    number: "02"
+    title: "The Internal Developer Platform"
+    subtitle: "Architecture, capabilities, and the developer experience layer"
+
+  # --- Icon Cards: Platform Capabilities ---
+  - type: icon_cards
+    section: "CAPABILITIES"
+    message: "A mature internal developer platform provides these core capabilities through a unified, self-service interface"
+    cards:
+      - title: "Service Catalog"
+        icon: "document"
+        description: "A searchable registry of all services, their owners, dependencies, API documentation, and health status — the single source of truth for your software ecosystem"
+      - title: "Environment Management"
+        icon: "server"
+        description: "Spin up isolated preview environments for every pull request, ephemeral staging environments for integration testing, and production-like load test environments on demand"
+      - title: "Compliance Engine"
+        icon: "shield"
+        description: "Automated policy checks on every deployment — vulnerability scanning, license compliance, data residency validation, and SOC2 control evidence collection"
+    speaker_notes: "Walk through each capability and connect it to the pain points from the earlier slides. Service catalog solves the tribal knowledge problem. Environment management solves the 14-day onboarding."
+
+  # --- Comparison: DIY vs Platform ---
+  - type: comparison
+    section: "SIDE BY SIDE"
+    title: "DIY Infrastructure vs Platform Approach"
+    subtitle: "Measured outcomes from organizations that made the transition"
+    left_panel:
+      header: "BEFORE"
+      title: "DIY Infrastructure"
+      rows:
+        - label: "Time to First Deploy"
+          value: "14 days"
+        - label: "Deployment Frequency"
+          value: "Weekly (per team)"
+        - label: "Change Failure Rate"
+          value: "18%"
+        - label: "Developer Satisfaction"
+          value: "5.2 / 10"
+    right_panel:
+      header: "AFTER"
+      title: "Platform Approach"
+      rows:
+        - label: "Time to First Deploy"
+          value: "< 1 day"
+        - label: "Deployment Frequency"
+          value: "Multiple daily"
+        - label: "Change Failure Rate"
+          value: "4.2%"
+        - label: "Developer Satisfaction"
+          value: "8.7 / 10"
+    footer_text: "Aggregated data from 8 enterprises (500-5000 engineers) 12 months after platform adoption. Individual results vary based on starting maturity."
+    speaker_notes: "The cost reduction comes from eliminating redundant tooling, right-sizing resources through centralized management, and reducing incident frequency."
+
+  # --- Process: Adoption Journey ---
+  - type: process
+    section: "ADOPTION"
+    title: "The Platform Adoption Journey"
+    subtitle: "A phased approach from inception to enterprise-wide adoption"
+    steps:
+      - number: 1
+        icon: "search"
+        title: "Discovery & Research"
+        description: "Understand developer pain points through surveys, interviews, and workflow observation"
+        items:
+          - "Run developer experience surveys across all engineering teams"
+          - "Shadow 10-15 developers through their daily workflows"
+          - "Map the most common infrastructure tasks and their current friction points"
+          - "Identify the top 3 pain points with highest impact and feasibility"
+      - number: 2
+        icon: "gear"
+        title: "MVP Platform"
+        description: "Build the thinnest possible platform that solves one critical pain point end-to-end"
+        items:
+          - "Choose a single golden path (usually service deployment)"
+          - "Build a working self-service flow in 6-8 weeks"
+          - "Recruit 2-3 early adopter teams who are motivated and forgiving"
+          - "Iterate weekly based on direct feedback"
+      - number: 3
+        icon: "people"
+        title: "Early Adoption"
+        description: "Expand to 20-30% of engineering with a dedicated support model"
+        items:
+          - "Publish documentation, tutorials, and example repositories"
+          - "Create a Slack channel with platform engineers providing same-day support"
+          - "Add 2-3 more golden paths based on user demand"
+          - "Establish platform SLOs and publish a reliability dashboard"
+      - number: 4
+        icon: "rocket"
+        title: "Scale & Mature"
+        description: "Drive organization-wide adoption through demonstrated value, not mandates"
+        items:
+          - "Migrate remaining teams with white-glove onboarding support"
+          - "Build an internal marketplace for team-contributed plugins and templates"
+          - "Implement cost attribution and chargeback models"
+          - "Establish a platform advisory board with representatives from each product area"
+    speaker_notes: "Stress the MVP approach. The biggest mistake is spending 18 months building a platform in isolation. Ship something in 8 weeks and iterate."
+
+  # --- Key Metrics: Developer Experience Dashboard ---
+  - type: key_metrics
+    section: "METRICS"
+    title: "Developer Experience Dashboard"
+    subtitle: "Metrics that matter — tracked monthly across all platform users"
+    metrics:
+      - value: "4.2 hrs"
+        label: "Time to 10th PR"
+        trend: "down"
+        trend_label: "67% faster than pre-platform"
+        color: "success"
+      - value: "92%"
+        label: "Golden Path Adoption"
+        trend: "up"
+        trend_label: "+24% this quarter"
+        color: "primary"
+      - value: "8.7"
+        label: "Developer Satisfaction"
+        trend: "up"
+        trend_label: "+3.5 points YoY"
+        color: "accent"
+      - value: "47x"
+        label: "Deploy Frequency"
+        trend: "up"
+        trend_label: "vs pre-platform baseline"
+        color: "blue"
+    speaker_notes: "Time to 10th PR is a better metric than time to first deploy because it measures ongoing productivity, not just initial setup. Golden path adoption above 90% is the sign of a healthy platform."
+
+  # --- Timeline: Maturity Model ---
+  - type: timeline
+    section: "MATURITY"
+    title: "Platform Engineering Maturity Model"
+    subtitle: "Where does your organization sit today?"
+    phases:
+      - label: "LEVEL 1"
+        title: "Ad Hoc"
+        active: false
+        description: "No shared platform. Every team manages their own infrastructure using custom scripts and tribal knowledge. High duplication, high cognitive load."
+      - label: "LEVEL 2"
+        title: "Standardized"
+        active: false
+        description: "Shared CI/CD pipelines and base container images. Some documentation exists. Teams still manage their own infrastructure but with common building blocks."
+      - label: "LEVEL 3"
+        title: "Self-Service"
+        active: true
+        description: "Internal developer portal with self-service provisioning. Golden paths cover the most common workflows. Platform team operates as a product team with user research and roadmap."
+      - label: "LEVEL 4"
+        title: "Optimized"
+        active: false
+        description: "Platform handles compliance, cost optimization, and reliability automatically. Developer experience is continuously measured and improved. Platform contributions come from across the org."
+    speaker_notes: "Most organizations are between Level 1 and 2. The jump to Level 3 is where the transformative gains happen. Level 4 is aspirational — perhaps 5% of organizations are there today."
+
+  # --- Checklist: Platform Readiness ---
+  - type: checklist
+    section: "READINESS"
+    title: "Platform Readiness Assessment"
+    subtitle: "Evaluate your organization against these criteria before starting your platform journey"
+    columns: 2
+    items:
+      - text: "Executive sponsor identified with budget authority"
+        status: "done"
+        note: "VP Engineering or CTO-level champion required"
+      - text: "Developer pain points documented through research"
+        status: "done"
+        note: "Surveys completed with >60% response rate"
+      - text: "Platform team of 4-6 engineers staffed"
+        status: "in_progress"
+        note: "Currently have 3, hiring 2 more senior engineers"
+      - text: "First golden path identified and scoped"
+        status: "in_progress"
+        note: "Service deployment selected, design review next week"
+      - text: "Early adopter teams recruited and committed"
+        status: "pending"
+        note: "3 teams expressed interest, need formal commitment"
+      - text: "Success metrics defined and baseline measured"
+        status: "pending"
+        note: "Draft metrics proposed, awaiting leadership alignment"
+      - text: "Existing tooling landscape audited"
+        status: "done"
+        note: "Found 43 unique CI pipelines and 7 deployment methods"
+      - text: "Internal developer portal technology selected"
+        status: "blocked"
+        note: "Backstage vs custom build decision pending architecture review"
+    speaker_notes: "This is an honest assessment. No organization starts with everything green. The blocked item on portal technology is a real decision many teams agonize over. My advice: start with Backstage, fork later if needed."
+
+  # --- Quote ---
+  - type: quote
+    section: "CLOSING THOUGHT"
+    quote: "A platform team does not exist to build a platform. It exists to reduce the cognitive load on stream-aligned teams so they can focus on delivering value to customers. The platform is just the mechanism."
+    attribution: "Matthew Skelton"
+    source: "Team Topologies — Organizing Business and Technology Teams for Fast Flow"
+    dark: true
+    speaker_notes: "End on this quote. It reframes platform engineering away from technology and toward people. The goal is not Kubernetes or Backstage — it is developer productivity and happiness."
+
+  # --- Closing: Content Slide ---
+  - type: content
+    section: "NEXT STEPS"
+    title: "Start Your Platform Journey"
+    subtitle: "Three things you can do Monday morning"
+    content:
+      - "**Run a developer experience survey** — Use the DX Core 4 framework to measure cognitive load, delivery speed, flow state, and satisfaction across your engineering organization"
+      - "**Identify your first golden path** — Pick the one workflow that causes the most friction for the most teams. For 80% of organizations, that is deploying a new service to production."
+      - "**Assemble a founding team** — You need 4-6 engineers who are equal parts infrastructure expertise and product empathy. This is not an ops team — it is a product team."
+      - text: "Resources and templates available at platform-engineering.org/starter-kit"
+        level: 2
+      - text: "Join the Platform Engineering Slack community — 28,000+ practitioners sharing lessons learned"
+        level: 2
+    speaker_notes: "Keep it actionable. People are inspired by talks but forget by Wednesday. Give them three concrete actions they can take immediately."
