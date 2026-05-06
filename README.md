@@ -37,11 +37,11 @@ yaml2pptx inspect template.pptx
 
 ```yaml
 output: "output.pptx"             # Output filename
+theme: "default"                   # Theme name (see Themes section)
 metadata:
   title: "Presentation Title"
   author: "Author Name"
   subject: "Subject"
-theme: "default"                    # Theme name (default: "default")
 theme_config:
   organization: "Organization"     # Footer organization name
   document_title: "Doc Title"      # Footer document title
@@ -55,7 +55,7 @@ slides:
 
 ## Slide Types
 
-yaml2pptx includes 14 slide types. Each type has its own layout and set of fields.
+yaml2pptx includes 17 slide types. Each type has its own layout and set of fields.
 
 ---
 
@@ -341,8 +341,42 @@ Status checklist with colored indicators. Supports multi-column layout.
   columns: 2                         # 1, 2, or 3 columns
   items:
     - text: "Task description"
-      status: "done"                 # "done" (✓), "in_progress" (●), "pending" (○), "blocked" (✗)
+      status: "done"                 # "done" (checkmark), "in_progress" (dot), "pending" (circle), "blocked" (x)
       note: "Optional note"         # Small italic text below
+```
+
+---
+
+### `image_text`
+
+Image with text content side by side.
+
+```yaml
+- type: image_text
+  section: "SECTION"
+  title: "Slide Title"
+  image: "path/to/image.png"
+  image_position: "left"             # "left" or "right"
+  content:
+    - "Bullet point 1"
+    - "Bullet point 2"
+```
+
+---
+
+### `table`
+
+Data table with headers and rows.
+
+```yaml
+- type: table
+  section: "SECTION"
+  title: "Data Table"
+  table:
+    headers: ["Column 1", "Column 2", "Column 3"]
+    rows:
+      - ["Row 1 A", "Row 1 B", "Row 1 C"]
+      - ["Row 2 A", "Row 2 B", "Row 2 C"]
 ```
 
 ---
@@ -363,6 +397,30 @@ Simple bullet-point slide. Used for any unrecognized type or explicit `content` 
   # OR as a single string:
   content: "Paragraph text without bullets"
 ```
+
+---
+
+## Common Fields
+
+All slide types support these optional fields:
+
+| Field | Description |
+|-------|-------------|
+| `section` | Section label shown in the header (uppercase) |
+| `page` | Custom page number (auto-generated if omitted) |
+| `speaker_notes` | Speaker notes added to the slide |
+
+## Inline Markdown
+
+Text fields support inline Markdown formatting:
+
+| Syntax | Result |
+|--------|--------|
+| `**bold**` | **bold** |
+| `*italic*` | *italic* |
+| `` `code` `` | monospace |
+| `[text](url)` | hyperlink |
+| `~~strikethrough~~` | strikethrough |
 
 ---
 
@@ -390,15 +448,30 @@ cards:
 | **Navigation** | `arrow_right`, `arrow_left`, `arrow_up`, `arrow_down`, `search`, `link`, `clock`, `rocket` |
 | **Shapes** | `circle`, `square`, `diamond`, `triangle` |
 
-**Aliases:** `gpu`→chip, `ai`→brain, `security`→shield, `settings`→gear, `users`→people, `time`→clock, `data`→database, `success`→check, `error`→cross, `alert`→warning, `plus`→health
+**Aliases:** `gpu`=chip, `ai`=brain, `security`=shield, `settings`=gear, `users`=people, `time`=clock, `data`=database, `success`=check, `error`=cross, `alert`=warning, `plus`=health
 
-## Theme
+---
 
-The default theme uses:
+## Themes
 
-- **Colors:** Navy blue (#003087), teal accent (#00A9A5), light blue (#6CACE4), dark navy (#001F5C)
-- **Font:** Calibri throughout
-- **Slide size:** 13.33" × 7.50" (widescreen 16:9)
+yaml2pptx includes 10 built-in themes. Set the theme in your YAML file:
+
+```yaml
+theme: midnight
+```
+
+| Theme | Style | Primary | Accent |
+|-------|-------|---------|--------|
+| `default` | Professional blue | Navy #003087 | Teal #00A9A5 |
+| `midnight` | Dark and modern | Dark blue #1A237E | Amber #FFC107 |
+| `coral` | Warm and energetic | Deep coral #C4654A | Teal #00897B |
+| `forest` | Natural and grounded | Forest green #2E7D32 | Earth brown #8D6E63 |
+| `sunset` | Warm golden tones | Deep orange #E65100 | Purple #7B1FA2 |
+| `arctic` | Cool and minimal | Ice blue #0277BD | Cyan #00BCD4 |
+| `executive` | Dark and formal | Charcoal #212121 | Gold #C9A94E |
+| `neon` | Bold and high-contrast | Electric purple #6200EA | Hot pink #FF4081 |
+| `earth` | Warm earth tones | Terracotta #A0522D | Olive #6B8E23 |
+| `ocean` | Deep sea blues | Ocean blue #01579B | Aqua #26C6DA |
 
 ### Theme Config
 
@@ -412,23 +485,119 @@ theme_config:
   footer: "Custom footer"           # Overrides auto-generated footer
 ```
 
+---
+
 ## Examples
 
-See the `examples/` directory:
+The `examples/` directory contains presentations for each theme:
 
-| File | Description |
-|------|-------------|
-| `product_launch.yaml` | Product launch plan — stat_cards, timeline, checklist, two_panels, quote |
-| `quarterly_review.yaml` | Quarterly business review — key_metrics, comparison, process, table |
-| `tech_strategy.yaml` | Cloud migration strategy — definition_cards, process, timeline, comparison |
+| File | Theme | Description |
+|------|-------|-------------|
+| `tech_strategy.yaml` | default | Cloud migration strategy |
+| `midnight_ml_pipeline.yaml` | midnight | ML pipeline architecture |
+| `coral_brand_refresh.yaml` | coral | Brand refresh proposal |
+| `forest_sustainability.yaml` | forest | Sustainability report |
+| `sunset_pitch_deck.yaml` | sunset | Startup pitch deck |
+| `arctic_analytics.yaml` | arctic | Analytics platform overview |
+| `executive_board_report.yaml` | executive | Board report |
+| `neon_devops_keynote.yaml` | neon | DevOps conference keynote |
+| `earth_urban_plan.yaml` | earth | Urban development plan |
+| `ocean_research.yaml` | ocean | Marine research findings |
+| `showcase.yaml` | default | All slide types demonstrated |
+| `product_launch.yaml` | default | Product launch plan |
+| `quarterly_review.yaml` | default | Quarterly business review |
+
+Build an example:
+
+```bash
+yaml2pptx build examples/coral_brand_refresh.yaml --open
+```
 
 Build all examples:
 
 ```bash
-yaml2pptx build examples/product_launch.yaml --open
-yaml2pptx build examples/quarterly_review.yaml --open
-yaml2pptx build examples/tech_strategy.yaml --open
+for f in examples/*.yaml; do yaml2pptx build "$f"; done
 ```
+
+---
+
+## VS Code Extension
+
+yaml2pptx includes a VS Code extension for editing YAML presentations with live preview, autocompletion, and validation.
+
+### Installation
+
+Build and install the extension from the `vscode-extension/` directory:
+
+```bash
+cd vscode-extension
+npm install
+npm run compile
+npx vsce package
+```
+
+Then install the generated `.vsix` file:
+
+- Open VS Code
+- `Cmd+Shift+P` (Mac) / `Ctrl+Shift+P` (Windows/Linux)
+- "Extensions: Install from VSIX..."
+- Select `yaml2pptx-0.1.0.vsix`
+
+Or from the command line:
+
+```bash
+code --install-extension yaml2pptx-0.1.0.vsix
+```
+
+### Features
+
+#### Live Preview
+
+Open a yaml2pptx YAML file and run the preview command to see a live rendering of your slides in a side panel.
+
+- **Command:** `yaml2pptx: Open Preview`
+- **Command Palette:** `Cmd+Shift+P` → "yaml2pptx: Open Preview"
+- **Editor title bar:** Click the preview icon when a YAML file is open
+
+The preview updates automatically when you edit the YAML file. Navigate between slides with the arrow buttons or click thumbnails.
+
+#### Generate PPTX
+
+Generate a PowerPoint file directly from VS Code.
+
+- **Command:** `yaml2pptx: Generate PPTX`
+- Opens a terminal and runs `yaml2pptx build` on the current file
+- Requires `yaml2pptx` to be installed (`pip install -e .`)
+
+#### Snippets
+
+Type `y2p-` in a YAML file to see available snippets for all slide types:
+
+| Snippet | Description |
+|---------|-------------|
+| `y2p-presentation` | Full presentation scaffold |
+| `y2p-title_page` | Title page slide |
+| `y2p-agenda` | Agenda slide |
+| `y2p-stat_cards` | Stat cards slide |
+| `y2p-definition_cards` | Definition cards slide |
+| `y2p-content_cards` | Content cards slide |
+| `y2p-icon_cards` | Icon cards slide |
+| `y2p-two_panels` | Two panels slide |
+| `y2p-comparison` | Comparison slide |
+| `y2p-section_divider` | Section divider slide |
+| `y2p-timeline` | Timeline slide |
+| `y2p-process` | Process steps slide |
+| `y2p-quote` | Quote slide |
+| `y2p-key_metrics` | Key metrics slide |
+| `y2p-checklist` | Checklist slide |
+| `y2p-content` | Content slide |
+| `y2p-table` | Table slide |
+
+#### Schema Validation
+
+The extension provides JSON schema validation for yaml2pptx YAML files, giving you inline errors and autocomplete for slide types and their fields.
+
+---
 
 ## Template-Based Rendering (`gen`)
 
@@ -451,8 +620,6 @@ slides:
         level: 1
     speaker_notes: "Speaker notes here"
 ```
-
-Supports inline Markdown formatting: `**bold**`, `*italic*`, `` `code` ``, `[link](url)`, `~~strikethrough~~`.
 
 ```bash
 yaml2pptx gen presentation.yaml
