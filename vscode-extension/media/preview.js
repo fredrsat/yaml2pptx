@@ -41,7 +41,7 @@
         // Strikethrough: ~~text~~
         text = text.replace(/~~(.+?)~~/g, '<del>$1</del>');
         // Italic: *text* (but not inside already-processed strong tags)
-        text = text.replace(/(?<!\*)\*(?!\*)(.+?)(?<!\*)\*(?!\*)/g, '<em>$1</em>');
+        text = text.replace(/(?<!\*)\*([^*]+)\*(?!\*)/g, '<em>$1</em>');
         // Code: `text`
         text = text.replace(/`(.+?)`/g, '<code style="background:#E2E8F0;padding:1px 4px;border-radius:3px;font-size:0.9em;">$1</code>');
         // Links: [text](url)
@@ -807,7 +807,11 @@
             try {
                 var message = event.data;
                 if (message && message.type === 'update') {
-                    renderSlides(message.slides || [], message.metadata || {}, message.themeConfig || {}, message.theme || 'default');
+                    if (message.error) {
+                        c.innerHTML = '<div style="color:#E87722;padding:20px;font-size:0.9em;"><strong>Parse Error:</strong> ' + message.error + '</div>';
+                    } else {
+                        renderSlides(message.slides || [], message.metadata || {}, message.themeConfig || {}, message.theme || 'default');
+                    }
                 }
             } catch (err) {
                 if (c) c.innerHTML = '<div style="color:red;padding:20px;font-size:0.9em;"><strong>Render error:</strong><br><pre>' + String(err && err.stack ? err.stack : err) + '</pre></div>';

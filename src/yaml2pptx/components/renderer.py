@@ -6,8 +6,11 @@ instead of relying on PowerPoint placeholder layouts.
 
 from __future__ import annotations
 
+import logging
 from pathlib import Path
 from typing import Any
+
+logger = logging.getLogger(__name__)
 
 from pptx import Presentation
 from pptx.util import Emu, Inches, Pt
@@ -63,8 +66,14 @@ def render_presentation(
     prs.slide_width = Emu(theme.sizes.slide_width)
     prs.slide_height = Emu(theme.sizes.slide_height)
 
-    # Use the blank layout
-    blank_layout = prs.slide_layouts[6]  # "Blank"
+    # Use the blank layout — prefer name-based lookup, fall back to index 6
+    blank_layout = None
+    for layout in prs.slide_layouts:
+        if layout.name.lower() == "blank":
+            blank_layout = layout
+            break
+    if blank_layout is None:
+        blank_layout = prs.slide_layouts[6]
 
     total = len(slides_data)
 
@@ -162,6 +171,7 @@ def render_image_text(
         try:
             _add_image(slide, image, img_left, content_top, width=image_width)
         except FileNotFoundError:
+            logger.warning("Image not found: %s", image)
             # Render placeholder rectangle if image not found
             add_rect(slide, img_left, content_top, image_width, 3.5, fill=c.card_bg)
             add_textbox(slide, img_left, content_top + 1.5, image_width, 0.5,
@@ -310,6 +320,7 @@ def _render_simple_content(slide, theme: Theme, data: dict) -> None:
         try:
             _add_image(slide, image, 8.0, s.content_top, width=4.5)
         except FileNotFoundError:
+            logger.warning("Image not found: %s", image)
             add_rect(slide, 8.0, s.content_top, 4.5, 3.5, fill=c.card_bg)
         content_width = 7.0
     else:

@@ -39,8 +39,8 @@
     "keybindings": [
       {
         "command": "yaml2pptx.preview",
-        "key": "ctrl+shift+p",
-        "mac": "cmd+shift+p",
+        "key": "ctrl+shift+y",
+        "mac": "cmd+shift+y",
         "when": "editorLangId == yaml"
       }
     ],

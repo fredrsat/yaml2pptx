@@ -2,7 +2,10 @@
 
 from __future__ import annotations
 
+import logging
 from pathlib import Path
+
+logger = logging.getLogger(__name__)
 
 from yaml2pptx.engine.charts import add_chart_to_slide
 from yaml2pptx.engine.images import add_image_to_slide
@@ -96,6 +99,7 @@ def _populate_subtitle(slide, subtitle_text: str) -> None:  # type: ignore[no-un
         if shape.placeholder_format.idx == 1 and not slide.shapes.title == shape:
             shape.text = subtitle_text
             return
+    logger.warning("Subtitle placeholder not found on slide")
 
 
 def _populate_body(
@@ -110,3 +114,4 @@ def _populate_body(
         if shape.placeholder_format.idx == placeholder_idx:
             populate_text_frame(shape.text_frame, elements, font_size, font_name)
             return
+    logger.warning("Body placeholder (idx=%d) not found on slide", placeholder_idx)

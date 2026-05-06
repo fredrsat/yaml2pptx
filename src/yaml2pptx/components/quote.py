@@ -143,7 +143,8 @@ def render_key_metrics(
         # Trend indicator
         if metric.get("trend"):
             trend = metric["trend"]
-            trend_color = c.success if trend == "up" else c.warning if trend == "down" else c.text_muted
+            _trend_colors = {"up": c.success, "down": c.warning}
+            trend_color = _trend_colors.get(trend, c.text_muted)
             trend_symbol = "▲" if trend == "up" else "▼" if trend == "down" else "●"
             trend_text = f"{trend_symbol}  {metric.get('trend_label', '')}"
             add_textbox(slide, inner_left, top + 1.35, inner_width, 0.30,

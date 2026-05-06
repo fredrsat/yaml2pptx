@@ -74,7 +74,17 @@ export class PreviewPanel {
 
     private sendUpdate(document: vscode.TextDocument) {
         const parsed = this.parseYaml(document);
-        if (!parsed) { return; }
+        if (!parsed) {
+            this.panel.webview.postMessage({
+                type: 'update',
+                slides: [],
+                metadata: {},
+                themeConfig: {},
+                theme: 'default',
+                error: 'YAML parse error: Could not parse slides from this file. Check your YAML syntax.',
+            });
+            return;
+        }
 
         // Update panel title
         const fileName = path.basename(document.uri.fsPath);

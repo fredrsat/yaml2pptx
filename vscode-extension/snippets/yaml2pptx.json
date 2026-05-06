@@ -268,7 +268,7 @@
       "      color: \"${10:blue}\"",
       "    - value: \"${11:300}\"",
       "      label: \"${12:Metric 3}\"",
-      "      trend: \"${13:stable}\"",
+      "      trend: \"${13:up}\"",
       "      color: \"${14:orange}\"",
       "$0"
     ]

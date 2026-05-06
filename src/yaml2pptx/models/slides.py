@@ -23,7 +23,7 @@ def _normalize_content(v: list | None) -> list[TextElement] | None:
         elif isinstance(item, TextElement):
             result.append(item)
         else:
-            result.append(item)
+            raise ValueError(f"Invalid content item type: {type(item).__name__}")
     return result
 
 

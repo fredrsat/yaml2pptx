@@ -796,9 +796,9 @@
               },
               "color": {
                 "type": "string",
-                "enum": ["primary", "accent", "success", "warning", "blue", "dark"],
+                "enum": ["primary", "accent", "success", "warning", "blue", "dark", "green", "orange", "red"],
                 "description": "Color theme for this metric card.",
-                "markdownDescription": "Color theme for this metric card.\n\n- `primary` - Primary brand color\n- `accent` - Accent/highlight color\n- `success` - Green/positive\n- `warning` - Orange/caution\n- `blue` - Blue\n- `dark` - Dark/neutral"
+                "markdownDescription": "Color theme for this metric card.\n\n- `primary` - Primary brand color\n- `accent` - Accent/highlight color\n- `success` - Green/positive\n- `warning` - Orange/caution\n- `blue` - Blue\n- `dark` - Dark/neutral\n- `green` - Green\n- `orange` - Orange\n- `red` - Red"
               }
             },
             "required": ["value", "label"],

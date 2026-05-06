@@ -82,7 +82,6 @@ def render_two_panels(
         # Points
         if panel.get("points"):
             points_top = panel_top + 2.60
-            points_height = panel_height - 2.60 + panel_top - points_top + panel_top - 0.10
             points_height = panel_top + panel_height - points_top - 0.10
             font = 12 if len(panel["points"]) > 5 else 13
             add_multiline_textbox(slide, inner_left, points_top, inner_width, points_height,

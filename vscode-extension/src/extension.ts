@@ -26,7 +26,7 @@ export function activate(context: vscode.ExtensionContext) {
             const filePath = editor.document.uri.fsPath;
             const terminal = vscode.window.createTerminal('yaml2pptx');
             terminal.show();
-            terminal.sendText(`yaml2pptx build "${filePath}" --open`);
+            terminal.sendText(`yaml2pptx build "${filePath}" --open || echo "Error: yaml2pptx not found. Install with: pip install -e ."`);
         })
     );
 

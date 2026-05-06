@@ -150,15 +150,7 @@ def build(
     theme = get_theme(theme_name or data.get("theme", "default"))
 
     # Apply theme overrides from YAML
-    theme_config = data.get("theme_config", {})
-    if theme_config.get("organization"):
-        theme.organization = theme_config["organization"]
-    if theme_config.get("document_title"):
-        theme.document_title = theme_config["document_title"]
-    if theme_config.get("classification"):
-        theme.classification = theme_config["classification"]
-    if theme_config.get("footer"):
-        theme.footer_text = theme_config["footer"]
+    _apply_theme_config(theme, data.get("theme_config", {}))
 
     out_path = output or Path(data.get("output", "output.pptx"))
 
@@ -183,6 +175,18 @@ def build(
         _open_file(out)
 
 
+def _apply_theme_config(theme: Theme, theme_config: dict) -> None:
+    """Apply theme overrides from YAML theme_config section."""
+    if theme_config.get("organization"):
+        theme.organization = theme_config["organization"]
+    if theme_config.get("document_title"):
+        theme.document_title = theme_config["document_title"]
+    if theme_config.get("classification"):
+        theme.classification = theme_config["classification"]
+    if theme_config.get("footer"):
+        theme.footer_text = theme_config["footer"]
+
+
 def _open_file(path: Path) -> None:
     system = platform.system()
     if system == "Darwin":
@@ -202,8 +206,11 @@ def _build_once(
     try:
         text = input_yaml.read_text(encoding="utf-8")
         data = yaml.safe_load(text)
-    except Exception as e:
-        typer.echo(f"Error: {e}", err=True)
+    except (FileNotFoundError, PermissionError, OSError) as e:
+        typer.echo(f"Error reading file: {e}", err=True)
+        return None
+    except yaml.YAMLError as e:
+        typer.echo(f"Error parsing YAML: {e}", err=True)
         return None
 
     if not isinstance(data, dict) or "slides" not in data:
@@ -211,16 +218,7 @@ def _build_once(
         return None
 
     theme = get_theme(theme_name or data.get("theme", "default"))
-
-    theme_config = data.get("theme_config", {})
-    if theme_config.get("organization"):
-        theme.organization = theme_config["organization"]
-    if theme_config.get("document_title"):
-        theme.document_title = theme_config["document_title"]
-    if theme_config.get("classification"):
-        theme.classification = theme_config["classification"]
-    if theme_config.get("footer"):
-        theme.footer_text = theme_config["footer"]
+    _apply_theme_config(theme, data.get("theme_config", {}))
 
     out_path = output or Path(data.get("output", "output.pptx"))
 
@@ -232,8 +230,11 @@ def _build_once(
             metadata=data.get("metadata"),
         )
         return out
-    except Exception as e:
-        typer.echo(f"Error: {e}", err=True)
+    except (TypeError, ValueError, KeyError) as e:
+        typer.echo(f"Error rendering presentation: {e}", err=True)
+        return None
+    except OSError as e:
+        typer.echo(f"Error writing file: {e}", err=True)
         return None
 
 

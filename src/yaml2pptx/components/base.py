@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from pptx.dml.color import RGBColor
+from pptx.enum.shapes import MSO_SHAPE, MSO_CONNECTOR_TYPE
 from pptx.enum.text import MSO_AUTO_SIZE, PP_ALIGN
 from pptx.util import Inches, Pt
 
@@ -67,7 +68,7 @@ def add_rect(
 ) -> object:
     """Add a rectangle shape."""
     shape = slide.shapes.add_shape(
-        1,  # MSO_SHAPE.RECTANGLE
+        MSO_SHAPE.RECTANGLE,
         Inches(left), Inches(top), Inches(width), Inches(height),
     )
     shape.line.fill.background()
@@ -174,7 +175,7 @@ def add_line(
 ) -> object:
     """Add a horizontal line (connector)."""
     connector = slide.shapes.add_connector(
-        1,  # MSO_CONNECTOR.STRAIGHT
+        MSO_CONNECTOR_TYPE.STRAIGHT,
         Inches(left), Inches(top),
         Inches(left + width), Inches(top),
     )

@@ -305,9 +305,9 @@ THEMES: dict[str, Theme] = {
 
 def get_theme(name: str = "default") -> Theme:
     if name in THEMES:
-        # Shallow copy so per-presentation overrides don't mutate the prototype
-        import dataclasses
-        return dataclasses.replace(THEMES[name])
+        # Deep copy so per-presentation overrides don't mutate the prototype
+        import copy
+        return copy.deepcopy(THEMES[name])
     return Theme(name=name)
 
 
