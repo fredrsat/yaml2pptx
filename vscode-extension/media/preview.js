@@ -6,21 +6,25 @@
 
     const vscode = acquireVsCodeApi();
 
-    // --- Theme ---
-    const THEME = {
-        primary: '#003087',
-        accent: '#00A9A5',
-        lightBlue: '#6CACE4',
-        darkNavy: '#001F5C',
-        textDark: '#1F2937',
-        textMuted: '#64748B',
-        textLight: '#9CA3AF',
-        white: '#FFFFFF',
-        cardBg: '#F8FAFC',
-        success: '#059669',
-        warning: '#E87722',
-        font: 'Calibri, sans-serif',
+    // --- Themes ---
+    var THEMES = {
+        'default': { primary:'#003087', accent:'#00A9A5', lightBlue:'#6CACE4', darkNavy:'#001F5C', textDark:'#1F2937', textMuted:'#64748B', textLight:'#9CA3AF', white:'#FFFFFF', cardBg:'#F8FAFC', success:'#059669', warning:'#E87722', font:'Calibri, sans-serif' },
+        'midnight': { primary:'#4F46E5', accent:'#06B6D4', lightBlue:'#818CF8', darkNavy:'#0F172A', textDark:'#1E293B', textMuted:'#64748B', textLight:'#94A3B8', white:'#FFFFFF', cardBg:'#EEF2FF', success:'#10B981', warning:'#F59E0B', font:'Segoe UI, sans-serif' },
+        'coral': { primary:'#E11D48', accent:'#F97316', lightBlue:'#FB7185', darkNavy:'#4C0519', textDark:'#1C1917', textMuted:'#78716C', textLight:'#A8A29E', white:'#FFFFFF', cardBg:'#FFF7ED', success:'#059669', warning:'#D97706', font:'Century Gothic, sans-serif' },
+        'forest': { primary:'#166534', accent:'#16A34A', lightBlue:'#4ADE80', darkNavy:'#052E16', textDark:'#1C1917', textMuted:'#57534E', textLight:'#A8A29E', white:'#FFFFFF', cardBg:'#F0FDF4', success:'#059669', warning:'#CA8A04', font:'Georgia, serif' },
+        'sunset': { primary:'#C2410C', accent:'#F59E0B', lightBlue:'#FB923C', darkNavy:'#431407', textDark:'#292524', textMuted:'#78716C', textLight:'#A8A29E', white:'#FFFFFF', cardBg:'#FFFBEB', success:'#059669', warning:'#DC2626', font:'Trebuchet MS, sans-serif' },
+        'arctic': { primary:'#0284C7', accent:'#38BDF8', lightBlue:'#7DD3FC', darkNavy:'#0C4A6E', textDark:'#0F172A', textMuted:'#64748B', textLight:'#94A3B8', white:'#FFFFFF', cardBg:'#F0F9FF', success:'#0D9488', warning:'#F59E0B', font:'Arial, sans-serif' },
+        'executive': { primary:'#1F2937', accent:'#B45309', lightBlue:'#D4A574', darkNavy:'#111827', textDark:'#111827', textMuted:'#6B7280', textLight:'#9CA3AF', white:'#FFFFFF', cardBg:'#F9FAFB', success:'#059669', warning:'#DC2626', font:'Georgia, serif' },
+        'neon': { primary:'#7C3AED', accent:'#06B6D4', lightBlue:'#A78BFA', darkNavy:'#1E1B4B', textDark:'#1E293B', textMuted:'#64748B', textLight:'#94A3B8', white:'#FFFFFF', cardBg:'#F5F3FF', success:'#10B981', warning:'#F59E0B', font:'Calibri, sans-serif' },
+        'earth': { primary:'#92400E', accent:'#4D7C0F', lightBlue:'#84CC16', darkNavy:'#422006', textDark:'#292524', textMuted:'#78716C', textLight:'#A8A29E', white:'#FFFFFF', cardBg:'#FEFCE8', success:'#3F6212', warning:'#C2410C', font:'Palatino Linotype, serif' },
+        'ocean': { primary:'#0F766E', accent:'#2DD4BF', lightBlue:'#5EEAD4', darkNavy:'#042F2E', textDark:'#1E293B', textMuted:'#64748B', textLight:'#94A3B8', white:'#FFFFFF', cardBg:'#F0FDFA', success:'#059669', warning:'#F59E0B', font:'Trebuchet MS, sans-serif' },
     };
+
+    var THEME = THEMES['default'];
+
+    function setTheme(name) {
+        THEME = THEMES[name] || THEMES['default'];
+    }
 
     // --- State ---
     let currentSlideIndex = 0;
@@ -617,10 +621,11 @@
     // Navigation and main render
     // =============================================
 
-    function renderSlides(slidesData, meta, theme) {
+    function renderSlides(slidesData, meta, themeConf, themeName) {
         slides = slidesData || [];
+        if (themeName) { setTheme(themeName); }
         metadata = meta || {};
-        themeConfig = theme || {};
+        themeConfig = themeConf || {};
 
         if (currentSlideIndex >= slides.length) {
             currentSlideIndex = Math.max(0, slides.length - 1);
@@ -737,26 +742,26 @@
         var style = document.createElement('style');
         style.textContent = ''
             + '*, *::before, *::after { box-sizing: border-box; }'
-            + 'body { margin: 0; padding: 16px; font-family: ' + THEME.font + '; background: #F1F5F9; color: ' + THEME.textDark + '; }'
+            + 'body { margin: 0; padding: 16px; font-family: Calibri, sans-serif; background: #F1F5F9; color: #1F2937; }'
             + '#preview-container { max-width: 900px; margin: 0 auto; }'
             + '.slide-navigator { margin-bottom: 12px; }'
             + '.nav-controls { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 8px; }'
-            + '.nav-btn { background: ' + THEME.primary + '; color: white; border: none; border-radius: 4px; width: 32px; height: 32px; font-size: 1.3em; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.15s; }'
-            + '.nav-btn:hover { background: ' + THEME.darkNavy + '; }'
-            + '.nav-label { font-size: 0.85em; color: ' + THEME.textMuted + '; }'
+            + '.nav-btn { background: #334155; color: white; border: none; border-radius: 4px; width: 32px; height: 32px; font-size: 1.3em; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.15s; }'
+            + '.nav-btn:hover { background: #1E293B; }'
+            + '.nav-label { font-size: 0.85em; color: #64748B; }'
             + '.thumb-strip { display: flex; gap: 4px; overflow-x: auto; padding: 4px 0; }'
-            + '.thumb { width: 36px; height: 22px; background: ' + THEME.cardBg + '; border: 2px solid transparent; border-radius: 3px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: border-color 0.15s, background 0.15s; flex-shrink: 0; }'
-            + '.thumb:hover { border-color: ' + THEME.lightBlue + '; }'
-            + '.thumb-active { border-color: ' + THEME.accent + '; background: white; }'
-            + '.thumb-num { font-size: 0.55em; color: ' + THEME.textMuted + '; font-weight: 600; }'
+            + '.thumb { width: 36px; height: 22px; background: #F8FAFC; border: 2px solid transparent; border-radius: 3px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: border-color 0.15s, background 0.15s; flex-shrink: 0; }'
+            + '.thumb:hover { border-color: #94A3B8; }'
+            + '.thumb-active { border-color: #334155; background: white; }'
+            + '.thumb-num { font-size: 0.55em; color: #64748B; font-weight: 600; }'
             + '.slide-wrapper { background: white; border-radius: 6px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); overflow: hidden; position: relative; }'
             + '.slide { position: relative; width: 100%; padding-bottom: 56.25%; overflow: hidden; }'
             + '.slide > div { position: absolute; top: 0; left: 0; right: 0; bottom: 0; overflow: auto; }'
-            + '.slide-type-label { font-size: 0.7em; color: ' + THEME.textLight + '; margin-top: 6px; text-align: right; }'
-            + 'a { color: ' + THEME.accent + '; text-decoration: none; }'
+            + '.slide-type-label { font-size: 0.7em; color: #94A3B8; margin-top: 6px; text-align: right; }'
+            + 'a { color: inherit; text-decoration: none; }'
             + 'a:hover { text-decoration: underline; }'
             + '::-webkit-scrollbar { width: 4px; height: 4px; }'
-            + '::-webkit-scrollbar-thumb { background: ' + THEME.textLight + '; border-radius: 2px; }';
+            + '::-webkit-scrollbar-thumb { background: #94A3B8; border-radius: 2px; }';
         document.head.appendChild(style);
     }
 
@@ -775,7 +780,7 @@
             document.body.appendChild(container);
         }
 
-        // Read base64-encoded data from hidden div
+        // Read base64-encoded data from hidden div (initial load)
         var dataEl = document.getElementById('__data');
         var data = null;
         try {
@@ -783,23 +788,34 @@
                 data = JSON.parse(atob(dataEl.textContent.trim()));
             }
         } catch (e) {
-            container.innerHTML = '<div style="color:red;padding:20px;">Failed to decode data: ' + String(e) + '</div>';
-            return;
+            // Will be populated via message instead
         }
 
-        if (data && data.error) {
-            container.innerHTML = '<div style="color:red;padding:20px;">' + data.error + '</div>';
-            return;
-        }
         if (data && data.slides && data.slides.length > 0) {
             try {
-                renderSlides(data.slides, data.metadata || {}, data.themeConfig || {});
+                renderSlides(data.slides, data.metadata || {}, data.themeConfig || {}, data.theme || 'default');
             } catch (err) {
                 container.innerHTML = '<div style="color:red;padding:20px;font-size:0.9em;"><strong>Render error:</strong><br><pre>' + String(err && err.stack ? err.stack : err) + '</pre></div>';
             }
         } else {
-            container.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:300px;color:' + THEME.textMuted + ';font-size:0.95em;">No slides found in YAML.</div>';
+            container.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:300px;color:' + THEME.textMuted + ';font-size:0.95em;">Loading preview...</div>';
         }
+
+        // Listen for update messages from the extension (file changes, tab switches)
+        window.addEventListener('message', function (event) {
+            var c = document.getElementById('preview-container');
+            try {
+                var message = event.data;
+                if (message && message.type === 'update') {
+                    renderSlides(message.slides || [], message.metadata || {}, message.themeConfig || {}, message.theme || 'default');
+                }
+            } catch (err) {
+                if (c) c.innerHTML = '<div style="color:red;padding:20px;font-size:0.9em;"><strong>Render error:</strong><br><pre>' + String(err && err.stack ? err.stack : err) + '</pre></div>';
+            }
+        });
+
+        // Tell extension we're ready for messages
+        vscode.postMessage({ type: 'ready' });
     }
 
     // Run initialization when the DOM is ready

@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import * as yaml from 'js-yaml';
+import * as path from 'path';
 
 export class PreviewPanel {
     public static currentPanel: PreviewPanel | undefined;
@@ -8,13 +9,15 @@ export class PreviewPanel {
     private readonly panel: vscode.WebviewPanel;
     private readonly extensionUri: vscode.Uri;
     private disposables: vscode.Disposable[] = [];
+    private debounceTimer: ReturnType<typeof setTimeout> | undefined;
+    private ready = false;
 
     public static createOrShow(extensionUri: vscode.Uri, document: vscode.TextDocument) {
         const column = vscode.ViewColumn.Beside;
 
         if (PreviewPanel.currentPanel) {
             PreviewPanel.currentPanel.panel.reveal(column);
-            PreviewPanel.currentPanel.update(document);
+            PreviewPanel.currentPanel.sendUpdate(document);
             return;
         }
 
@@ -29,48 +32,85 @@ export class PreviewPanel {
             }
         );
 
-        PreviewPanel.currentPanel = new PreviewPanel(panel, extensionUri);
-        PreviewPanel.currentPanel.update(document);
+        PreviewPanel.currentPanel = new PreviewPanel(panel, extensionUri, document);
     }
 
     public static updateIfActive(document: vscode.TextDocument) {
         if (PreviewPanel.currentPanel) {
-            PreviewPanel.currentPanel.update(document);
+            PreviewPanel.currentPanel.debouncedUpdate(document);
         }
     }
 
-    private constructor(panel: vscode.WebviewPanel, extensionUri: vscode.Uri) {
+    private constructor(panel: vscode.WebviewPanel, extensionUri: vscode.Uri, initialDocument: vscode.TextDocument) {
         this.panel = panel;
         this.extensionUri = extensionUri;
 
         this.panel.onDidDispose(() => this.dispose(), null, this.disposables);
+
+        // Listen for ready message from webview
+        this.panel.webview.onDidReceiveMessage(
+            message => {
+                if (message.type === 'ready') {
+                    this.ready = true;
+                    this.sendUpdate(initialDocument);
+                }
+            },
+            null,
+            this.disposables
+        );
+
+        // Set initial HTML with inline data as fallback
+        this.panel.webview.html = this.getHtml(initialDocument);
     }
 
-    public update(document: vscode.TextDocument) {
-        const text = document.getText();
-        let slidesJson = '[]';
-        let metadataJson = '{}';
-        let themeConfigJson = '{}';
-        let error = '';
-
-        try {
-            const data = yaml.load(text) as Record<string, unknown> | null;
-            if (!data || typeof data !== 'object' || !('slides' in data)) {
-                error = 'No slides found in YAML file.';
-            } else {
-                slidesJson = JSON.stringify(data.slides || []);
-                metadataJson = JSON.stringify(data.metadata || {});
-                themeConfigJson = JSON.stringify(data.theme_config || {});
-            }
-        } catch (e: unknown) {
-            error = 'YAML parse error: ' + (e instanceof Error ? e.message : String(e));
+    private debouncedUpdate(document: vscode.TextDocument) {
+        if (this.debounceTimer) {
+            clearTimeout(this.debounceTimer);
         }
+        this.debounceTimer = setTimeout(() => {
+            this.sendUpdate(document);
+        }, 300);
+    }
 
-        this.panel.webview.html = this.getHtml(slidesJson, metadataJson, themeConfigJson, error);
+    private sendUpdate(document: vscode.TextDocument) {
+        const parsed = this.parseYaml(document);
+        if (!parsed) { return; }
+
+        // Update panel title
+        const fileName = path.basename(document.uri.fsPath);
+        this.panel.title = `Preview: ${fileName}`;
+
+        this.panel.webview.postMessage({
+            type: 'update',
+            slides: parsed.slides,
+            metadata: parsed.metadata,
+            themeConfig: parsed.themeConfig,
+            theme: parsed.theme,
+        });
+    }
+
+    private parseYaml(document: vscode.TextDocument): { slides: unknown[]; metadata: object; themeConfig: object; theme: string } | null {
+        try {
+            const data = yaml.load(document.getText()) as Record<string, unknown> | null;
+            if (!data || typeof data !== 'object' || !('slides' in data)) {
+                return null;
+            }
+            return {
+                slides: (data.slides as unknown[]) || [],
+                metadata: (data.metadata as object) || {},
+                themeConfig: (data.theme_config as object) || {},
+                theme: (data.theme as string) || 'default',
+            };
+        } catch {
+            return null;
+        }
     }
 
     private dispose() {
         PreviewPanel.currentPanel = undefined;
+        if (this.debounceTimer) {
+            clearTimeout(this.debounceTimer);
+        }
         this.panel.dispose();
         while (this.disposables.length) {
             const d = this.disposables.pop();
@@ -78,18 +118,20 @@ export class PreviewPanel {
         }
     }
 
-    private getHtml(slidesJson: string, metadataJson: string, themeConfigJson: string, error: string): string {
+    private getHtml(document: vscode.TextDocument): string {
         const webview = this.panel.webview;
         const jsUri = webview.asWebviewUri(
             vscode.Uri.joinPath(this.extensionUri, 'media', 'preview.js')
         );
 
-        // Encode as base64 to avoid any script/HTML escaping issues
+        // Embed initial data as base64 for first render
+        const parsed = this.parseYaml(document);
         const payload = JSON.stringify({
-            slides: JSON.parse(slidesJson),
-            metadata: JSON.parse(metadataJson),
-            themeConfig: JSON.parse(themeConfigJson),
-            error: error,
+            slides: parsed ? parsed.slides : [],
+            metadata: parsed ? parsed.metadata : {},
+            themeConfig: parsed ? parsed.themeConfig : {},
+            theme: parsed ? parsed.theme : 'default',
+            error: parsed ? '' : 'No slides found in YAML file.',
         });
         const b64 = Buffer.from(payload, 'utf-8').toString('base64');
 
