@@ -303,11 +303,24 @@ THEMES: dict[str, Theme] = {
 }
 
 
+def _copy_rgb(c: RGBColor) -> RGBColor:
+    return RGBColor(int(c[0]), int(c[1]), int(c[2]))
+
+
+def _copy_theme_colors(c: ThemeColors) -> ThemeColors:
+    return ThemeColors(**{f.name: _copy_rgb(getattr(c, f.name)) for f in c.__dataclass_fields__.values()})
+
+
 def get_theme(name: str = "default") -> Theme:
     if name in THEMES:
-        # Deep copy so per-presentation overrides don't mutate the prototype
-        import copy
-        return copy.deepcopy(THEMES[name])
+        src = THEMES[name]
+        from dataclasses import replace
+        return replace(
+            src,
+            colors=_copy_theme_colors(src.colors),
+            fonts=replace(src.fonts),
+            sizes=replace(src.sizes),
+        )
     return Theme(name=name)
 
 

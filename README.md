@@ -1,28 +1,97 @@
 # yaml2pptx
 
-Generate PowerPoint presentations from YAML files. Define your slides declaratively — version-controlled, reproducible, and template-free.
+**Generate professional PowerPoint presentations from YAML.** Version-controlled, reproducible, and fully editable output.
 
-## Installation
+Unlike tools like [Marp](https://marp.app) that render slides as flat images, yaml2pptx generates **native PowerPoint** with real shapes, text, and tables — your audience can edit, copy, and reuse the content.
 
-```bash
-pip install -e .
-```
+| | | |
+|---|---|---|
+| ![Title Page](docs/screenshots/title_page.png) | ![Stat Cards](docs/screenshots/stat_cards.png) | ![Timeline](docs/screenshots/timeline.png) |
+| ![Two Panels](docs/screenshots/two_panels.png) | ![Definition Cards](docs/screenshots/definition_cards.png) | ![Table](docs/screenshots/table.png) |
+
+*All slides generated from YAML — no PowerPoint GUI needed.*
+
+## Why yaml2pptx?
+
+- **17 slide types** — title pages, timelines, stat cards, comparisons, process flows, metrics dashboards, and more. No CSS or design skills needed.
+- **Native .pptx output** — real shapes, editable text, and tables. Not screenshots. Not PDFs.
+- **10 built-in themes** — professional color palettes that apply consistently across all slide types.
+- **50+ icons** — built-in icon library for cards and process slides.
+- **Template support** — use your organization's .pptx template with the `gen` command.
+- **Inline Markdown** — `**bold**`, `*italic*`, `` `code` ``, `[links](url)`, `~~strikethrough~~` in any text field.
+- **VS Code extension** — live preview, snippets for all slide types, and JSON schema validation.
+- **Declarative** — presentations are plain text. Diff them, review them, version them in git.
+- **Lightweight** — Python + python-pptx. No browser, no Chromium, no external services.
 
 ## Quick Start
 
 ```bash
-# Build a presentation using the component renderer (themed slides)
-yaml2pptx build presentation.yaml
-
-# Build and open immediately
-yaml2pptx build presentation.yaml --open
-
-# Use the template-based renderer
-yaml2pptx gen presentation.yaml -t template.pptx
-
-# Inspect a PowerPoint template's layouts
-yaml2pptx inspect template.pptx
+pip install yaml2pptx
 ```
+
+Create `deck.yaml`:
+
+```yaml
+theme: midnight
+slides:
+  - type: title_page
+    title: "Quarterly Review"
+    subtitle: "Q1 2026 Results"
+    author: "Team Alpha"
+    date: "April 2026"
+
+  - type: stat_cards
+    section: "HIGHLIGHTS"
+    title: "Key Results"
+    cards:
+      - stat: "142%"
+        title: "Revenue Target"
+        description: "Exceeded annual target by 42%"
+      - stat: "4.8"
+        title: "Customer Satisfaction"
+        description: "Highest score in company history"
+      - stat: "23"
+        title: "New Markets"
+        description: "Expanded to 23 new regions"
+
+  - type: timeline
+    section: "ROADMAP"
+    title: "What's Next"
+    phases:
+      - label: "Q2"
+        title: "Platform Launch"
+        active: true
+        items: ["Beta release", "Partner onboarding"]
+      - label: "Q3"
+        title: "Scale"
+        items: ["Global rollout", "Enterprise tier"]
+      - label: "Q4"
+        title: "Optimize"
+        items: ["Performance tuning", "Analytics v2"]
+```
+
+```bash
+yaml2pptx build deck.yaml --open
+```
+
+This produces a polished presentation with the Midnight theme — dark blue backgrounds, amber accents, consistent typography — without touching PowerPoint.
+
+## Installation
+
+```bash
+# From PyPI
+pip install yaml2pptx
+
+# From source (development)
+git clone https://github.com/fredrsat/yaml2pptx.git
+cd yaml2pptx
+pip install -e ".[dev]"
+
+# With file watching support
+pip install -e ".[watch]"
+```
+
+Requires Python 3.10+.
 
 ## Commands
 
@@ -32,6 +101,16 @@ yaml2pptx inspect template.pptx
 | `gen` | Template-based renderer — uses .pptx templates with placeholders |
 | `inspect` | Shows layouts and placeholders in a .pptx template |
 | `init` | Creates a starter YAML file |
+
+```bash
+yaml2pptx build presentation.yaml              # Build with default output name
+yaml2pptx build presentation.yaml --open        # Build and open in PowerPoint
+yaml2pptx gen presentation.yaml -t template.pptx  # Use organization template
+yaml2pptx inspect template.pptx                 # See template layouts
+yaml2pptx init --name "My Deck"                 # Generate starter YAML
+```
+
+---
 
 ## YAML Structure
 
@@ -52,6 +131,8 @@ slides:
   - type: title_page
     # ... slide-specific fields
 ```
+
+---
 
 ## Slide Types
 
@@ -460,6 +541,8 @@ yaml2pptx includes 10 built-in themes. Set the theme in your YAML file:
 theme: midnight
 ```
 
+![Midnight theme](docs/screenshots/midnight_title.png)
+
 | Theme | Style | Primary | Accent |
 |-------|-------|---------|--------|
 | `default` | Professional blue | Navy #003087 | Teal #00A9A5 |
@@ -489,7 +572,7 @@ theme_config:
 
 ## Examples
 
-The `examples/` directory contains presentations for each theme:
+The `examples/` directory contains complete presentations for each theme:
 
 | File | Theme | Description |
 |------|-------|-------------|
@@ -503,19 +586,15 @@ The `examples/` directory contains presentations for each theme:
 | `neon_devops_keynote.yaml` | neon | DevOps conference keynote |
 | `earth_urban_plan.yaml` | earth | Urban development plan |
 | `ocean_research.yaml` | ocean | Marine research findings |
-| `showcase.yaml` | default | All slide types demonstrated |
+| `showcase.yaml` | default | All 17 slide types demonstrated |
 | `product_launch.yaml` | default | Product launch plan |
 | `quarterly_review.yaml` | default | Quarterly business review |
 
-Build an example:
-
 ```bash
+# Build a single example
 yaml2pptx build examples/coral_brand_refresh.yaml --open
-```
 
-Build all examples:
-
-```bash
+# Build all examples
 for f in examples/*.yaml; do yaml2pptx build "$f"; done
 ```
 
@@ -557,9 +636,10 @@ Open a yaml2pptx YAML file and run the preview command to see a live rendering o
 
 - **Command:** `yaml2pptx: Open Preview`
 - **Command Palette:** `Cmd+Shift+P` → "yaml2pptx: Open Preview"
+- **Keyboard shortcut:** `Cmd+Shift+Y` (Mac) / `Ctrl+Shift+Y` (Windows/Linux)
 - **Editor title bar:** Click the preview icon when a YAML file is open
 
-The preview updates automatically when you edit the YAML file. Navigate between slides with the arrow buttons or click thumbnails.
+The preview updates automatically as you type (with 300ms debounce). Navigate between slides with arrow buttons or click thumbnails. All 10 themes render correctly in the preview.
 
 #### Generate PPTX
 
@@ -571,7 +651,7 @@ Generate a PowerPoint file directly from VS Code.
 
 #### Snippets
 
-Type `y2p-` in a YAML file to see available snippets for all slide types:
+Type `y2p-` in a YAML file to see available snippets for all 17 slide types:
 
 | Snippet | Description |
 |---------|-------------|
@@ -601,7 +681,7 @@ The extension provides JSON schema validation for yaml2pptx YAML files, giving y
 
 ## Template-Based Rendering (`gen`)
 
-For standard PowerPoint templates with placeholders:
+For organizations with existing PowerPoint templates:
 
 ```yaml
 template: "template.pptx"
@@ -626,3 +706,38 @@ yaml2pptx gen presentation.yaml
 yaml2pptx inspect template.pptx     # See available layouts
 yaml2pptx init --name "My Deck"     # Generate starter YAML
 ```
+
+---
+
+## How It Compares
+
+| Feature | yaml2pptx | Marp | Google Slides API |
+|---------|-----------|------|-------------------|
+| Input format | YAML | Markdown | JSON/REST |
+| Output | Native .pptx (editable) | HTML, PDF, image-based .pptx | Google Slides |
+| Slide types | 17 built-in layouts | Free-form markdown | Manual positioning |
+| Themes | 10 built-in | 3 built-in + CSS | Manual styling |
+| Icons | 50+ built-in | None | Manual |
+| Tables | Native PowerPoint tables | Rendered as images | Supported |
+| Template support | Yes (.pptx templates) | CSS only | Yes |
+| Dependencies | Python + python-pptx | Node.js + Chromium | API credentials |
+| Offline | Yes | Yes | No |
+| Editable output | Yes | No (image-based PPTX) | Yes (Google Slides) |
+
+---
+
+## Contributing
+
+Contributions are welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+
+```bash
+# Development setup
+git clone https://github.com/fredrsat/yaml2pptx.git
+cd yaml2pptx
+pip install -e ".[dev]"
+pytest
+```
+
+## License
+
+[MIT](LICENSE)
