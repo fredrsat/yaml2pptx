@@ -1,0 +1,31 @@
+# yaml2pptx
+
+> Generate professional PowerPoint presentations from YAML — 17 slide types, 10 themes, and native, fully editable .pptx output with no GUI needed.
+
+yaml2pptx turns a plain-text YAML file into a native PowerPoint deck: real shapes, editable text, and real tables rather than rendered images. It offers two renderers — `build` (component-based, free-form shapes styled by a theme) and `gen` (template-based, filling placeholders in an organization's .pptx template) — plus `inspect` for examining templates and `init` for starter files. Slide types include title pages, stat cards, timelines, comparisons, process flows, tables, charts, and key metrics; text fields accept inline Markdown.
+
+Tech stack: Python 3.10+, python-pptx, PyYAML, Typer, and Pydantic. Install with `pip install yaml2pptx`, then `yaml2pptx build deck.yaml --open`. The repo also contains a VS Code extension with live preview, snippets, and JSON schema validation, and a pytest suite under `tests/`.
+
+## Docs
+
+- [README.md](https://github.com/fredrsat/yaml2pptx/blob/main/README.md): full documentation — quick start, all 17 slide types with YAML fields, themes, icons, template rendering, and comparisons with alternatives
+- [CONTRIBUTING.md](https://github.com/fredrsat/yaml2pptx/blob/main/CONTRIBUTING.md): development setup and contribution guidelines
+
+## Source
+
+- [src/yaml2pptx/cli.py](https://github.com/fredrsat/yaml2pptx/blob/main/src/yaml2pptx/cli.py): Typer CLI — the build, gen, inspect, and init commands
+- [src/yaml2pptx/models/slides.py](https://github.com/fredrsat/yaml2pptx/blob/main/src/yaml2pptx/models/slides.py): Pydantic models for all slide types
+- [src/yaml2pptx/parser/yaml_parser.py](https://github.com/fredrsat/yaml2pptx/blob/main/src/yaml2pptx/parser/yaml_parser.py): YAML → presentation model
+- [src/yaml2pptx/parser/markdown_parser.py](https://github.com/fredrsat/yaml2pptx/blob/main/src/yaml2pptx/parser/markdown_parser.py): inline Markdown parsing for text fields
+- [src/yaml2pptx/components/renderer.py](https://github.com/fredrsat/yaml2pptx/blob/main/src/yaml2pptx/components/renderer.py): component-based renderer behind the build command
+- [src/yaml2pptx/engine/generator.py](https://github.com/fredrsat/yaml2pptx/blob/main/src/yaml2pptx/engine/generator.py): template-based renderer behind the gen command
+- [src/yaml2pptx/themes.py](https://github.com/fredrsat/yaml2pptx/blob/main/src/yaml2pptx/themes.py): the 10 built-in themes
+- [pyproject.toml](https://github.com/fredrsat/yaml2pptx/blob/main/pyproject.toml): package metadata and dependencies
+
+## Optional
+
+- [examples/showcase.yaml](https://github.com/fredrsat/yaml2pptx/blob/main/examples/showcase.yaml): example deck demonstrating the slide types
+- [examples/full_featured.yaml](https://github.com/fredrsat/yaml2pptx/blob/main/examples/full_featured.yaml): example using the full feature set
+- [vscode-extension/package.json](https://github.com/fredrsat/yaml2pptx/blob/main/vscode-extension/package.json): VS Code extension manifest
+- [tests/test_generator.py](https://github.com/fredrsat/yaml2pptx/blob/main/tests/test_generator.py): tests for the template renderer
+- [LICENSE](https://github.com/fredrsat/yaml2pptx/blob/main/LICENSE): MIT
