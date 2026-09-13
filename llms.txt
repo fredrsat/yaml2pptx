@@ -2,7 +2,7 @@
 
 > Generate professional PowerPoint presentations from YAML — 17 slide types, 10 themes, and native, fully editable .pptx output with no GUI needed.
 
-yaml2pptx turns a plain-text YAML file into a native PowerPoint deck: real shapes, editable text, and real tables rather than rendered images. It offers two renderers — `build` (component-based, free-form shapes styled by a theme) and `gen` (template-based, filling placeholders in an organization's .pptx template) — plus `inspect` for examining templates and `init` for starter files. Slide types include title pages, stat cards, timelines, comparisons, process flows, tables, charts, and key metrics; text fields accept inline Markdown.
+yaml2pptx turns a plain-text YAML file into a native PowerPoint deck: real shapes, editable text, and real tables rather than rendered images. It offers two renderers — `build` (component-based, free-form shapes styled by a theme) and `gen` (template-based, filling placeholders in an organization's .pptx template) — plus `inspect` for examining templates and `init` for starter files. Slide types include title pages, stat cards, timelines, comparisons, process flows, tables, and key metrics; text fields accept inline Markdown.
 
 Tech stack: Python 3.10+, python-pptx, PyYAML, Typer, and Pydantic. Install with `pip install yaml2pptx`, then `yaml2pptx build deck.yaml --open`. The repo also contains a VS Code extension with live preview, snippets, and JSON schema validation, and a pytest suite under `tests/`.
 
